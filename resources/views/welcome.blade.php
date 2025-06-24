@@ -1,732 +1,545 @@
 @extends('layouts.app')
 
 @section('content')
-     <!-- Hero Section -->
-    <section id="hero" class="hero section light-background">
+   
+  <!-- ### intro
+  ================================================== -->
+  <section id="intro" class="s-intro target-section">
 
-      <img src="{{ asset('img/hero-bg.jpg') }}" alt="">
+      <div class="row intro-content wide">
 
-      <div class="container" data-aos="zoom-out">
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-            <h2>Archell Enaya</h2>
-            <p>I'm <span class="typed" data-typed-items="Web Developer, Backend Developer, Laravel Developer">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
-            <div class="social-links"> 
-              <a href="https://www.facebook.com/share/1JHXi7wBwD" target="_blank"><i class="bi bi-facebook"></i></a>
-              <a href="https://www.instagram.com/instag_arch?igsh=MWM2dDUxMDcxYnl4" target="_blank"><i class="bi bi-instagram"></i></a>
-              <a href="https://www.linkedin.com/in/archell-enaya-b52093207" target="_blank"><i class="bi bi-linkedin"></i></a>
-               <a href="https://wa.me/639383998076" target="_blank"><i class="bi bi-whatsapp"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </section><!-- /Hero Section -->
-    <svg id="clouds" class="hidden-xs" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100" viewBox="0 0 85 100" preserveAspectRatio="none">
-        <path d="M-5 100 Q 0 20 5 100 Z
-            M0 100 Q 5 0 10 100
-            M5 100 Q 10 30 15 100
-            M10 100 Q 15 10 20 100
-            M15 100 Q 20 30 25 100
-            M20 100 Q 25 -10 30 100
-            M25 100 Q 30 10 35 100
-            M30 100 Q 35 30 40 100
-            M35 100 Q 40 10 45 100
-            M40 100 Q 45 50 50 100
-            M45 100 Q 50 20 55 100
-            M50 100 Q 55 40 60 100
-            M55 100 Q 60 60 65 100
-            M60 100 Q 65 50 70 100
-            M65 100 Q 70 20 75 100
-            M70 100 Q 75 45 80 100
-            M75 100 Q 80 30 85 100
-            M80 100 Q 85 20 90 100
-            M85 100 Q 90 50 95 100
-            M90 100 Q 95 25 100 100
-            M95 100 Q 100 15 105 100 Z">
-        </path>
-    </svg>
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4">
-            <img src="{{ asset('img/profile-img.jpg') }}" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 content">
-            <h2>UI/UX Designer &amp; Web Developer.</h2>
-            <p class="fst-italic py-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
-                </ul>
+          <div class="column">
+              <div class="text-pretitle with-line">
+                  Hello World
               </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>email@example.com</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-                </ul>
-              </div>
-            </div>
-            <p class="py-3">
-              Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-              Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque.
-            </p>
-          </div>
-        </div>
 
-      </div>
-
-    </section><!-- /About Section -->
-
-    <!-- Stats Section -->
-    <section id="stats" class="stats section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="bi bi-emoji-smile"></i>
-            <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Happy Clients</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="bi bi-journal-richtext"></i>
-            <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Projects</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="bi bi-headset"></i>
-            <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hours Of Support</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-          <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
-            <i class="bi bi-people"></i>
-            <div class="stats-item">
-              <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hard Workers</p>
-            </div>
-          </div><!-- End Stats Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Stats Section -->
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Skills</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row skills-content skills-animation">
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
+              <h1 class="text-huge-title">
+                  I am Arch, <br>
+                  Backend Laravel<br>
+                   Web developer<br> 
+                   based <br>
+                  in Philippines.
+              </h1>
           </div>
 
-          <div class="col-lg-6">
+          <ul class="intro-social">
+              <li><a href="#0">Behance</a></li>
+              <li><a href="#0">Twitter</a></li>
+              <li><a href="#0">Dribbble</a></li>
+              <li><a href="#0">Instagram</a></li>
+          </ul>
 
-            <div class="progress">
-              <span class="skill"><span>PHP</span> <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+      </div> <!-- end intro content -->
 
-            <div class="progress">
-              <span class="skill"><span>WordPress/CMS</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+      <a href="#about" class="intro-scrolldown smoothscroll">
+          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"/></svg>
+      </a>
 
-            <div class="progress">
-              <span class="skill"><span>Photoshop</span> <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
+  </section> <!-- end s-intro -->
 
+
+  <!-- ### about
+  ================================================== -->
+  <section id="about" class="s-about target-section">
+
+
+      <div class="row about-info wide" data-animate-block>
+
+          <div class="column lg-6 md-12 about-info__pic-block">
+              <img src="{{asset('images/about-photo.jpg')}}" 
+                    srcset="images/about-photo.jpg 1x, images/about-photo@2x.jpg 2x" alt="" class="about-info__pic" data-animate-el>
           </div>
 
-        </div>
+          <div class="column lg-6 md-12">
+              <div class="about-info__text" >
 
-      </div>
+                  <h2 class="text-pretitle with-line" data-animate-el>
+                      About
+                  </h2>
+                  <p class="attention-getter" data-animate-el>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+                      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex 
+                      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
+                      velit esse cillum dolore eu fugiat nulla pariatur.
+                  </p>
+                  <a href="#0" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
 
-    </section><!-- /Skills Section -->
+              </div>
+          </div>
+      </div> <!-- about-info -->
 
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-      </div><!-- End Section Title -->
+      <div class="row about-expertise" data-animate-block>
+          <div class="column lg-12">
 
-      <div class="container">
+              <h2 class="text-pretitle" data-animate-el>Expertise</h2>
 
-        <div class="row">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Sumary</h3>
-
-            <div class="resume-item pb-0">
-              <h4>Brandon Johnson</h4>
-              <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
-              <ul>
-                <li>Portland par 127,Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example.com</li>
+              <ul class="skills-list h1" data-animate-el>
+                  <li>Visual Design</li>
+                  <li>Branding Identity</li>
+                  <li>UI Design</li>
+                  <li>Product Design</li>
+                  <li>Prototyping</li>
+                  <li>Illustration</li>
               </ul>
-            </div><!-- Edn Resume Item -->
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Fine Arts &amp; Graphic Design</h4>
-              <h5>2015 - 2016</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-              <h5>2010 - 2014</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-            </div><!-- Edn Resume Item -->
 
           </div>
+      </div> <!-- end about-expertise -->
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Senior graphic design specialist</h4>
-              <h5>2019 - Present</h5>
-              <p><em>Experion, New York, NY </em></p>
-              <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
+
+      <div class="row about-timelines" data-animate-block>
+
+          <div class="column lg-6 tab-12">
+
+              <h2 class="text-pretitle" data-animate-el>
+                  Experience
+              </h2>
+
+              <div class="timeline" data-animate-el>
+
+                  <div class="timeline__block">
+                      <div class="timeline__bullet"></div>
+                      <div class="timeline__header">
+                          <h4 class="timeline__title">Dropbox</h3>
+                          <h5 class="timeline__meta">Product Designer</h5>
+                          <p class="timeline__timeframe">August 2019 - Present</p>
+                      </div>
+                      <div class="timeline__desc">
+                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+                      </div>
+                  </div>
+
+                  <div class="timeline__block">
+                      <div class="timeline__bullet"></div>
+                      <div class="timeline__header">
+                          <h4 class="timeline__title">Microsoft</h4>
+                          <h5 class="timeline__meta">Frontend Developer</h5>
+                          <p class="timeline__timeframe">August 2016 - July 2019</p>
+                      </div>
+                      <div class="timeline__desc">
+                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+                      </div>
+                  </div>
+
+              </div> <!-- end timeline -->
+
+          </div> <!-- end column -->
+
+          <div class="column lg-6 tab-12">
+
+              <h2 class="text-pretitle" data-animate-el>
+                  Education
+              </h2>
+
+              <div class="timeline" data-animate-el>
+
+                  <div class="timeline__block">
+                      <div class="timeline__bullet"></div>
+                      <div class="timeline__header">
+                          <h4 class="timeline__title">University of Life</h3>
+                          <h5 class="timeline__meta">Master in Graphic Design</h5>
+                          <p class="timeline__timeframe">April 2015</p>
+                      </div>
+                      <div class="timeline__desc">
+                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+                      </div>
+                  </div>
+
+                  <div class="timeline__block">
+                      <div class="timeline__bullet"></div>
+                      <div class="timeline__header">
+                          <h4 class="timeline__title">School of Cool Designers</h4>
+                          <h5 class="timeline__meta">B.A. Degree in Graphic Design</h5>
+                          <p class="timeline__timeframe">August 2012</p>
+                      </div>
+                      <div class="timeline__desc">
+                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+                      </div>
+                  </div>
+
+              </div> <!-- end timeline -->
+              
+          </div> <!-- end column -->
+
+
+      </div> <!-- end about-timelines -->
+
+  </section> <!-- end s-about -->
+
+
+  <!-- ### works
+  ================================================== -->
+  <section id="works" class="s-works target-section">
+
+
+      <div class="row works-portfolio">
+
+          <div class="column lg-12" data-animate-block>
+
+              <h2 class="text-pretitle" data-animate-el>
+                  Recent Works
+              </h2>
+              <p class="h1" data-animate-el>
+                  Here are some of my favorite projects I have done lately. Feel free to check them out.
+              </p>
+
+              <ul class="folio-list row block-lg-one-half block-stack-on-1000">
+
+                  <li class="folio-list__item column" data-animate-el>
+                      <a class="folio-list__item-link" href="#modal-01">
+                          <div class="folio-list__item-pic">
+                              <img src="{{asset('images/portfolio/fuji.jpg')}}"
+                                    srcset="{{asset('images/portfolio/fuji.jpg')}} 1x, images/portfolio/fuji@2x.jpg 2x"  alt="">
+                          </div>
+                          
+                          <div class="folio-list__item-text">
+                              <div class="folio-list__item-cat">
+                                  Website
+                              </div>
+                              <div class="folio-list__item-title">
+                                  Retro Camera.
+                              </div>
+                          </div>
+                      </a>
+                      <a class="folio-list__proj-link" href="#" title="project link">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                      </a>
+                  </li> <!--end folio-list__item -->
+
+                  <li class="folio-list__item column" data-animate-el>
+                      <a class="folio-list__item-link" href="#modal-02">
+                          <div class="folio-list__item-pic">
+                              <img src="{{asset('images/portfolio/lamp.jpg')}}" 
+                                    srcset="{{asset('images/portfolio/lamp.jpg')}} 1x, images/portfolio/lamp@2x.jpg 2x" alt="">
+                          </div>
+                          
+                          <div class="folio-list__item-text">
+                              <div class="folio-list__item-cat">
+                                  Product Design
+                              </div>
+                              <div class="folio-list__item-title">
+                                  The White Lamp.
+                              </div>
+                          </div>
+                      </a>
+                      <a class="folio-list__proj-link" href="#" title="project link">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                      </a>
+                  </li> <!--end folio-list__item -->
+
+                  <li class="folio-list__item column" data-animate-el>
+                      <a class="folio-list__item-link" href="#modal-03">
+                          <div class="folio-list__item-pic">
+                              <img src="{{asset('images/portfolio/rucksack.jpg')}}" 
+                                    srcset="{{asset('images/portfolio/rucksack.jpg')}} 1x, images/portfolio/rucksack@2x.jpg 2x" alt="">
+                          </div>
+                          
+                          <div class="folio-list__item-text">
+                              <div class="folio-list__item-cat">
+                                  Branding
+                              </div>
+                              <div class="folio-list__item-title">
+                                  Rucksuck.
+                              </div>
+                          </div>
+                      </a>
+                      <a class="folio-list__proj-link" href="#" title="project link">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                      </a>
+                  </li> <!--end folio-list__item -->
+
+                  <li class="folio-list__item column" data-animate-el>
+                      <a class="folio-list__item-link" href="#modal-04">
+                          <div class="folio-list__item-pic">
+                              <img src="{{asset('images/portfolio/skaterboy.jpg')}}"
+                                    srcset="{{asset('images/portfolio/skaterboy.jpg')}} 1x, images/portfolio/skaterboy@2x.jpg 2x" alt="">
+                          </div>
+                          
+                          <div class="folio-list__item-text">
+                              <div class="folio-list__item-cat">
+                                  Website
+                              </div>
+                              <div class="folio-list__item-title">
+                                  Since Day One.
+                              </div>
+                          </div>
+                      </a>
+                      <a class="folio-list__proj-link" href="#" title="project link">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                      </a>
+                  </li> <!--end folio-list__item -->
+
+                  <li class="folio-list__item column" data-animate-el>
+                      <a class="folio-list__item-link" href="#modal-05">
+                          <div class="folio-list__item-pic">
+                              <img src="{{asset('images/portfolio/sanddunes.jpg')}}" 
+                                    srcset="{{asset('images/portfolio/sanddunes.jpg')}} 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
+                          </div>
+                          
+                          <div class="folio-list__item-text">
+                              <div class="folio-list__item-cat">
+                                  Illustration
+                              </div>
+                              <div class="folio-list__item-title">
+                                  Sand Dunes.
+                              </div>
+                          </div>
+                      </a>
+                      <a class="folio-list__proj-link" href="#" title="project link">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                      </a>
+                  </li> <!--end folio-list__item -->
+
+                  <li class="folio-list__item column" data-animate-el>
+                      <a class="folio-list__item-link" href="#modal-06">
+                          <div class="folio-list__item-pic">
+                              <img src="{{asset('images/portfolio/minimalismo.jpg')}}" 
+                                    srcset="{{asset('images/portfolio/minimalismo.jpg')}} 1x, images/portfolio/minimalismo@2x.jpg 2x" alt="">
+                          </div>
+                          
+                          <div class="folio-list__item-text">
+                              <div class="folio-list__item-cat">
+                                  Branding
+                              </div>
+                              <div class="folio-list__item-title">
+                                  Minimalismo.
+                              </div>
+                          </div>
+                      </a>
+                      <a class="folio-list__proj-link" href="#" title="project link">
+                          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                      </a>
+                  </li> <!--end folio-list__item -->
+
+              </ul> <!-- end folio-list -->
+
+          </div> <!-- end column -->
+
+
+          <!-- Modal Templates Popup
+          -------------------------------------------- -->
+          <div id="modal-01" hidden>
+              <div class="modal-popup">
+                  <img src="{{asset('images/portfolio/gallery/g-fuji.jpg')}}" alt="">
+      
+                  <div class="modal-popup__desc">
+                      <h5>Retro Camera</h5>
+                      <p>Odio soluta enim quos sit asperiores rerum rerum repudiandae cum. Vel voluptatem alias qui assumenda iure et expedita voluptatem. Ratione officiis quae.</p>
+                      <ul class="modal-popup__cat">
+                          <li>Branding</li>
+                          <li>Product Design</li>
+                      </ul>
+                  </div>
+      
+                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+              </div>
+          </div> <!-- end modal -->
+
+          <div id="modal-02" hidden>
+              <div class="modal-popup">
+                  <img src="{{asset('images/portfolio/gallery/g-lamp.jpg')}}" alt="">
+      
+                  <div class="modal-popup__desc">
+                      <h5>The White Lamp</h5>
+                      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+                      <ul class="modal-popup__cat">
+                          <li>Branding</li>
+                      </ul>
+                  </div>
+      
+                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+              </div>
+          </div> <!-- end modal -->
+
+          <div id="modal-03" hidden>
+              <div class="modal-popup">
+                  <img src="{{asset('images/portfolio/gallery/g-rucksack.jpg')}}" alt="">
+      
+                  <div class="modal-popup__desc">
+                      <h5>Rucksuck</h5>
+                      <p>Exercitationem reprehenderit quod explicabo consequatur aliquid ut magni ut. Deleniti quo corrupti illum velit eveniet ratione necessitatibus ipsam mollitia.</p>
+                      <ul class="modal-popup__cat">
+                          <li>Product Design</li>
+                      </ul>
+                  </div>
+      
+                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+              </div>
+          </div> <!-- end modal -->
+
+          <div id="modal-04" hidden>
+              <div class="modal-popup">
+                  <img src="{{asset('images/portfolio/gallery/g-skaterboy.jpg')}}" alt="">
+      
+                  <div class="modal-popup__desc">
+                      <h5>Since Day One</h5>
+                      <p>Dolores velit qui quos nobis. Aliquam delectus voluptas quos possimus non voluptatem voluptas voluptas. Est doloribus eligendi porro doloribus voluptatum.</p>
+                      <ul class="modal-popup__cat">
+                          <li>Website</li>
+                      </ul>
+                  </div>
+      
+                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+              </div>
+          </div> <!-- end modal -->
+
+          <div id="modal-05" hidden>
+              <div class="modal-popup">
+
+                  <img src="{{asset('images/portfolio/gallery/g-sanddunes.jpg')}}" alt="">
+      
+                  <div class="modal-popup__desc">
+                      <h5>Sand Dunes</h5>
+                      <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+                      <ul class="modal-popup__cat">
+                          <li>Illustration</li>
+                      </ul>
+                  </div>
+      
+                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+              </div>
+          </div> <!-- end modal -->
+
+          <div id="modal-06" hidden>
+              <div class="modal-popup">
+                  <img src="{{asset('images/portfolio/gallery/g-minimalismo.jpg')}}" alt="">
+      
+                  <div class="modal-popup__desc">
+                      <h5>Minimalismo</h5>
+                      <p>Quisquam vel libero consequuntur autem voluptas. Qui aut vero. Omnis fugit mollitia cupiditate voluptas. Aenean sollicitudin, lorem quis bibendum auctor.</p>
+                      <ul class="modal-popup__cat">
+                          <li>Branding</li>
+                          <li>Product Design</li>
+                      </ul>
+                  </div>
+      
+                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+              </div>
+          </div> <!-- end modal -->
+
+      </div> <!-- end works-portfolio -->
+
+
+      <div class="row testimonials">
+          <div class="column lg-12" data-animate-block>
+
+              <div class="swiper-container testimonial-slider" data-animate-el>
+
+                  <div class="swiper-wrapper">
+
+                      <div class="testimonial-slider__slide swiper-slide">
+                          <div class="testimonial-slider__author">
+                              <img src="{{asset('images/avatars/user-02.jpg')}}" alt="Author image" class="testimonial-slider__avatar">
+                              <cite class="testimonial-slider__cite">
+                                  <strong>Tim Cook</strong>
+                                  <span>CEO, Apple</span>
+                              </cite>
+                          </div>
+                          <p>
+                          Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem. 
+                          Explicabo a quaerat sint autem dolore ducimus ut consequatur neque.  Nisi dolores quaerat fuga rem nihil nostrum.
+                          Laudantium quia consequatur molestias delectus culpa.
+                          </p>
+                      </div> <!-- end testimonial-slider__slide -->
+      
+                      <div class="testimonial-slider__slide swiper-slide">
+                          <div class="testimonial-slider__author">
+                              <img src="{{asset('images/avatars/user-03.jpg')}}" alt="Author image" class="testimonial-slider__avatar">
+                              <cite class="testimonial-slider__cite">
+                                  <strong>Sundar Pichai</strong>
+                                  <span>CEO, Google</span>
+                              </cite>
+                          </div>
+                          <p>
+                          Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
+                          Nisi eaque consequatur. Voluptatem dignissimos ut ducimus accusantium perspiciatis.
+                          Quasi voluptas eius distinctio. Atque eos maxime.
+                          </p>
+                      </div> <!-- end testimonial-slider__slide -->
+      
+                      <div class="testimonial-slider__slide swiper-slide">
+                          <div class="testimonial-slider__author">
+                              <img src="{{asset('images/avatars/user-01.jpg')}}" alt="Author image" class="testimonial-slider__avatar">
+                              <cite class="testimonial-slider__cite">
+                                  <strong>Satya Nadella</strong>
+                                  <span>CEO, Microsoft</span>
+                              </cite>
+                          </div>
+                          <p>
+                          Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.  
+                          Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.
+                          Voluptatem dignissimos ut.
+                          </p>
+                      </div> <!-- end testimonial-slider__slide -->
+
+                      <div class="testimonial-slider__slide swiper-slide">
+                          <div class="testimonial-slider__author">
+                              <img src="{{asset('images/avatars/user-06.jpg')}}" alt="Author image" class="testimonial-slider__avatar">
+                              <cite class="testimonial-slider__cite">
+                                  <strong>Jeff Bezos</strong>
+                                  <span>CEO, Amazon</span>
+                              </cite>
+                          </div>
+                          <p>
+                          Nunc interdum lacus sit amet orci. Vestibulum dapibus nunc ac augue. Fusce vel dui. In ac felis 
+                          quis tortor malesuada pretium. Curabitur vestibulum aliquam leo. Qui sed at corrupti expedita voluptas odit. 
+                          Nihil ea quia nesciunt. Ducimus aut sed ipsam.
+                          </p>
+                      </div> <!-- end testimonial-slider__slide -->
+  
+                  </div> <!-- end swiper-wrapper -->
+
+                  <div class="swiper-pagination"></div>
+
+              </div> <!-- end swiper-container -->
+
+          </div> <!-- end column -->
+      </div> <!-- end row testimonials -->
+
+  </section> <!-- end s-works -->
+
+
+  <!-- ### contact
+  ================================================== -->
+  <section id="contact" class="s-contact target-section">
+
+      <div class="row contact-top">
+          <div class="column lg-12">
+              <h2 class="text-pretitle">
+                  Get In Touch
+              </h2>
+
+              <p class="h1">
+                  I love to hear from you.
+                  Whether you have a question or just 
+                  want to chat about design, tech & art — shoot me a message.
+              </p>
+          </div>
+      </div> <!-- end contact-top -->
+
+      <div class="row contact-bottom">
+          <div class="column lg-3 md-5 tab-6 stack-on-550 contact-block">
+              <h3 class="text-pretitle">Reach me at</h3>
+              <p class="contact-links">
+                  <a href="mailto:sayhello@luther.com" class="mailtoui">sayhello@luther.com</a> <br>
+                  <a href="tel:+1975432345">+197 543 2345</a>
+              </p>
+          </div>
+          <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
+              <h3 class="text-pretitle">Social</h3>
+              <ul class="contact-social">
+                  <li><a href="#0">Behance</a></li>
+                  <li><a href="#0">Dribble</a></li>
+                  <li><a href="#0">Twitter</a></li>
+                  <li><a href="#0">Instagram</a></li>
+                  <li><a href="#0">Github</a></li>
               </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Graphic design specialist</h4>
-              <h5>2017 - 2018</h5>
-              <p><em>Stepping Stone Advertising, New York, NY</em></p>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
           </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Resume Section -->
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Card</li>
-            <li data-filter=".filter-branding">Web</li>
-          </ul><!-- End Portfolio Filters -->
-
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-1.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg') }}" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-2.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-2.jpg') }}" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-3.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 1</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-3.jpg') }}" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-4.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-4.jpg') }}" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-5.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 2</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-5.jpg') }}" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-6.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 2</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-6.jpg') }}" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-7.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 3</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-7.jpg') }}" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-8.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Product 3</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-8.jpg') }}" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-              <img src="{{ asset('img/masonry-portfolio/masonry-portfolio-9.jpg') }}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Branding 3</h4>
-                <p>Lorem ipsum, dolor sit</p>
-                <a href="{{ asset('img/masonry-portfolio/masonry-portfolio-9.jpg') }}" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-          </div><!-- End Portfolio Container -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Portfolio Section -->
-
-    <!-- Services Section -->
-    <section id="services" class="services section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item item-cyan position-relative">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
-                </svg>
-                <i class="bi bi-activity"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Nesciunt Mete</h3>
-              </a>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item item-orange position-relative">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
-                </svg>
-                <i class="bi bi-broadcast"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Eosle Commodi</h3>
-              </a>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item item-teal position-relative">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
-                </svg>
-                <i class="bi bi-easel"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Ledo Markt</h3>
-              </a>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item item-red position-relative">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,503.46388370962813C374.79870501325706,506.71871716319447,464.8034551963731,527.1746412648533,510.4981551193396,467.86667711651364C555.9287308511215,408.9015244558933,512.6030010748507,327.5744911775523,490.211057578863,256.5855673507754C471.097692560561,195.9906835881958,447.69079081568157,138.11976852964426,395.19560036434837,102.3242989838813C329.3053358748298,57.3949838291264,248.02791733380457,8.279543830951368,175.87071277845988,42.242879143198664C103.41431057327972,76.34704239035025,93.79494320519305,170.9812938413882,81.28167332365135,250.07896920659033C70.17666984294237,320.27484674793965,64.84698225790005,396.69656628748305,111.28512138212992,450.4950937839243C156.20124167950087,502.5303643271138,231.32542653798444,500.4755392045468,300,503.46388370962813"></path>
-                </svg>
-                <i class="bi bi-bounding-box-circles"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Asperiores Commodit</h3>
-              </a>
-              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item item-indigo position-relative">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,532.3542879108572C369.38199826031484,532.3153073249985,429.10787420159085,491.63046689027357,474.5244479745417,439.17860296908856C522.8885846962883,383.3225815378663,569.1668002868075,314.3205725914397,550.7432151929288,242.7694973846089C532.6665558377875,172.5657663291529,456.2379748765914,142.6223662098291,390.3689995646985,112.34683881706744C326.66090330228417,83.06452184765237,258.84405631176094,53.51806209861945,193.32584062364296,78.48882559362697C121.61183558270385,105.82097193414197,62.805066853699245,167.19869350419734,48.57481801355237,242.6138429142374C34.843463184063346,315.3850353017275,76.69343916112496,383.4422959591041,125.22947124332185,439.3748458443577C170.7312796277747,491.8107796887764,230.57421082200815,532.3932930995766,300,532.3542879108572"></path>
-                </svg>
-                <i class="bi bi-calendar4-week icon"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Velit Doloremque</h3>
-              </a>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-item item-pink position-relative">
-              <div class="icon">
-                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
-                </svg>
-                <i class="bi bi-chat-square-text"></i>
-              </div>
-              <a href="#" class="stretched-link">
-                <h3>Dolori Architecto</h3>
-              </a>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="row gy-4 justify-content-center">
-                  <div class="col-lg-6">
-                    <div class="testimonial-content">
-                      <p>
-                        <i class="bi bi-quote quote-icon-left"></i>
-                        <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                        <i class="bi bi-quote quote-icon-right"></i>
-                      </p>
-                      <h3>Saul Goodman</h3>
-                      <h4>Ceo &amp; Founder</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <img src="{{ asset('img/testimonials/testimonials-1.jpg') }}" class="img-fluid testimonial-img" alt="">
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="row gy-4 justify-content-center">
-                  <div class="col-lg-6">
-                    <div class="testimonial-content">
-                      <p>
-                        <i class="bi bi-quote quote-icon-left"></i>
-                        <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                        <i class="bi bi-quote quote-icon-right"></i>
-                      </p>
-                      <h3>Sara Wilsson</h3>
-                      <h4>Designer</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <img src="{{ asset('img/testimonials/testimonials-2.jpg') }}" class="img-fluid testimonial-img" alt="">
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="row gy-4 justify-content-center">
-                  <div class="col-lg-6">
-                    <div class="testimonial-content">
-                      <p>
-                        <i class="bi bi-quote quote-icon-left"></i>
-                        <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                        <i class="bi bi-quote quote-icon-right"></i>
-                      </p>
-                      <h3>Jena Karlis</h3>
-                      <h4>Store Owner</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <img src="{{ asset('img/testimonials/testimonials-3.jpg') }}" class="img-fluid testimonial-img" alt="">
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <div class="row gy-4 justify-content-center">
-                  <div class="col-lg-6">
-                    <div class="testimonial-content">
-                      <p>
-                        <i class="bi bi-quote quote-icon-left"></i>
-                        <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                        <i class="bi bi-quote quote-icon-right"></i>
-                      </p>
-                      <h3>John Larson</h3>
-                      <h4>Entrepreneur</h4>
-                      <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-2 text-center">
-                    <img src="{{ asset('img/testimonials/testimonials-4.jpg') }}" class="img-fluid testimonial-img" alt="">
-                  </div>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
+          <div class="column lg-4 md-12 contact-block">
+              <a href="mailto:sayhello@luther.com" class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
+      </div> <!-- end contact-bottom -->
 
-      </div>
-
-    </section><!-- /Testimonials Section -->
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4">
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-geo-alt flex-shrink-0"></i>
-              <div>
-                <h3>Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
-              </div>
-            </div><!-- End Info Item -->
-
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-telephone flex-shrink-0"></i>
-              <div>
-                <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
-              </div>
-            </div><!-- End Info Item -->
-
-            <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-envelope flex-shrink-0"></i>
-              <div>
-                <h3>Email Us</h3>
-                <p>info@example.com</p>
-              </div>
-            </div><!-- End Info Item -->
-
-          </div>
-
-          <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Contact Section -->
+  </section> <!-- end contact -->
 @endsection
