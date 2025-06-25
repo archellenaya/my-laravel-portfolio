@@ -2614,7 +2614,7 @@ td:last-child {
 }
 
 [data-animate-el] {
-    opacity : 0;
+    opacity : 0.5;
 }
 
 /* ------------------------------------------------------------------- 
@@ -3410,7 +3410,7 @@ img.u-pull-left {
 .about-info__pic {
     object-fit     : cover;
     margin         : 0;
-    vertical-align : bottom;
+    vertical-align : bottom; 
 }
 
 .about-info__text {

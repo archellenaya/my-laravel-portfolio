@@ -15,3 +15,5 @@ use App\Http\Controllers\HomeController;
 
  
 Route::get('/', [HomeController::class, 'index']); 
+
+Route::get('/download-cv', [HomeController::class, 'download_cv']); 

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html class="no-js ss-preload" lang="en">
-<head>
-
+<head> 
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
     <title>{{config('app.name')}}</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Full Stack Web & Software Developer with 6+ years of experience in Laravel, Drupal, and WordPress. Building scalable, efficient web solutions.">
+    <meta name="author" content="{{$data['fullname']}}">
 
     <!-- mobile specific metas
     ================================================== -->
@@ -21,40 +20,32 @@
     <!-- favicons
     ================================================== -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon-16x16.png')}}">
     <link rel="manifest" href=""{{asset('site.webmanifest')}}">
 
 </head>
 
-<body id="top">
-
-
+<body id="top"> 
     <!-- # preloader
     ================================================== -->
     <div id="preloader">
         <div id="loader">
         </div>
-    </div>
-
-
+    </div> 
     <!-- # page wrap
     ================================================== -->
-    <div class="s-pagewrap">
-
+    <div class="s-pagewrap"> 
         <div class="circles">
             <span></span>
             <span></span>
             <span></span>
             <span></span>
             <span></span>
-        </div>
-
-
+        </div>  
         <!-- ## site header 
         ================================================== -->
-        <header class="s-header">
-
+        <header class="s-header"> 
             <div class="header-mobile">
                 <span class="mobile-home-link"><a href="{{url('/')}}">Arch.</a></span>
                 <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
@@ -70,27 +61,23 @@
                         <li><a href="#contact" class="smoothscroll">Say Hello</a></li>
                     </ul>
                 </nav>
-            </div>
-
+            </div> 
         </header> <!-- end s-header -->
-
-
+ 
         <!-- ## main content
         ==================================================- -->
         <main class="s-content">
  
-        @yield('content') 
-      </main> <!-- end s-content -->
+            @yield('content') 
 
-
+        </main> <!-- end s-content --> 
         <!-- ## footer
         ================================================== -->
-        <footer class="s-footer">
-
+        <footer class="s-footer"> 
             <div class="row">
                 <div class="column ss-copyright">
-                    <span>© Copyright Arch 2025</span> 
-                    <span>Design by <a href="https://www.styleshout.com/">StyleShout</a> Distribution By <a href="https://themewagon.com">Themewagon</a></span>
+                    <span>© Copyright Arch</span> 
+                    <span>Template adapted from <a href="https://www.styleshout.com/" target="_blank">StyleShout</a></span>
                 </div>
 
                 <div class="ss-go-top">
@@ -98,17 +85,12 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 2.206l-6.235 7.528-.765-.645 7.521-9 7.479 9-.764.646-6.236-7.53v21.884h-1v-21.883z"/></svg>
                     </a>
                 </div>
-            </div>
-
-        </footer> <!-- end s-footer -->
-
-    </div> <!-- end -s-pagewrap -->
-
-
+            </div> 
+        </footer> <!-- end s-footer --> 
+    </div> <!-- end -s-pagewrap --> 
     <!-- Java Script
     ================================================== -->
     <script src="{{asset('js/plugins.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
-
 </body>
 </html>
