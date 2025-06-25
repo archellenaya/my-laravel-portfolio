@@ -40,8 +40,7 @@
 
   <!-- ### about
   ================================================== -->
-  <section id="about" class="s-about target-section">
-
+  <section id="about" class="s-about target-section"> 
 
       <div class="row about-info wide" data-animate-block>
 
@@ -61,6 +60,7 @@
                       Proven expertise in Laravel with a strong focus on RESTful API integration, complemented by over 5 years of
                       experience with Drupal and 3 years with WordPress. Skilled in delivering scalable web applications, CMS platforms,
                       and enterprise-level solutions with clean, efficient code.
+                      <span><i><small>Note: Many of my recent projects are part of private repositories under my current employer. While I can't share full source code, I'm actively working on releasing selected personal projects and code samples.</small></i></span>
                   </p>
                   <a href="{{ asset("download-cv") }}" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
 
@@ -81,7 +81,15 @@
                   <li>Laravel</li> 
                   <li>Laravel Lumen</li> 
               </ul>
-
+              <p>Experienced in:</p>
+              <ul>
+                  <li>Building large-scale Laravel applications</li>
+                  <li>Developing and integrating RESTful APIs</li>
+                  <li>Developing Wordpress Plugin</li>
+                  <li>Creating custom CMS modules in Drupal</li>
+                  <li>Using Git/GitHub and Bitbucket for version control</li>  
+                  <li>Using Docker in building Drupal CMS</li>  
+              </ul>
           </div>
       </div> <!-- end about-expertise -->
 
@@ -99,12 +107,12 @@
                   <div class="timeline__block">
                       <div class="timeline__bullet"></div>
                       <div class="timeline__header"> 
-                        <h4 class="timeline__title"><span>Webee Ltd/Born Digital - Malta, Europe</h3>
-                        <h5 class="timeline__meta">Web Developer</h5>
+                        <h4 class="timeline__title"><span>Web Developer</h4>
+                        <h5 class="timeline__meta">Webee Ltd/Born Digital - Malta, Europe</h5>
                         <p class="timeline__timeframe">September 18, 2018 – Present</p>
                       </div>
                       <div class="timeline__desc">
-                          <p>Born Digital is your strategic partner for delivering advanced digital solutions; from AI and data to cloud and custom platforms. We help ambitious teams innovate, integrate, and scale.</p>
+                          <p style="text-align: justify;">At Born Digital, I help deliver advanced digital solutions—including cloud platforms and custom web applications. I develop scalable Laravel and Drupal-based systems, build RESTful APIs, and integrate third-party services. I also work closely with the team using Git, GitHub, and CI/CD workflows to support clients in innovating and scaling their digital presence.</p>
                       </div>
                   </div> 
 
@@ -123,12 +131,12 @@
                   <div class="timeline__block">
                       <div class="timeline__bullet"></div>
                       <div class="timeline__header"> 
-                        <h4 class="timeline__title">Mindanao State University, Marawi City</h3>
-                        <h5 class="timeline__meta">Bachelor of Science in Computer Science, Major in Software Engineering</h5>
-                        <p class="timeline__timeframe">June 2018</p>
+                        <h4 class="timeline__title">Bachelor of Science in Computer Science, <span><small>Major in Software Engineering</small></span></h4> 
+                        <h5 class="timeline__meta">Mindanao State University - Marawi City</h5>
+                        <p class="timeline__timeframe">Graduated: June 2018</p>
                       </div>
                       <div class="timeline__desc">
-                          <p>Mindanao State University (MSU) was established on September 1, 1961 through RA 1387, as amended, was the brain child of the late Senator Domocao A. Alonto, as one of the government’s responses to the so-called “Mindanao Problem”.</p>
+                          <p style="text-align: justify;">Mindanao State University (MSU) is a premier public university in the southern Philippines, established in 1961 to promote quality education and cultural integration in Mindanao.</p>
                       </div>
                   </div> 
                   
@@ -157,7 +165,9 @@
               </h2>
               <p class="h1" data-animate-el>
                 I’ve been working on some exciting projects lately—feel free to take a look!
+                
               </p>
+              <small>While most of my professional projects are under NDA or in private repositories, I’m currently preparing public demos and code samples to showcase select skills and contributions.</small>
                 <ul class="folio-list row block-lg-one-half block-stack-on-1000">
                     @php
                         $counter = 1;
@@ -167,8 +177,8 @@
                             <li class="folio-list__item column" data-animate-el>
                                 <a class="folio-list__item-link" href="#modal-0{{$counter++}}">
                                     <div class="folio-list__item-pic">
-                                        <img src="{{asset('images/portfolio/fuji.jpg')}}"
-                                                srcset="{{asset('images/portfolio/fuji.jpg')}} 1x, images/portfolio/fuji@2x.jpg 2x"  alt="">
+                                        <img src="{{asset($project['image']['tile'])}}"
+                                                srcset="{{asset($project['image']['tile'])}} 1x, {{$project['image']['tile']}} 2x"  alt="">
                                     </div>
                                     
                                     <div class="folio-list__item-text">
@@ -198,10 +208,10 @@
         @if($projects)
             @foreach ($projects as $project) 
                 <div id="modal-0{{$counter++}}" hidden>
-                    <div class="modal-popup">
-                        <img src="{{asset('images/portfolio/gallery/g-fuji.jpg')}}" alt="">
+                    <div class="modal-popup" style="text-align: center;">
+                        <img src="{{asset($project['image']['gallery'])}}" alt="">
             
-                        <div class="modal-popup__desc">
+                        <div class="modal-popup__desc" style="text-align: left;">
                             <h5>{{$project['title']}}</h5>
                             <p>{{$project['description']}}</p>
                             <ul class="modal-popup__cat">
@@ -210,8 +220,9 @@
                                 @endforeach
                             </ul>
                         </div>
-            
-                        <a href="#" class="modal-popup__details">Project link</a>
+                        @foreach ($project['project_links'] as $link) 
+                            <a href="{{$link['url']}}" class="modal-popup__details" target="__blank">{{$link['title']}}</a>
+                        @endforeach
                     </div>
                 </div> <!-- end modal -->
             @endforeach

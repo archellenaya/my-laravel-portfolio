@@ -29,6 +29,16 @@ class HomeController extends Controller
                     'Laravel',
                     'Wordpress',
                     'REST-API'
+                ], 
+                'project_links' => [
+                    [
+                        'title' => 'Sample Tenant',
+                        'url'=>'https://benestates.com', 
+                    ] 
+                ],
+                'image' => [
+                    'tile' => "images/portfolio/laravel.png",
+                    'gallery' => "images/portfolio/laravel.png"
                 ]
             ],[
                 'category' => 'Laravel Multi-Tenancy',
@@ -39,6 +49,16 @@ class HomeController extends Controller
                     'Laravel',
                     'Wordpress',
                     'REST-API'
+                ],
+                'project_links' => [ 
+                     [
+                        'title' => 'Sample Tenant',
+                        'url'=>'https://bhome.com.mt', 
+                    ]  
+                ],
+                'image' => [
+                    'tile' => "images/portfolio/laravel.png",
+                    'gallery' => "images/portfolio/laravel.png"
                 ]
             ],[
                 'category' => 'Drupal CMS',
@@ -46,6 +66,17 @@ class HomeController extends Controller
                 'description' => "Projects with Backend as Drupal CMS providing endpoints to Frontend Dev using React JS.",
                 'tags' => [
                     'Drupal', 'React JS'
+                ],
+                'project_links' => [ 
+                    [
+                        'title' => 'Sample CMS',
+                        'url'=> 'https://apcopay.abcnow.xyz', 
+                    ]  
+                    
+                ],
+                'image' => [
+                    'tile' => "images/portfolio/drupal.png",
+                    'gallery' => "images/portfolio/drupal.png"
                 ]
             ]
         ];
