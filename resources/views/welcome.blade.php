@@ -14,19 +14,19 @@
               </div>
 
               <h1 class="text-huge-title">
-                  I am Arch, <br>
-                  Backend Laravel<br>
-                   Web developer<br> 
-                   based <br>
+                  I am {{$data['display_name']}}, <br>
+                  Laravel Backend<br>
+                  developer based<br>  
                   in Philippines.
               </h1>
           </div>
 
-          <ul class="intro-social">
-              <li><a href="#0">Behance</a></li>
-              <li><a href="#0">Twitter</a></li>
-              <li><a href="#0">Dribbble</a></li>
-              <li><a href="#0">Instagram</a></li>
+          <ul class="intro-social"> 
+             <li><a href="{{$data['linkedin_url']}}" target="__blank">Linkedin</a></li>
+              <li><a href="{{$data['facebook_url']}}" target="__blank">Facebook</a></li>
+              <li><a href="{{$data['instagram_url']}}" target="__blank">Instagram</a></li>
+              <li><a href="https://wa.me/{{$data['whatsapp']}}" target="__blank">Whatsapp</a></li>
+              <li><a href="{{$data['github_url']}}" target="__blank">Github</a></li>
           </ul>
 
       </div> <!-- end intro content -->
@@ -47,7 +47,7 @@
 
           <div class="column lg-6 md-12 about-info__pic-block">
               <img src="{{asset('images/about-photo.jpg')}}" 
-                    srcset="images/about-photo.jpg 1x, images/about-photo@2x.jpg 2x" alt="" class="about-info__pic" data-animate-el>
+                    srcset="{{asset('images/about-photo.jpg')}} 1x, {{asset('images/about-photo@2x.jpg')}} 2x" alt="" class="about-info__pic" data-animate-el>
           </div>
 
           <div class="column lg-6 md-12">
@@ -57,11 +57,10 @@
                       About
                   </h2>
                   <p class="attention-getter" data-animate-el>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
-                      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex 
-                      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate 
-                      velit esse cillum dolore eu fugiat nulla pariatur.
+                      Full Stack Web and Software Developer with over 6 years of experience in backend and full-stack development.
+                      Proven expertise in Laravel with a strong focus on RESTful API integration, complemented by over 5 years of
+                      experience with Drupal and 3 years with WordPress. Skilled in delivering scalable web applications, CMS platforms,
+                      and enterprise-level solutions with clean, efficient code.
                   </p>
                   <a href="#0" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
 
@@ -101,26 +100,14 @@
                   <div class="timeline__block">
                       <div class="timeline__bullet"></div>
                       <div class="timeline__header">
-                          <h4 class="timeline__title">Dropbox</h3>
-                          <h5 class="timeline__meta">Product Designer</h5>
-                          <p class="timeline__timeframe">August 2019 - Present</p>
+                          <h4 class="timeline__title">Webee Ltd/Born Digital, Malta</h3>
+                          <h5 class="timeline__meta">Web Developer</h5>
+                          <p class="timeline__timeframe">September 18, 2018 – Present</p>
                       </div>
                       <div class="timeline__desc">
-                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+                          <p>Born Digital is your strategic partner for delivering advanced digital solutions; from AI and data to cloud and custom platforms. We help ambitious teams innovate, integrate, and scale.</p>
                       </div>
-                  </div>
-
-                  <div class="timeline__block">
-                      <div class="timeline__bullet"></div>
-                      <div class="timeline__header">
-                          <h4 class="timeline__title">Microsoft</h4>
-                          <h5 class="timeline__meta">Frontend Developer</h5>
-                          <p class="timeline__timeframe">August 2016 - July 2019</p>
-                      </div>
-                      <div class="timeline__desc">
-                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
-                      </div>
-                  </div>
+                  </div> 
 
               </div> <!-- end timeline -->
 
@@ -137,26 +124,15 @@
                   <div class="timeline__block">
                       <div class="timeline__bullet"></div>
                       <div class="timeline__header">
-                          <h4 class="timeline__title">University of Life</h3>
-                          <h5 class="timeline__meta">Master in Graphic Design</h5>
-                          <p class="timeline__timeframe">April 2015</p>
+                          <h4 class="timeline__title">Mindanao State University, Marawi City</h3>
+                          <h5 class="timeline__meta">Bachelor of Science in Computer Science, Major in Software Engineering</h5>
+                          <p class="timeline__timeframe">June 2018</p>
                       </div>
                       <div class="timeline__desc">
-                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
+                          <p>Mindanao State University (MSU) was established on September 1, 1961 through RA 1387, as amended, was the brain child of the late Senator Domocao A. Alonto, as one of the government’s responses to the so-called “Mindanao Problem”.</p>
                       </div>
-                  </div>
-
-                  <div class="timeline__block">
-                      <div class="timeline__bullet"></div>
-                      <div class="timeline__header">
-                          <h4 class="timeline__title">School of Cool Designers</h4>
-                          <h5 class="timeline__meta">B.A. Degree in Graphic Design</h5>
-                          <p class="timeline__timeframe">August 2012</p>
-                      </div>
-                      <div class="timeline__desc">
-                          <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
-                      </div>
-                  </div>
+                  </div> 
+                  
 
               </div> <!-- end timeline -->
               
@@ -332,7 +308,7 @@
                       </ul>
                   </div>
       
-                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+                  <a href="#" class="modal-popup__details">Project link</a>
               </div>
           </div> <!-- end modal -->
 
@@ -348,7 +324,7 @@
                       </ul>
                   </div>
       
-                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+                  <a href="#" class="modal-popup__details">Project link</a>
               </div>
           </div> <!-- end modal -->
 
@@ -364,7 +340,7 @@
                       </ul>
                   </div>
       
-                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+                  <a href="#" class="modal-popup__details">Project link</a>
               </div>
           </div> <!-- end modal -->
 
@@ -380,7 +356,7 @@
                       </ul>
                   </div>
       
-                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+                  <a href="#" class="modal-popup__details">Project link</a>
               </div>
           </div> <!-- end modal -->
 
@@ -397,7 +373,7 @@
                       </ul>
                   </div>
       
-                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+                  <a href="#" class="modal-popup__details">Project link</a>
               </div>
           </div> <!-- end modal -->
 
@@ -414,7 +390,7 @@
                       </ul>
                   </div>
       
-                  <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
+                  <a href="#" class="modal-popup__details">Project link</a>
               </div>
           </div> <!-- end modal -->
 
@@ -522,22 +498,22 @@
           <div class="column lg-3 md-5 tab-6 stack-on-550 contact-block">
               <h3 class="text-pretitle">Reach me at</h3>
               <p class="contact-links">
-                  <a href="mailto:sayhello@luther.com" class="mailtoui">sayhello@luther.com</a> <br>
-                  <a href="tel:+1975432345">+197 543 2345</a>
+                  <a href="mailto:{{$data['email']}}" class="mailtoui">{{$data['email']}}</a> <br>
+                  <a href="tel:{{$data['contact_number']}}">{{$data['contact_number']}}</a>
               </p>
           </div>
           <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
               <h3 class="text-pretitle">Social</h3>
               <ul class="contact-social">
-                  <li><a href="#0">Behance</a></li>
-                  <li><a href="#0">Dribble</a></li>
-                  <li><a href="#0">Twitter</a></li>
-                  <li><a href="#0">Instagram</a></li>
-                  <li><a href="#0">Github</a></li>
+                <li><a href="{{$data['linkedin_url']}}" target="__blank">Linkedin</a></li>
+                <li><a href="{{$data['facebook_url']}}" target="__blank">Facebook</a></li>
+                <li><a href="{{$data['instagram_url']}}" target="__blank">Instagram</a></li>
+                <li><a href="https://wa.me/{{$data['whatsapp']}}" target="__blank">Whatsapp</a></li>
+                <li><a href="{{$data['github_url']}}" target="__blank">Github</a></li>
               </ul>
           </div>
           <div class="column lg-4 md-12 contact-block">
-              <a href="mailto:sayhello@luther.com" class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
+              <a href="mailto:{{$data['email']}}" class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
           </div>
       </div> <!-- end contact-bottom -->
 
