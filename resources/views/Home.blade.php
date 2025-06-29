@@ -13,12 +13,12 @@
                   Hello World
               </div>
 
-              <h1 class="text-huge-title">
+              <h2 class="text-huge-title">
                   I am {{$data['display_name']}}, <br>
                   Laravel Backend<br>
                   developer based<br>  
                   in Philippines.
-              </h1>
+              </h2>
           </div>
 
           <ul class="intro-social"> 
@@ -56,11 +56,8 @@
                       About
                   </h2>
                   <p class="attention-getter" data-animate-el>
-                      Full Stack Web and Software Developer with over 6 years of experience in backend and full-stack development.
-                      Proven expertise in Laravel with a strong focus on RESTful API integration, complemented by over 5 years of
-                      experience with Drupal and 3 years with WordPress. Skilled in delivering scalable web applications, CMS platforms,
-                      and enterprise-level solutions with clean, efficient code.
-                      <span><i><small>Note: Many of my recent projects are part of private repositories under my current employer. While I can't share full source code, I'm actively working on releasing selected personal projects and code samples.</small></i></span>
+                      Backend-focused full-stack developer with over 6 years of professional experience, specializing in Laravel, Drupal, and WordPress development. Skilled in building and maintaining web applications, RESTful APIs, and custom CMS modules/plugins. Reliable, independent, and solutions-driven — with a strong preference for written communication and consistent delivery.
+                      {{-- <br><span><i><small>Note: Many of my recent projects are part of private repositories under my current employer. While I can't share full source code, I'm actively working on releasing selected personal projects and code samples.</small></i></span> --}}
                   </p>
                   <a href="{{ asset("download-cv") }}" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
 
@@ -167,7 +164,7 @@
                 I’ve been working on some exciting projects lately—feel free to take a look!
                 
               </p>
-              <small>While most of my professional projects are under NDA or in private repositories, I’m currently preparing public demos and code samples to showcase select skills and contributions.</small>
+              <small><b>Note:</b> While most of my professional projects are under NDA or in private repositories, I’m currently preparing public demos and code samples to showcase select skills and contributions.</small>
                 <ul class="folio-list row block-lg-one-half block-stack-on-1000">
                     @php
                         $counter = 1;
