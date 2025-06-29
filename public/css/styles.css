@@ -3416,6 +3416,7 @@ img.u-pull-left {
     object-fit     : cover;
     margin         : 0;
     vertical-align : bottom; 
+    filter: grayscale(100%);
 }
 
 .about-info__text {
@@ -3656,7 +3657,7 @@ img.u-pull-left {
 
 .folio-list__item-pic img {
     vertical-align : bottom;
-    object-fit     : cover;
+    object-fit     : scale-down;
     width          : var(--item-min-height);
     height         : var(--item-min-height);
     margin         : 0;
@@ -4243,3 +4244,6 @@ img.u-pull-left {
         right : 6vw;
     }
 }
+
+
+ 

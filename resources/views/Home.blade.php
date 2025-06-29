@@ -45,8 +45,8 @@
       <div class="row about-info wide" data-animate-block>
 
           <div class="column lg-6 md-12 about-info__pic-block">
-              <img src="{{asset('images/about-photo.jpg')}}" 
-                    srcset="{{asset('images/about-photo.jpg')}} 1x, {{asset('images/about-photo@2x.jpg')}} 2x" alt="" class="about-info__pic" data-animate-el>
+              <img src="{{asset('images/about-photo.png')}}" 
+                    srcset="{{asset('images/about-photo.png')}} 1x, {{asset('images/about-photo@2x.png')}} 2x" alt="" class="about-info__pic" data-animate-el>
           </div>
 
           <div class="column lg-6 md-12">
@@ -77,16 +77,7 @@
                   <li>Drupal</li>
                   <li>Laravel</li> 
                   <li>Laravel Lumen</li> 
-              </ul>
-              <p>Experienced in:</p>
-              <ul>
-                  <li>Building large-scale Laravel applications</li>
-                  <li>Developing and integrating RESTful APIs</li>
-                  <li>Developing Wordpress Plugin</li>
-                  <li>Creating custom CMS modules in Drupal</li>
-                  <li>Using Git/GitHub and Bitbucket for version control</li>  
-                  <li>Using Docker in building Drupal CMS</li>  
-              </ul>
+              </ul>  
           </div>
       </div> <!-- end about-expertise -->
 
@@ -110,11 +101,15 @@
                       </div>
                       <div class="timeline__desc"> 
                             <ul>
+                                <li>Building large-scale Laravel applications</li>
                                 <li>Maintained and improved backend systems for internal and client-facing platforms using Laravel.</li>
-                                <li>Integrated REST APIs for WordPress WooCommerce and Laravel-based systems. Developed and maintained Drupal modules and forms using Paragraphs.</li>
+                                <li>Developing & Integrating REST APIs for WordPress WooCommerce and Laravel-based systems.</li>
                                 <li>Developed and maintained Drupal modules and forms using Paragraphs.</li> 
                                 <li>Collaborated with international project managers and developers across Malta and the Philippines.</li>
                                 <li>Wrote clean, testable code for CMS-based websites and custom applications.</li> 
+                                <li>Using Git/GitHub and Bitbucket for version control</li> 
+                                <li>Using Docker in building Drupal CMS</li>  
+                                <li>Developing Wordpress Plugin</li> 
                             </ul>
                         </div>
                   </div> 
@@ -228,9 +223,9 @@
                                 @endforeach
                             </ul>
                         </div>
-                        @foreach ($project['project_links'] as $link) 
+                        {{-- @foreach ($project['project_links'] as $link) 
                             <a href="{{$link['url']}}" class="modal-popup__details" target="__blank">{{$link['title']}}</a>
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 </div> <!-- end modal -->
             @endforeach
@@ -251,7 +246,7 @@
               </h2>
 
               <p class="h1">
-                  Have a project or question? Let’s connect! I’m a full-stack developer with 6+ years of experience in Laravel, Drupal, and WordPress.
+                  Have a project or question? Let’s connect! I’m a Backend-focused full-stack developer with 6+ years of experience in Laravel, Drupal, and WordPress.
               </p>
           </div>
       </div> <!-- end contact-top -->

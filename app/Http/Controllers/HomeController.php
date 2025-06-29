@@ -121,7 +121,7 @@ class HomeController extends Controller
             ]
         ];
 
-        return view('home', compact('data', 'projects'));
+        return view('home_page', compact('data', 'projects'));
     }
 
     public function download_cv() 
