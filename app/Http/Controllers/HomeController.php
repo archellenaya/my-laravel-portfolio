@@ -20,6 +20,26 @@ class HomeController extends Controller
 
         $projects = [
             [
+                'category' => 'Estate Agency Platform (Laravel + Wordpress)',
+                'title' => 'Estate Agency Platform (Laravel + Wordpress)',
+                'description' => "Built RESTful Laravel backend integration to sync Real Estate Properties from client internal CMS to Frontend (Wordpress)",
+                'tags' => [
+                    'Multi-tenancy',
+                    'Laravel',
+                    'Wordpress',
+                    'REST-API'
+                ], 
+                'project_links' => [
+                    [
+                        'title' => 'Sample Project',
+                        'url'=>'#', 
+                    ] 
+                ],
+                'image' => [
+                    'tile' => "images/portfolio/laravel.png",
+                    'gallery' => "images/portfolio/laravel.png"
+                ]
+            ],[
                 'category' => 'Laravel Multi-Tenancy',
                 'title' => 'Estate Agency Platform - Multi-Tenancy',
                 'description' => "A Multi-tenant Real Estate Agency serve as Software as a Service (SAAS). Technology used are Wordpress as Frontend and Laravel as Backend.
@@ -33,8 +53,28 @@ class HomeController extends Controller
                 'project_links' => [
                     [
                         'title' => 'Sample Tenant',
-                        'url'=>'https://benestates.com', 
+                        'url'=>'#', 
                     ] 
+                ],
+                'image' => [
+                    'tile' => "images/portfolio/laravel.png",
+                    'gallery' => "images/portfolio/laravel.png"
+                ]
+            ],[
+                'category' => 'E-Commerce Sync Platform (Laravel + WooCommerce)',
+                'title' => 'E-Commerce Sync Platform (Laravel + WooCommerce)',
+                'description' => "Built RESTful Laravel backend integration to sync orders, prices and inventory between WooCommerce and client’s internal inventory system.",
+                'tags' => [
+                    'Multi-tenancy',
+                    'Laravel',
+                    'Wordpress',
+                    'REST-API'
+                ],
+                'project_links' => [ 
+                     [
+                        'title' => 'Sample Project',
+                        'url'=>'#', 
+                    ]  
                 ],
                 'image' => [
                     'tile' => "images/portfolio/laravel.png",
@@ -53,7 +93,7 @@ class HomeController extends Controller
                 'project_links' => [ 
                      [
                         'title' => 'Sample Tenant',
-                        'url'=>'https://bhome.com.mt', 
+                        'url'=>'#', 
                     ]  
                 ],
                 'image' => [
@@ -63,14 +103,14 @@ class HomeController extends Controller
             ],[
                 'category' => 'Drupal CMS',
                 'title' => 'Drupal CMS',
-                'description' => "Projects with Backend as Drupal CMS providing endpoints to Frontend Dev using React JS.",
+                'description' => "Projects with Backend as Drupal CMS providing endpoints to Frontend Dev using React JS. Also developed custom modules, content types, created Paragraph-based forms, and exposed structured data via JSON:API",
                 'tags' => [
                     'Drupal', 'React JS'
                 ],
                 'project_links' => [ 
                     [
                         'title' => 'Sample CMS',
-                        'url'=> 'https://apcopay.abcnow.xyz', 
+                        'url'=> '#', 
                     ]  
                     
                 ],
