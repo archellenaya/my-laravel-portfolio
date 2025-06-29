@@ -108,9 +108,15 @@
                         <h5 class="timeline__meta">Webee Ltd/Born Digital - Malta, Europe</h5>
                         <p class="timeline__timeframe">September 18, 2018 – Present</p>
                       </div>
-                      <div class="timeline__desc">
-                          <p style="text-align: justify;">At Born Digital, I help deliver advanced digital solutions—including cloud platforms and custom web applications. I develop scalable Laravel and Drupal-based systems, build RESTful APIs, and integrate third-party services. I also work closely with the team using Git, GitHub, and CI/CD workflows to support clients in innovating and scaling their digital presence.</p>
-                      </div>
+                      <div class="timeline__desc"> 
+                            <ul>
+                                <li>Maintained and improved backend systems for internal and client-facing platforms using Laravel.</li>
+                                <li>Integrated REST APIs for WordPress WooCommerce and Laravel-based systems. Developed and maintained Drupal modules and forms using Paragraphs.</li>
+                                <li>Developed and maintained Drupal modules and forms using Paragraphs.</li> 
+                                <li>Collaborated with international project managers and developers across Malta and the Philippines.</li>
+                                <li>Wrote clean, testable code for CMS-based websites and custom applications.</li> 
+                            </ul>
+                        </div>
                   </div> 
 
               </div> <!-- end timeline -->
@@ -132,8 +138,13 @@
                         <h5 class="timeline__meta">Mindanao State University - Marawi City</h5>
                         <p class="timeline__timeframe">Graduated: June 2018</p>
                       </div>
-                      <div class="timeline__desc">
-                          <p style="text-align: justify;">Mindanao State University (MSU) is a premier public university in the southern Philippines, established in 1961 to promote quality education and cultural integration in Mindanao.</p>
+                      <div class="timeline__desc"> 
+                        <ul>
+                            <li style="text-align: justify;">Studied core programming in Java and C++</li> 
+                            <li style="text-align: justify;">Object Oriented Programming (Class/Object, Encapsulation, Inheritance, Polymorphism, etc)</li>
+                            <li style="text-align: justify;">Data Structures (linked list, stacks and queues, arrays, graphs and trees)</li>
+                            <li style="text-align: justify;">Completed coursework in web development, software engineering, and database management, Expert System, Data Mining</li>
+                        </ul>
                       </div>
                   </div> 
                   
