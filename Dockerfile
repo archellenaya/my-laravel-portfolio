@@ -1,4 +1,15 @@
-FROM php:8.3-fpm
+FROM php:8.3-apache
+
+# Enable Apache rewrite module
+RUN a2enmod rewrite
+
+# Configure Apache to serve Laravel's public directory
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/*.conf \
+    /etc/apache2/apache2.conf \
+    /etc/apache2/conf-available/*.conf
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -41,23 +52,24 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Install Node.js 22
 COPY --from=node:22-bookworm-slim /usr/local/ /usr/local/
 
+# Set working directory
 WORKDIR /var/www/html
 
-# Copy the Laravel application
+# Copy application
 COPY . .
 
 # Install PHP dependencies
 RUN if [ -f composer.lock ]; then \
-        composer install \
-            --no-dev \
-            --prefer-dist \
-            --optimize-autoloader \
-            --no-interaction; \
+      composer install \
+        --no-dev \
+        --prefer-dist \
+        --optimize-autoloader \
+        --no-interaction; \
     fi
 
 # Install frontend dependencies and build assets
 RUN if [ -f package.json ]; then \
-        npm install && npm run build; \
+      npm install && npm run build; \
     fi
 
 # Prepare Laravel directories
@@ -65,11 +77,11 @@ RUN mkdir -p storage/logs bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
-# Cache Laravel configuration (safe only if APP_KEY exists)
+# Optimize Laravel (safe even before .env is configured)
 RUN php artisan config:cache || true \
     && php artisan route:cache || true \
     && php artisan view:cache || true
 
-EXPOSE 9000
+EXPOSE 80
 
-CMD ["php-fpm"]
+CMD ["apache2-foreground"]
