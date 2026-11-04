@@ -19,15 +19,10 @@ class BuildStaticPortfolio
             if (Artisan::call('portfolio:export') !== 0) {
                 throw new \RuntimeException('Export failed: '.Artisan::output());
             }
-            foreach ([base_path('dist'), dirname(base_path()).'/dist'] as $index => $output) {
-                $command = ['node', base_path('scripts/build-static.mjs'), '--out', $output];
-                if ($index === 0) {
-                    $command[] = '--stage-assets';
-                }
-                $result = Process::path(base_path())->timeout(60)->run($command);
-                if (! $result->successful()) {
-                    throw new \RuntimeException('Static build failed: '.$result->errorOutput());
-                }
+            $command = ['node', base_path('scripts/build-static.mjs'), '--stage-assets'];
+            $result = Process::path(base_path())->timeout(60)->run($command);
+            if (! $result->successful()) {
+                throw new \RuntimeException('Static build failed: '.$result->errorOutput());
             }
         } finally {
             $lock->release();

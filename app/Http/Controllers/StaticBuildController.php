@@ -19,6 +19,6 @@ class StaticBuildController extends Controller
         }
 
         return redirect()->route('admin.index')->with('status',
-            'Static site rebuilt. JSON, uploaded assets, and both dist folders are updated. Commit the updated JSON and staged assets, then redeploy Vercel.');
+            'Static site rebuilt. JSON, uploaded assets, and dist are updated. Commit the updated JSON and staged assets, then redeploy Vercel.');
     }
 }

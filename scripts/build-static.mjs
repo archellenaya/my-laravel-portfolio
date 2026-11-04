@@ -99,7 +99,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
 
     // Only this dedicated build directory may be replaced.
     output = path.resolve(output);
-    if (![path.join(site, 'dist'), path.resolve(site, '../dist')].includes(output)) throw new Error('Output must be site/dist or repository-root dist');
+    if (output !== path.join(site, 'dist')) throw new Error('Output must be the project dist directory');
     await mkdir(output, { recursive: true });
     // Preserve the directory itself: it may be a Docker bind mount or have a read-only parent.
     for (const entry of await readdir(output)) {

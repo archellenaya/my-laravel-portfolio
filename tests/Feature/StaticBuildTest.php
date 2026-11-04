@@ -25,7 +25,7 @@ class StaticBuildTest extends TestCase
         Process::assertNothingRan();
     }
 
-    public function test_button_exports_current_data_and_builds_both_output_directories(): void
+    public function test_button_exports_current_data_and_builds_site_dist(): void
     {
         $this->seed(PortfolioSeeder::class);
         $user = User::factory()->create();
@@ -39,8 +39,8 @@ class StaticBuildTest extends TestCase
             $this->post('/admin/build-static')->assertRedirect('/admin')->assertSessionHas('status');
             $snapshot = json_decode(file_get_contents($file), true, 512, JSON_THROW_ON_ERROR);
             $this->assertSame('Archell Enaya', $snapshot['profiles'][0]['fullname']);
-            Process::assertRan(fn ($process) => $process->command === ['node', base_path('scripts/build-static.mjs'), '--out', base_path('dist'), '--stage-assets']);
-            Process::assertRan(fn ($process) => $process->command === ['node', base_path('scripts/build-static.mjs'), '--out', dirname(base_path()).'/dist']);
+            Process::assertRan(fn ($process) => $process->command === ['node', base_path('scripts/build-static.mjs'), '--stage-assets']);
+            Process::assertRanTimes(fn ($process) => $process->command === ['node', base_path('scripts/build-static.mjs'), '--stage-assets'], 1);
         } finally {
             unlink($file);
         }

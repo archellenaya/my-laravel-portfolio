@@ -94,11 +94,11 @@ The command always exports the current database content, even when `ISSTATIC=TRU
 
 The static build renders `resources/data/portfolio.json` into a standalone HTML portfolio and copies its CSS, JavaScript, images and resume into `dist/`. It uses Node built-ins only: PHP, Composer, database access, and npm dependency installation are not required on Vercel. The `ISSTATIC` setting controls Laravel; the Vercel build always uses JSON.
 
-Vercel settings (configuration files are included at both repository and `site/` level):
+Vercel settings (`site/` locally is the root of the GitHub repository; use its `package.json` and `vercel.json`):
 
 | Setting | Value |
 | --- | --- |
-| Root Directory | Repository root, or `site` if that is your existing project setting |
+| Root Directory | Leave empty (GitHub already starts inside the local `site/` directory) |
 | Framework Preset | Other |
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
@@ -109,8 +109,9 @@ Redeploy after committing these changes. Do not set the output directory to `pub
 After editing content in the CMS:
 
 ```sh
-# Run from the repository root.
+# Run from the local workspace containing docker-compose.yaml.
 docker compose exec app php artisan portfolio:export
+cd site
 npm run static:stage
 npm run build
 npm run test:static
@@ -118,7 +119,7 @@ npm run test:static
 
 Commit `site/resources/data/portfolio.json` and any referenced upload copies created in `site/resources/data/assets/`, then redeploy. The staging command copies only referenced CMS photos and resume files into that deployment asset directory. The build fails if any required asset is missing. Existing files in `site/public` remain the source for built-in assets. Generated `dist/` folders are ignored; Vercel regenerates them.
 
-Local verification from the repository root:
+Local verification from the local `site/` folder (the GitHub repository root):
 
 ```sh
 npm run build
@@ -133,8 +134,8 @@ Configuration reference: https://vercel.com/docs/project-configuration/vercel-js
 
 ### Rebuild from the local CMS
 
-Open `https://localhost/admin` and click **Publish Static** after saving content. The authenticated, email-verified action exports current database content to JSON, stages referenced CMS uploads, and rebuilds both repository-root `dist/` and `site/dist/`. It displays success or an error on the dashboard; builds are rate limited and concurrent builds are blocked.
+Open `https://localhost/admin` and click **Publish Static** after saving content. The authenticated, email-verified action exports current database content to JSON, stages referenced CMS uploads, and rebuilds `site/dist/` (the GitHub project’s `dist/`). It displays success or an error on the dashboard; builds are rate limited and concurrent builds are blocked.
 
-Docker includes Node and mounts the root output directory at `/var/www/dist`. The entrypoint grants the web-server user write access only to the generated content and output directories needed for this feature. Rebuild the app image after pulling the updated entrypoint (`docker compose up -d --build app`) on another installation.
+Docker includes Node. The existing site volume exposes its `dist/` directory to the local workspace. The entrypoint grants the web-server user write access only to the generated content and output directories needed for this feature. Rebuild the app image after pulling the updated entrypoint (`docker compose up -d --build app`) on another installation.
 
-This button prepares local deployment files. Commit the updated JSON and staged assets and push/redeploy to update Vercel; it does not publish or push commits automatically. The generated dist directories remain ignored by Git because Vercel builds them again from the committed source.
+This button prepares local deployment files. Commit the updated JSON and staged assets and push/redeploy to update Vercel; it does not publish or push commits automatically. The generated dist directory remains ignored by Git because Vercel builds them again from the committed source.
