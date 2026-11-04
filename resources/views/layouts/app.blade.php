@@ -4,8 +4,8 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>{{config('app.name')}}</title>
-    <meta name="description" content="Full Stack Web & Software Developer with 6+ years of experience in Laravel, Drupal, and WordPress. Building scalable, efficient web solutions.">
+    <title>{{$data['page_title']}}</title>
+    <meta name="description" content="{{$data['meta_description']}}">
     <meta name="author" content="{{$data['fullname']}}">
 
     <!-- mobile specific metas
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon-16x16.png')}}">
-    <link rel="manifest" href=""{{asset('site.webmanifest')}}">
+    <link rel="manifest" href="{{asset('site.webmanifest')}}">
 
 </head>
 
@@ -47,14 +47,14 @@
         ================================================== -->
         <header class="s-header"> 
             <div class="header-mobile">
-                <span class="mobile-home-link"><a href="{{url('/')}}">Arch.</a></span>
+                <span class="mobile-home-link"><a href="{{url('/')}}">{{$data['display_name']}}.</a></span>
                 <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
             </div>
 
             <div class="row wide main-nav-wrap">
                 <nav class="column lg-12 main-nav">
                     <ul>
-                        <li><a href="{{url('/')}}" class="home-link">Arch.</a></li>
+                        <li><a href="{{url('/')}}" class="home-link">{{$data['display_name']}}.</a></li>
                         <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
                         <li><a href="#about" class="smoothscroll">About</a></li>
                         <li><a href="#works" class="smoothscroll">Works</a></li>
@@ -76,7 +76,7 @@
         <footer class="s-footer"> 
             <div class="row">
                 <div class="column ss-copyright">
-                    <span>© Copyright Arch</span> 
+                    <span>© {{date('Y')}} {{$data['display_name']}}</span> 
                     <span>Template adapted from <a href="https://www.styleshout.com/" target="_blank">StyleShout</a></span>
                 </div>
 

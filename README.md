@@ -1,66 +1,65 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Archell Enaya Portfolio & CMS
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel portfolio with a database-backed public site and a session-authenticated CMS.
 
-## About Laravel
+## Local setup
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The local site now uses HTTPS and is bound to loopback. MySQL and Redis are available only inside the Docker network. Database passwords are generated secrets in the repository-root `.env`; the existing database accounts have been rotated to match. Do not replace that file with the example on an existing installation.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+For a fresh checkout, copy the root `.env.example` to `.env` and set two different strong random database passwords. Generate local TLS files before starting Nginx:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```sh
+mkdir -p docker/nginx/certs
+openssl req -x509 -newkey rsa:3072 -sha256 -nodes -days 365 -keyout docker/nginx/certs/localhost.key -out docker/nginx/certs/localhost.crt -subj '/CN=localhost' -addext 'subjectAltName=DNS:localhost,IP:127.0.0.1'
+chmod 600 docker/nginx/certs/localhost.key
+```
 
-## Learning Laravel
+Trust `docker/nginx/certs/localhost.crt` in your local browser/OS certificate store. It is a self-signed development certificate, not a public CA certificate. HTTP redirects to HTTPS. The certificate expires after one year; regenerate it before expiry and trust the replacement. For public deployment, use the real domain and a CA-issued certificate, adjust the Nginx hostname/redirect/certificate settings and host bindings, and update `APP_URL`. Keep secure cookies and debug protection enabled.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+From the repository root:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```sh
+docker compose up -d --build
+docker compose exec app php artisan storage:link
+docker compose exec app php artisan migrate --force
+docker compose exec app php artisan db:seed --class=PortfolioSeeder --force
+docker compose exec app php artisan cms:admin your-email@example.com
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The administrator command asks for a password of at least 12 characters. It never modifies an existing account. There is no public registration. Only users explicitly marked `is_admin` can access the CMS.
 
-## Laravel Sponsors
+- Public site: https://localhost
+- CMS: https://localhost/admin
+- Local email inbox: http://localhost:8025
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Sign-in requires your password followed by a six-digit email code. Codes expire after 10 minutes, work once, and allow five guesses per challenge. Resends require a 60-second wait, with at most three sends per administrator in 10 minutes. Codes are stored as hashes and tied to the browser session and current password. Existing sessions must sign in again to complete verification. Remember-me login is disabled so returning sessions cannot bypass the code.
 
-### Premium Partners
+Local sign-in codes arrive in Mailpit at http://localhost:8025. For delivery to a real email inbox, configure production SMTP instead of Mailpit.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Use **Forgot password** on the sign-in screen. Local reset emails arrive in Mailpit, not an external mailbox. Tokens expire after 60 minutes and can only be used once. Login and reset requests are rate limited. Configure a real SMTP provider and correct `APP_URL` for production, and replace the development mail settings in Compose. HTTPS, secure cookies and `APP_DEBUG=false` are already enabled in Compose.
 
-## Contributing
+## Content structure
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Table | Content |
+| --- | --- |
+| profiles | Name, role, biography, contact/social details, SEO text, image and CV paths, section introductions |
+| expertise | Ordered expertise labels |
+| skills | Ordered skill categories and descriptions |
+| experiences | Role, employer, period and responsibility bullets |
+| education | Qualification, institution, period and study bullets |
+| projects | Title, category, description, tags and image |
+| users | Administrator credentials and access flag |
+| login_codes | Hashed, session-bound sign-in codes, expiration and attempt counts |
+| password_reset_tokens | Hashed, expiring password reset tokens |
 
-## Code of Conduct
+The CMS supports creating, editing, ordering and deleting list content. The single profile can be edited but cannot be deleted. Text is escaped when rendered. Use one line per experience/education bullet and commas between project tags. Upload profile photos, high-resolution profile photos and project images directly from their edit forms (JPG, PNG, WebP or GIF; up to 8 MB each). Upload the resume as a PDF up to 10 MB. Leave file fields empty to retain existing files. Uploads use randomized filenames on the public storage disk; database records store their relative paths. Previous files are retained when replaced to avoid breaking shared references. Saved content is immediately reflected on the public site.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+The portfolio seeder imports the resume-based content only into empty tables, leaving existing populated sections untouched. Do not run it to restore deliberately emptied sections unless that is intended. Migrations add tables without deleting existing data; the user migration adds an admin flag that defaults to false.
 
-## Security Vulnerabilities
+## Tests
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```sh
+docker compose exec app php artisan test
+```
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Feature tests use an isolated in-memory SQLite database; they do not modify the local MySQL content. Coverage includes admin authorization, login/logout, rate limits, password reset and token reuse, content CRUD/validation, public content rendering, and CV downloads.
