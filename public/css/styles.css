@@ -75,7 +75,6 @@
 /* ------------------------------------------------------------------- 
  * ## fonts 
  * ------------------------------------------------------------------- */
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Serif+Text:ital@0;1&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 :root {
 
@@ -4244,3 +4243,34 @@ img.u-pull-left {
         right : 6vw;
     }
 }
+/* Fast initial paint and accessible progressive enhancement. */
+[data-animate-el] { opacity: 1; }
+.skip-link { position: fixed; top: 1rem; left: 1rem; z-index: 2000; padding: 1rem 2rem; background: #fff; color: #101112; transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+a:focus-visible, button:focus-visible { outline: 3px solid #f5d06f; outline-offset: 5px; }
+.mobile-menu-toggle { border: 0; background: transparent; padding: 0; margin: 0; min-width: 48px; min-height: 48px; cursor: pointer; }
+.intro-scrolldown, .folio-list__proj-link, .ss-go-top a { min-width: 44px; min-height: 44px; }
+.folio-list__item-cat, .timeline__timeframe, .ss-copyright, .ss-copyright a { color: #b9b9b9; }
+.timeline__meta { margin: 0; font-size: var(--text-sm); }
+.about-info__pic { height: auto; }
+.project-dialog { padding: 0; border: 1px solid #555; background: #fff; color: #101112; max-width: min(92vw, 800px); max-height: 90vh; overflow: auto; }
+.project-dialog::backdrop { background: rgb(0 0 0 / 80%); }
+.project-dialog .modal-popup { display: block; width: 100%; }
+.dialog-close { display: block; margin: 1rem 1rem 1rem auto; padding: 0 1.5rem; background: #101112; color: white; }
+.project-dialog h2 { color: #101112; font-size: 2.4rem; }
+.project-dialog p, .project-dialog li { color: #333; }
+html { scroll-behavior: smooth; }
+@media (max-width: 800px) {
+    .no-js .main-nav-wrap { transform: none; }
+    .no-js .main-nav { transform: none; opacity: 1; visibility: visible; }
+    .no-js .mobile-menu-toggle { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+:root { --color-text-light: #b9b9b9; }
+.intro-social a, .contact-links, .contact-links a, .contact-social a { color: #b9b9b9; }
+.intro-social { font-size: 1.4rem; }
+.intro-social a, .contact-social a { display: inline-flex; align-items: center; min-height: 44px; }
+.dialog-close:hover, .dialog-close:focus, .dialog-close:focus-visible { background: #333; color: #fff; }

@@ -1,0 +1,16 @@
+{
+  "lighthouseVersion": "13.6.0",
+  "testedUrl": "http://127.0.0.1:4173/",
+  "scope": "Local generated static site; mobile emulation, not the deployed Vercel site",
+  "scores": {
+    "performance": 99,
+    "accessibility": 100
+  },
+  "metrics": {
+    "first-contentful-paint": "1.5\u00a0s",
+    "largest-contentful-paint": "1.5\u00a0s",
+    "total-blocking-time": "0\u00a0ms",
+    "cumulative-layout-shift": "0.048",
+    "speed-index": "1.5\u00a0s"
+  }
+}

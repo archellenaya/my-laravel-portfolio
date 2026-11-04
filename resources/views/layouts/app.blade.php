@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js ss-preload" lang="en">
+<html class="no-js" lang="en">
 <head> 
     <!--- basic page needs
     ================================================== -->
@@ -11,6 +11,10 @@
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500;600;700&display=swap">
 
     <!-- CSS
     ================================================== -->
@@ -26,17 +30,13 @@
 
 </head>
 
-<body id="top"> 
-    <!-- # preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader">
-        </div>
-    </div> 
+<body id="top">
+    <a class="skip-link" href="#main-content">Skip to content</a> 
+ 
     <!-- # page wrap
     ================================================== -->
     <div class="s-pagewrap"> 
-        <div class="circles">
+        <div class="circles" aria-hidden="true">
             <span></span>
             <span></span>
             <span></span>
@@ -48,11 +48,11 @@
         <header class="s-header"> 
             <div class="header-mobile">
                 <span class="mobile-home-link"><a href="{{url('/')}}">{{$data['display_name']}}.</a></span>
-                <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
+                <button type="button" class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-navigation"><span aria-hidden="true">Menu</span></button>
             </div>
 
-            <div class="row wide main-nav-wrap">
-                <nav class="column lg-12 main-nav">
+            <div id="main-navigation" class="row wide main-nav-wrap">
+                <nav class="column lg-12 main-nav" aria-label="Main navigation">
                     <ul>
                         <li><a href="{{url('/')}}" class="home-link">{{$data['display_name']}}.</a></li>
                         <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
@@ -66,7 +66,7 @@
  
         <!-- ## main content
         ==================================================- -->
-        <main class="s-content">
+        <main id="main-content" class="s-content" tabindex="-1">
  
             @yield('content') 
 
@@ -90,7 +90,6 @@
     </div> <!-- end -s-pagewrap --> 
     <!-- Java Script
     ================================================== -->
-    <script src="{{asset('js/plugins.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
+    <script defer src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

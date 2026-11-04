@@ -79,3 +79,18 @@ test('deployment uses staged CMS uploads when the runtime storage file is absent
         await build();
     }
 });
+
+
+test('generated page exposes content immediately and includes accessible navigation and dialogs', async () => {
+    const output = await build();
+    const html = await readFile(path.join(output, 'index.html'), 'utf8');
+    assert.ok(!html.includes('ss-preload'));
+    assert.ok(!html.includes('id="preloader"'));
+    assert.ok(!html.includes('/js/plugins.js'));
+    assert.ok(html.includes('Skip to content'));
+    assert.ok(html.includes('aria-controls="main-navigation"'));
+    assert.ok(html.includes('aria-expanded="false"'));
+    assert.ok(html.includes('<dialog '));
+    assert.ok(html.includes('data-close-dialog'));
+    assert.ok(html.includes('loading="lazy" decoding="async"'));
+});

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js ss-preload" lang="en">
+<html class="no-js" lang="en">
 <head> 
     <!--- basic page needs
     ================================================== -->
@@ -11,6 +11,10 @@
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500;600;700&display=swap">
 
     <!-- CSS
     ================================================== -->
@@ -26,17 +30,13 @@
 
 </head>
 
-<body id="top"> 
-    <!-- # preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader">
-        </div>
-    </div> 
+<body id="top">
+    <a class="skip-link" href="#main-content">Skip to content</a> 
+ 
     <!-- # page wrap
     ================================================== -->
     <div class="s-pagewrap"> 
-        <div class="circles">
+        <div class="circles" aria-hidden="true">
             <span></span>
             <span></span>
             <span></span>
@@ -48,11 +48,11 @@
         <header class="s-header"> 
             <div class="header-mobile">
                 <span class="mobile-home-link"><a href="/">{{profile.display_name}}.</a></span>
-                <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
+                <button type="button" class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-navigation"><span aria-hidden="true">Menu</span></button>
             </div>
 
-            <div class="row wide main-nav-wrap">
-                <nav class="column lg-12 main-nav">
+            <div id="main-navigation" class="row wide main-nav-wrap">
+                <nav class="column lg-12 main-nav" aria-label="Main navigation">
                     <ul>
                         <li><a href="/" class="home-link">{{profile.display_name}}.</a></li>
                         <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
@@ -66,7 +66,7 @@
  
         <!-- ## main content
         ==================================================- -->
-        <main class="s-content">
+        <main id="main-content" class="s-content" tabindex="-1">
  
             
 
@@ -100,7 +100,7 @@
 
       </div> <!-- end intro content -->
 
-      <a href="#about" class="intro-scrolldown smoothscroll">
+      <a href="#about" class="intro-scrolldown smoothscroll" aria-label="Read about me">
           <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"/></svg>
       </a>
 
@@ -114,8 +114,8 @@
       <div class="row about-info wide" data-animate-block>
 
           <div class="column lg-6 md-12 about-info__pic-block">
-              <img src="{{profile.photo_url}}" 
-                    srcset="{{profile.photo_url}} 1x, {{profile.photo_retina_url}} 2x" alt="{{profile.fullname}}" class="about-info__pic" data-animate-el>
+              <img loading="lazy" decoding="async" src="{{profile.photo_url}}" 
+                    srcset="{{profile.photo_url}} 1x, {{profile.photo_retina_url}} 2x" alt="{{profile.fullname}}" width="600" height="600" class="about-info__pic" data-animate-el>
           </div>
 
           <div class="column lg-6 md-12">
@@ -173,8 +173,8 @@
                   <div class="timeline__block">
                       <div class="timeline__bullet"></div>
                       <div class="timeline__header">
-                          <h4 class="timeline__title">{{title}}</h4>
-                          <h5 class="timeline__meta">{{organization}}</h5>
+                          <h3 class="timeline__title">{{title}}</h3>
+                          <p class="timeline__meta">{{organization}}</p>
                           <p class="timeline__timeframe">{{period}}</p>
                       </div>
                       <div class="timeline__desc"><ul>
@@ -200,8 +200,8 @@
                   <div class="timeline__block">
                       <div class="timeline__bullet"></div>
                       <div class="timeline__header">
-                          <h4 class="timeline__title">{{title}}</h4>
-                          <h5 class="timeline__meta">{{organization}}</h5>
+                          <h3 class="timeline__title">{{title}}</h3>
+                          <p class="timeline__meta">{{organization}}</p>
                           <p class="timeline__timeframe">{{period}}</p>
                       </div>
                       <div class="timeline__desc"><ul>
@@ -245,8 +245,8 @@
                             <li class="folio-list__item column" data-animate-el>
                                 <a class="folio-list__item-link" href="#{{modal_id}}">
                                     <div class="folio-list__item-pic">
-                                        <img src="{{image_url}}"
-                                                srcset="{{image_url}} 1x, {{image_url}} 2x"  alt="">
+                                        <img loading="lazy" decoding="async" src="{{image_url}}"
+                                                srcset="{{image_url}} 1x, {{image_url}} 2x" alt="{{title}}" width="456" height="306">
                                     </div>
                                     
                                     <div class="folio-list__item-text">
@@ -258,7 +258,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <a class="folio-list__proj-link" href="#{{modal_id}}" title="View project details">
+                                <a class="folio-list__proj-link" href="#{{modal_id}}" aria-label="View details: {{title}}">
                                     <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
                                 </a>
                             </li> 
@@ -273,12 +273,13 @@
         
         
             {{#projects}} 
-                <div id="{{modal_id}}" hidden>
+                <dialog id="{{modal_id}}" class="project-dialog" aria-label="{{title}}">
                     <div class="modal-popup" style="text-align: center;">
-                        <img src="{{image_url}}" alt="">
+                        <button type="button" class="dialog-close" data-close-dialog>Close project</button>
+                        <img loading="lazy" decoding="async" src="{{image_url}}" alt="{{title}}">
             
                         <div class="modal-popup__desc" style="text-align: left;">
-                            <h5>{{title}}</h5>
+                            <h2>{{title}}</h2>
                             <p>{{description}}</p>
                             <ul class="modal-popup__cat">
                                 {{#tags}} 
@@ -288,7 +289,7 @@
                         </div>
 
                     </div>
-                </div> <!-- end modal -->
+                </dialog> <!-- end modal -->
             {{/projects}}
            
       </div> <!-- end works-portfolio -->
@@ -358,7 +359,6 @@
     </div> <!-- end -s-pagewrap --> 
     <!-- Java Script
     ================================================== -->
-    <script src="/js/plugins.js"></script>
-    <script src="/js/main.js"></script>
+    <script defer src="/js/main.js"></script>
 </body>
 </html>
