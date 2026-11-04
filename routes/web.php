@@ -23,6 +23,7 @@ Route::prefix('admin')->group(function () {
     });
     Route::middleware(['auth', 'can:manage-content', \App\Http\Middleware\RequireEmailCode::class])->group(function () {
         Route::get('/', [CmsController::class, 'index'])->name('admin.index');
+        Route::post('/build-static', \App\Http\Controllers\StaticBuildController::class)->middleware('throttle:2,1')->name('admin.build-static');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout');
         Route::get('/content/{section}', [CmsController::class, 'listing'])->name('admin.list');
         Route::get('/content/{section}/create', [CmsController::class, 'create'])->name('admin.create');

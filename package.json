@@ -3,7 +3,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "node scripts/build-static.mjs",
+        "build:assets": "vite build",
+        "test:static": "node --test scripts/build-static.test.mjs",
+        "static:stage": "node scripts/build-static.mjs --stage-assets"
     },
     "devDependencies": {
         "axios": "^1.6.4",
