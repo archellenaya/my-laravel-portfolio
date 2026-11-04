@@ -1,0 +1,157 @@
+{
+    "profiles": [
+        {
+            "id": 1,
+            "display_name": "Arch",
+            "fullname": "Archell Enaya",
+            "email": "archell.asilo.enaya@gmail.com",
+            "whatsapp": "639383998076",
+            "contact_number": "+639753942619",
+            "linkedin_url": "https://www.linkedin.com/in/archell-enaya-b52093207",
+            "instagram_url": "https://www.instagram.com/instag_arch?igsh=MWM2dDUxMDcxYnl4",
+            "github_url": "https://github.com/archellenaya",
+            "facebook_url": "https://www.facebook.com/archell.enaya.980",
+            "role": "Backend Web Developer",
+            "location": "the Philippines",
+            "contact_location": "Surigao del Norte, Philippines",
+            "greeting": "Hello World",
+            "page_title": "Archell Enaya | Backend Web Developer",
+            "meta_description": "Archell Enaya is a Backend Web Developer with over 8 years of experience in PHP, Laravel, REST API integrations, Drupal, and WordPress.",
+            "photo": "images/about-photo.png",
+            "photo_retina": "images/about-photo@2x.png",
+            "resume": "archell-enaya-resume.pdf",
+            "works_intro": "Selected backend integrations and CMS projects from my professional experience.",
+            "confidentiality": "Project source code and proprietary implementation details cannot be shared due to confidentiality obligations.",
+            "contact_intro": "Have a project or question? Let’s connect! I bring over 8 years of backend web development experience in PHP, Laravel, REST API integrations, Drupal, and WordPress.",
+            "summary": "Backend Web Developer with over 8 years of professional experience specializing in PHP and Laravel application development, REST API integrations, and backend system architecture. Experienced in building and maintaining scalable web applications, integrating third-party services, and developing custom solutions using Drupal and WordPress.",
+            "about": "Contributed to projects for private-sector clients and government-related organizations in Malta, with hands-on experience in multi-tenant applications, e-commerce integrations, and headless CMS architecture. I collaborate with international teams to deliver maintainable solutions aligned with business requirements.",
+            "sort_order": 0
+        }
+    ],
+    "expertise": [
+        {
+            "id": 1,
+            "title": "PHP & Laravel",
+            "sort_order": 0
+        },
+        {
+            "id": 2,
+            "title": "REST API Integrations",
+            "sort_order": 1
+        },
+        {
+            "id": 3,
+            "title": "Multi-tenant Applications",
+            "sort_order": 2
+        },
+        {
+            "id": 4,
+            "title": "Drupal & Headless CMS",
+            "sort_order": 3
+        },
+        {
+            "id": 5,
+            "title": "WordPress & WooCommerce",
+            "sort_order": 4
+        }
+    ],
+    "skills": [
+        {
+            "id": 1,
+            "title": "Databases",
+            "description": "MySQL, PostgreSQL",
+            "sort_order": 0
+        },
+        {
+            "id": 2,
+            "title": "Web",
+            "description": "JavaScript, HTML, CSS",
+            "sort_order": 1
+        },
+        {
+            "id": 3,
+            "title": "Tools",
+            "description": "Git, Composer, Postman, Insomnia, VS Code, Bitbucket, GitHub, Jira",
+            "sort_order": 2
+        },
+        {
+            "id": 4,
+            "title": "Environment",
+            "description": "cPanel, SSH",
+            "sort_order": 3
+        },
+        {
+            "id": 5,
+            "title": "AI-assisted development",
+            "description": "Claude Code for coding, debugging, code exploration, and implementation workflows",
+            "sort_order": 4
+        },
+        {
+            "id": 6,
+            "title": "Academic familiarity",
+            "description": "Java, C++, C#, Python, PHP, and object-oriented programming fundamentals",
+            "sort_order": 5
+        },
+        {
+            "id": 7,
+            "title": "Currently exploring",
+            "description": "Vue.js, React, Angular, and growing frontend development skills",
+            "sort_order": 6
+        },
+        {
+            "id": 8,
+            "title": "Languages",
+            "description": "Filipino (native); English (strong written communication, spoken proficiency developing)",
+            "sort_order": 7
+        }
+    ],
+    "experiences": [
+        {
+            "id": 1,
+            "title": "Backend Web Developer",
+            "organization": "Born Digital Ltd. – Malta, Europe",
+            "period": "2018–Present",
+            "description": "Develop and maintain Laravel backend systems for internal and client-facing platforms.\nDesign and implement REST API integrations between Laravel, WordPress, and WooCommerce systems.\nBuild data synchronization for orders, product pricing, inventory, and property information.\nDevelop custom Drupal modules, structured content, and Paragraph-based forms.\nExpose structured Drupal content through JSON:API for headless CMS implementations.\nCollaborate with project managers and developers across Malta and the Philippines.\nWrite maintainable code and support ongoing improvements to CMS-based websites and custom applications.",
+            "sort_order": 0
+        }
+    ],
+    "education": [
+        {
+            "id": 1,
+            "title": "Bachelor of Science in Computer Science, Major in Software Engineering",
+            "organization": "Mindanao State University - Marawi City",
+            "period": "Graduated: 2018",
+            "description": "Studied core programming in Java and C++\nObject Oriented Programming (Class/Object, Encapsulation, Inheritance, Polymorphism, etc)\nData Structures (linked list, stacks and queues, arrays, graphs and trees)\nCompleted coursework in web development, software engineering, and database management, Expert System, Data Mining",
+            "sort_order": 0
+        }
+    ],
+    "projects": [
+        {
+            "id": 1,
+            "title": "E-Commerce Synchronization Platform",
+            "category": "Laravel + WooCommerce",
+            "description": "Built a Laravel REST API integration to synchronize orders, product prices, and inventory between WooCommerce and a client’s internal inventory system. Developed a multi-tenant version of the integration platform.",
+            "tags": "Laravel, WooCommerce, REST APIs, Multi-tenancy",
+            "image": "images/portfolio/laravel.png",
+            "sort_order": 0
+        },
+        {
+            "id": 2,
+            "title": "Estate Agency Platform",
+            "category": "Laravel + WordPress",
+            "description": "Built a Laravel REST API integration to synchronize real estate property data from a client’s internal CMS to a WordPress frontend. Developed a multi-tenant version of the platform.",
+            "tags": "Laravel, WordPress, REST APIs, Multi-tenancy",
+            "image": "images/portfolio/laravel.png",
+            "sort_order": 1
+        },
+        {
+            "id": 3,
+            "title": "Drupal-Based Headless CMS",
+            "category": "Drupal + Next.js",
+            "description": "Developed custom Drupal modules and content types, created Paragraph-based forms, and exposed structured content through JSON:API. Worked with a headless CMS architecture in which Drupal manages content and a Next.js frontend handles presentation.",
+            "tags": "Drupal, Next.js, JSON:API, Headless CMS",
+            "image": "images/portfolio/drupal.png",
+            "sort_order": 2
+        }
+    ]
+}

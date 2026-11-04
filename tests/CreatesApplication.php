@@ -16,6 +16,7 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
+        $app['config']->set('portfolio.static', false);
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite.database', ':memory:');
         $app['config']->set('database.connections.sqlite.url', null);

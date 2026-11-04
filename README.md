@@ -63,3 +63,29 @@ docker compose exec app php artisan test
 ```
 
 Feature tests use an isolated in-memory SQLite database; they do not modify the local MySQL content. Coverage includes admin authorization, login/logout, rate limits, password reset and token reuse, content CRUD/validation, public content rendering, and CV downloads.
+
+## Static JSON content
+
+The current public content is exported to `resources/data/portfolio.json`. It contains profiles, expertise, skills, experience, education and projects, including their display order and asset paths. Users, passwords, login codes, sessions and password-reset tokens are excluded.
+
+Set the following in `site/.env`:
+
+```dotenv
+ISSTATIC=TRUE
+```
+
+`TRUE` serves the public homepage and CV download from JSON without querying the database. `FALSE` (the default) loads live database content. The CMS, login, email codes and password resets continue to use the database in either mode. Missing or malformed JSON returns HTTP 503 in static mode; it does not silently fall back to the database.
+
+After changing the setting, clear cached configuration:
+
+```sh
+docker compose exec app php artisan config:clear
+```
+
+Refresh the snapshot after CMS edits with:
+
+```sh
+docker compose exec app php artisan portfolio:export
+```
+
+The command always exports the current database content, even when `ISSTATIC=TRUE`, and atomically replaces the JSON file. An empty profile table leaves the previous snapshot untouched. Uploaded files are referenced by their paths rather than embedded in JSON; retain the corresponding `public/` and `storage/app/public/` assets when deploying the snapshot. CMS changes appear in static mode after re-exporting.

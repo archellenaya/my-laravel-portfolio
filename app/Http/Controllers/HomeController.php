@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Services\PortfolioContent;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(PortfolioContent $portfolio)
     {
-        $data = (array) DB::table('profiles')->first();
+        $snapshot = $portfolio->load();
+        $data = $snapshot['profiles'][0] ?? [];
         abort_unless($data, 503, 'Portfolio content has not been initialized.');
         $content = [];
         foreach (['expertise', 'skills', 'experiences', 'education'] as $table) {
-            $content[$table] = DB::table($table)->orderBy('sort_order')->orderBy('id')->get();
+            $content[$table] = collect($snapshot[$table])->map(fn ($row) => (object) $row);
         }
-        $projects = DB::table('projects')->orderBy('sort_order')->orderBy('id')->get()->map(fn ($row) => (array) $row);
+        $projects = collect($snapshot['projects']);
 
         return view('home_page', compact('data', 'projects') + $content);
     }
 
-    public function download_cv()
+    public function download_cv(PortfolioContent $portfolio)
     {
-        $file = DB::table('profiles')->value('resume');
+        $file = $portfolio->load()['profiles'][0]['resume'] ?? null;
         $uploaded = $file && str_starts_with($file, 'storage/cms/');
         $base = $uploaded ? \Illuminate\Support\Facades\Storage::disk('public')->path('') : public_path();
         $relative = $uploaded ? substr($file, 8) : $file;
