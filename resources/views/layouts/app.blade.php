@@ -4,6 +4,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <title>{{$data['page_title']}}</title>
     <meta name="description" content="{{$data['meta_description']}}">
     <meta name="author" content="{{$data['fullname']}}">
