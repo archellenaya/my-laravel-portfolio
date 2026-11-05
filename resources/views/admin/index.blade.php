@@ -11,6 +11,6 @@
     <p class="muted">Updates site/dist. To publish, commit the updated JSON and staged assets, then redeploy Vercel.</p>
 </div>
 <div class="grid">@foreach($counts as $section => $count)
-<div class="panel"><h2>{{ucfirst($section === 'profiles' ? 'Profile & site content' : $section)}}</h2><p class="muted">{{$count}} {{Str::plural('record', $count)}}</p><a class="button" href="{{route('admin.list', $section)}}">Manage {{ $section === 'profiles' ? 'profile' : $section }}</a></div>
+<div class="panel"><h2>{{ucfirst($section === 'profiles' ? 'Profile & site content' : ($section === 'tools' ? 'Tool logos' : $section))}}</h2><p class="muted">{{$count}} {{Str::plural('record', $count)}}</p><a class="button" href="{{route('admin.list', $section)}}">Manage {{ $section === 'profiles' ? 'profile' : ($section === 'tools' ? 'tool logos' : $section) }}</a></div>
 @endforeach</div>
 @endsection

@@ -92,6 +92,11 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     const context = { ...content, profile, year: new Date().getFullYear() };
     for (const section of ['expertise', 'skills', 'experiences', 'education']) context[section] = sorted(content[section]);
     for (const section of ['experiences', 'education']) context[section] = context[section].map(row => ({...row, bullets: (row.description ?? '').split('\n').filter(line => line.trim()).map(text => ({text}))}));
+    const tools = await Promise.all(sorted(content.tools ?? []).map(async tool => {
+        if (!['original', 'light'].includes(tool.appearance)) throw new Error('Invalid tool logo appearance');
+        return {...tool, image_url: await asset(tool.image, images), image_class: tool.appearance === 'light' ? 'tool-logo--light' : ''};
+    }));
+    context.tools = tools;
     context.projects = await Promise.all(sorted(content.projects).map(async (row, index) => {
         const website = row.website_url ?? '';
         if (website && !['https:', 'http:'].includes(new URL(website).protocol)) throw new Error('Invalid project website URL');

@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('content')
 <a href="{{route('admin.list', $section)}}">← Back to {{ $section }}</a>
-<h1>{{$row ? 'Edit' : 'Add'}} {{ $section === 'profiles' ? 'profile & site content' : rtrim($section, 's') }}</h1>
+<h1>{{$row ? 'Edit' : 'Add'}} {{ $section === 'profiles' ? 'profile & site content' : ($section === 'tools' ? 'tool logo' : rtrim($section, 's')) }}</h1>
 <form class="panel" method="post" enctype="multipart/form-data" action="{{$row ? route('admin.update', [$section, $row->id]) : route('admin.store', $section)}}">
 @csrf @if($row) @method('PUT') @endif
 @foreach($fields as $field => $type)
@@ -13,6 +13,12 @@
 @endif
 <input id="{{$field}}" type="file" name="{{$field}}_upload" accept="{{$field === 'resume' ? 'application/pdf' : 'image/jpeg,image/png,image/webp,image/gif'}}" @if(empty($row->$field)) required @endif>
 <small>{{$field === 'resume' ? 'PDF, up to 10 MB.' : 'JPG, PNG, WebP or GIF, up to 8 MB.'}} Leave empty to keep the current file.</small>
+@elseif($section === 'tools' && $field === 'appearance')
+<select id="appearance" name="appearance" required>
+    <option value="original" @selected(old('appearance', $row->appearance ?? 'original') === 'original')>Original logo colors</option>
+    <option value="light" @selected(old('appearance', $row->appearance ?? 'original') === 'light')>White logo for dark background</option>
+</select>
+<small>Choose white for dark monochrome logos that would disappear in the globe.</small>
 @elseif($type === 'textarea')<textarea id="{{$field}}" name="{{$field}}" required maxlength="20000">{{old($field, $row->$field ?? '')}}</textarea>
 @else<input id="{{$field}}" name="{{$field}}" type="{{$field === 'email' ? 'email' : (str_ends_with($field, '_url') ? 'url' : 'text')}}" value="{{old($field, $row->$field ?? '')}}" @if($field !== 'website_url') required @endif maxlength="1000">@endif
 

@@ -70,6 +70,11 @@
         <main id="main-content" class="s-content" tabindex="-1">
             <div class="particle-backdrop" aria-hidden="true">
                 <canvas class="hero-particles" aria-hidden="true"></canvas>
+                <template id="globe-logos">
+                    {{#tools}}
+                    <img src="{{image_url}}" alt="{{title}}" data-appearance="{{appearance}}">
+                    {{/tools}}
+                </template>
             </div>
  
             
@@ -165,6 +170,7 @@
               </dl>
           </div>
       </div> <!-- end about-expertise -->
+
 
 
       <div class="row about-timelines" data-animate-block>

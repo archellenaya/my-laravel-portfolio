@@ -72,7 +72,7 @@
         {
             "id": 3,
             "title": "Tools",
-            "description": "Git, Composer, Postman, Insomnia, VS Code, Bitbucket, GitHub, Jira",
+            "description": "Docker, Git, Composer, Postman, Insomnia, VS Code, Bitbucket, GitHub, Jira, DBeaver, MySQL Workbench",
             "sort_order": 2
         },
         {
@@ -84,7 +84,7 @@
         {
             "id": 5,
             "title": "AI-assisted development",
-            "description": "Claude Code for coding, debugging, code exploration, and implementation workflows",
+            "description": "Claude Code and OpenAI Codex for coding, debugging, code exploration, and implementation workflows",
             "sort_order": 4
         },
         {
@@ -136,6 +136,183 @@
             "period": "Graduated: 2018",
             "description": "Studied core programming in Java and C++\nObject Oriented Programming (Class/Object, Encapsulation, Inheritance, Polymorphism, etc)\nData Structures (linked list, stacks and queues, arrays, graphs and trees)\nCompleted coursework in web development, software engineering, and database management, Expert System, Data Mining",
             "sort_order": 0
+        }
+    ],
+    "tools": [
+        {
+            "id": 1,
+            "title": "Claude Code",
+            "image": "images/tools/claude.svg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 15,
+            "title": "ChatGPT",
+            "image": "storage/cms/QpcjeUjvGEZ3K2oulHaPYQvxF91nKf3Ug06TWGFJ.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 16,
+            "title": "Gemini",
+            "image": "storage/cms/JpG3pALwPwEZUAl4AhoU6dbP1YbEa9VWSGt9phqj.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 17,
+            "title": "Codex",
+            "image": "storage/cms/HudQFQhnS3jDIR0C83CadGE8DlCkFbLMpQGlguqL.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 18,
+            "title": "JIRA",
+            "image": "storage/cms/mrU1QnQvH3QID4wJoYNUCrNBu03J78US2PkkqNt4.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 19,
+            "title": "windows",
+            "image": "storage/cms/uxPXD4Yw3iiCKnJWxD5chK4n4qd6vZdeXgeQHIEV.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 20,
+            "title": "Ubuntu",
+            "image": "storage/cms/kSdXZ6wzlcbD4Z5fyRtDCLhaP40akRe0u9Iw6I6E.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 21,
+            "title": "Adminer",
+            "image": "storage/cms/YdaGHsREfBmjZtqnhruuslasJVptrbpM09zeKuAL.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 22,
+            "title": "phpmyadmin",
+            "image": "storage/cms/WkPthoXhNo58Id8XSgVABMGNEneTPmKVGDSog9pK.jpg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "id": 3,
+            "title": "Docker",
+            "image": "images/tools/docker.svg",
+            "appearance": "original",
+            "sort_order": 2
+        },
+        {
+            "id": 4,
+            "title": "Git",
+            "image": "images/tools/git.svg",
+            "appearance": "original",
+            "sort_order": 3
+        },
+        {
+            "id": 5,
+            "title": "Composer",
+            "image": "images/tools/composer.svg",
+            "appearance": "original",
+            "sort_order": 4
+        },
+        {
+            "id": 6,
+            "title": "Postman",
+            "image": "images/tools/postman.svg",
+            "appearance": "original",
+            "sort_order": 5
+        },
+        {
+            "id": 7,
+            "title": "Insomnia",
+            "image": "images/tools/insomnia.svg",
+            "appearance": "original",
+            "sort_order": 6
+        },
+        {
+            "id": 8,
+            "title": "VS Code",
+            "image": "images/tools/vscode.svg",
+            "appearance": "original",
+            "sort_order": 7
+        },
+        {
+            "id": 9,
+            "title": "Bitbucket",
+            "image": "images/tools/bitbucket.svg",
+            "appearance": "original",
+            "sort_order": 8
+        },
+        {
+            "id": 10,
+            "title": "GitHub",
+            "image": "images/tools/github.svg",
+            "appearance": "light",
+            "sort_order": 9
+        },
+        {
+            "id": 11,
+            "title": "Jira",
+            "image": "images/tools/jira.svg",
+            "appearance": "original",
+            "sort_order": 10
+        },
+        {
+            "id": 12,
+            "title": "DBeaver",
+            "image": "images/tools/dbeaver.svg",
+            "appearance": "original",
+            "sort_order": 11
+        },
+        {
+            "id": 13,
+            "title": "MySQL Workbench",
+            "image": "images/tools/mysql.svg",
+            "appearance": "original",
+            "sort_order": 12
+        },
+        {
+            "id": 14,
+            "title": "PostgreSQL",
+            "image": "images/tools/postgresql.svg",
+            "appearance": "original",
+            "sort_order": 13
+        },
+        {
+            "id": 23,
+            "title": "Notepad++",
+            "image": "images/tools/notepadplusplus.svg",
+            "appearance": "original",
+            "sort_order": 14
+        },
+        {
+            "id": 24,
+            "title": "Laravel",
+            "image": "images/tools/laravel.svg",
+            "appearance": "original",
+            "sort_order": 15
+        },
+        {
+            "id": 25,
+            "title": "C++",
+            "image": "images/tools/cplusplus.svg",
+            "appearance": "original",
+            "sort_order": 16
+        },
+        {
+            "id": 26,
+            "title": "Java",
+            "image": "images/tools/java.svg",
+            "appearance": "original",
+            "sort_order": 17
         }
     ],
     "projects": [

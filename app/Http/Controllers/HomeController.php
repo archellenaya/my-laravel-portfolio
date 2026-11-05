@@ -16,7 +16,7 @@ class HomeController extends Controller
             $data['headshot'] = $optimizedHeadshot;
         }
         $content = [];
-        foreach (['expertise', 'skills', 'experiences', 'education'] as $table) {
+        foreach (['expertise', 'skills', 'experiences', 'education', 'tools'] as $table) {
             $content[$table] = collect($snapshot[$table])->map(fn ($row) => (object) $row);
         }
         $projects = collect($snapshot['projects']);

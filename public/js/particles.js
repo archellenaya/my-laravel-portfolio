@@ -1,4 +1,4 @@
-/* Decorative binary globe: bounded work, no third-party runtime. */
+/* Decorative CMS logo globe: bounded work, no third-party runtime. */
 (() => {
     const canvas = document.querySelector('.hero-particles');
     if (!canvas) return;
@@ -10,7 +10,7 @@
     let width = 0, height = 0, streams = [], points = [], frame = 0, last = 0, phase = 0;
     let visible = true, pointerX = 0, pointerY = 0, tiltX = 0, tiltY = 0;
     const compact = matchMedia('(max-width: 799px)');
-    let glyphs = [], ready = false;
+    let glyphs = [], logos = [], ready = false;
     let rippleStarted = -Infinity;
 
     function resize() {
@@ -21,7 +21,7 @@
         canvas.width = Math.round(width * density);
         canvas.height = Math.round(height * density);
         context.setTransform(density, 0, 0, density, 0, 0);
-        const count = compact.matches ? 120 : 320;
+        const count = logos.length ? Math.min(logos.length * (compact.matches ? 1 : 2), 56) : (compact.matches ? 120 : 320);
         points = Array.from({length: count}, (_, i) => {
             const y = 1 - 2 * (i + 0.5) / count;
             const radius = Math.sqrt(1 - y * y);
@@ -105,8 +105,8 @@
             // Ripple around the fixed viewport center on click.
             const bounce = ripple > 0 ? 1 + ripple * 0.35 * Math.sin(rippleAge * 17 - point.y * 3 - depth * 2) : 1;
             const fontSize = (10 + (depth + 1) * 2) * Math.min(Math.max(width, height) / 900, 1.4);
-            const size = fontSize * 1.5;
-            context.drawImage(glyphs[Number(point.digit)],
+            const size = logos.length ? (compact.matches ? 26 : 38) * perspective * (0.8 + (depth + 1) * 0.15) : fontSize * 1.5;
+            context.drawImage(logos.length ? logos[i % logos.length] : glyphs[Number(point.digit)],
                 width / 2 + x * radius * wave * perspective * bounce - size / 2,
                 height / 2 + y * radius * wave * perspective * bounce - size / 2,
                 size, size);
@@ -160,6 +160,33 @@
         if ('ResizeObserver' in window) new ResizeObserver(resize).observe(canvas);
         else addEventListener('resize', resize, {passive: true});
         sync();
+        loadLogos();
+    }
+    async function loadLogos() {
+        const sources = document.querySelector('#globe-logos')?.content.querySelectorAll('img') ?? [];
+        const loaded = await Promise.all(Array.from(sources, async source => {
+            try {
+                const image = new Image();
+                image.src = source.getAttribute('src');
+                // Do not let a slow logo hold up the remaining globe indefinitely.
+                let timeout;
+                try {
+                    await Promise.race([image.decode(), new Promise((_, reject) => {
+                        timeout = setTimeout(() => reject(new Error('Logo load timeout')), 5000);
+                    })]);
+                } finally { clearTimeout(timeout); }
+                const sprite = document.createElement('canvas');
+                sprite.width = sprite.height = 96;
+                const ink = sprite.getContext('2d');
+                if (source.dataset.appearance === 'light') ink.filter = 'brightness(0) invert(1)';
+                const scale = 88 / Math.max(image.naturalWidth, image.naturalHeight);
+                const w = image.naturalWidth * scale, h = image.naturalHeight * scale;
+                ink.drawImage(image, (96 - w) / 2, (96 - h) / 2, w, h);
+                return sprite;
+            } catch { return null; }
+        }));
+        logos = loaded.filter(Boolean);
+        if (logos.length) { resize(); sync(); }
     }
     function scheduleStart() {
         if ('requestIdleCallback' in window) requestIdleCallback(start, {timeout: 1500});

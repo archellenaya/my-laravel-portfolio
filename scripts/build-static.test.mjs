@@ -101,3 +101,32 @@ test('generated page exposes content immediately and includes accessible navigat
     assert.ok(html.includes('data-close-dialog'));
     assert.ok(html.includes('loading="lazy" decoding="async"'));
 });
+
+test('CMS tool logos render names, images, appearance and order for the globe', async () => {
+    const temporary = await mkdtemp(path.join(tmpdir(), 'portfolio-tools-'));
+    try {
+        const content = JSON.parse(await readFile(path.join(site, 'resources/data/portfolio.json'), 'utf8'));
+        content.tools = [
+            {title: 'Last Tool', image: 'images/tools/docker.svg', appearance: 'original', sort_order: 5},
+            {title: 'First & Tool', image: content.profiles[0].photo, appearance: 'light', sort_order: 0},
+        ];
+        const snapshot = path.join(temporary, 'portfolio.json');
+        await writeFile(snapshot, JSON.stringify(content));
+        const output = await build({snapshot});
+        const html = await readFile(path.join(output, 'index.html'), 'utf8');
+        assert.ok(html.includes('First &amp; Tool'));
+        assert.ok(html.indexOf('First &amp; Tool') < html.indexOf('Last Tool'));
+        assert.ok(html.includes('data-appearance="light"'));
+        assert.ok(html.includes('id="globe-logos"'));
+        assert.ok(!html.includes('data-tool-marquee'));
+        await access(path.join(output, content.profiles[0].photo));
+        content.tools = [];
+        await writeFile(snapshot, JSON.stringify(content));
+        await build({snapshot});
+        const emptyHtml = await readFile(path.join(output, 'index.html'), 'utf8');
+        assert.ok(!/<template id="globe-logos">[\s\S]*?<img[\s\S]*?<\/template>/.test(emptyHtml));
+    } finally {
+        await rm(temporary, {recursive: true, force: true});
+        await build();
+    }
+});

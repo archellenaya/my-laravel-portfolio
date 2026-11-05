@@ -69,6 +69,11 @@ class CmsController extends Controller
                 continue;
             }
 
+            if ($section === 'tools' && $field === 'appearance') {
+                $rules[$field] = ['required', 'in:original,light'];
+
+                continue;
+            }
             if ($section === 'projects' && $field === 'website_url') {
                 $rules[$field] = ['nullable', 'string', 'max:1000', 'url:http,https'];
 

@@ -317,5 +317,115 @@
             "website_url": "https://bdlbooks.com/",
             "sort_order": 24
         }
+    ],
+    "tools": [
+        {
+            "title": "Claude Code",
+            "image": "images/tools/claude.svg",
+            "appearance": "original",
+            "sort_order": 0
+        },
+        {
+            "title": "OpenAI Codex",
+            "image": "images/tools/openai.svg",
+            "appearance": "light",
+            "sort_order": 1
+        },
+        {
+            "title": "Docker",
+            "image": "images/tools/docker.svg",
+            "appearance": "original",
+            "sort_order": 2
+        },
+        {
+            "title": "Git",
+            "image": "images/tools/git.svg",
+            "appearance": "original",
+            "sort_order": 3
+        },
+        {
+            "title": "Composer",
+            "image": "images/tools/composer.svg",
+            "appearance": "original",
+            "sort_order": 4
+        },
+        {
+            "title": "Postman",
+            "image": "images/tools/postman.svg",
+            "appearance": "original",
+            "sort_order": 5
+        },
+        {
+            "title": "Insomnia",
+            "image": "images/tools/insomnia.svg",
+            "appearance": "original",
+            "sort_order": 6
+        },
+        {
+            "title": "VS Code",
+            "image": "images/tools/vscode.svg",
+            "appearance": "original",
+            "sort_order": 7
+        },
+        {
+            "title": "Bitbucket",
+            "image": "images/tools/bitbucket.svg",
+            "appearance": "original",
+            "sort_order": 8
+        },
+        {
+            "title": "GitHub",
+            "image": "images/tools/github.svg",
+            "appearance": "light",
+            "sort_order": 9
+        },
+        {
+            "title": "Jira",
+            "image": "images/tools/jira.svg",
+            "appearance": "original",
+            "sort_order": 10
+        },
+        {
+            "title": "DBeaver",
+            "image": "images/tools/dbeaver.svg",
+            "appearance": "original",
+            "sort_order": 11
+        },
+        {
+            "title": "MySQL Workbench",
+            "image": "images/tools/mysql.svg",
+            "appearance": "original",
+            "sort_order": 12
+        },
+        {
+            "title": "PostgreSQL",
+            "image": "images/tools/postgresql.svg",
+            "appearance": "original",
+            "sort_order": 13
+        },
+        {
+            "title": "Notepad++",
+            "image": "images/tools/notepadplusplus.svg",
+            "appearance": "original",
+            "sort_order": 14
+        },
+        {
+            "title": "Laravel",
+            "image": "images/tools/laravel.svg",
+            "appearance": "original",
+            "sort_order": 15
+        },
+        {
+            "title": "C++",
+            "image": "images/tools/cplusplus.svg",
+            "appearance": "original",
+            "sort_order": 16
+        },
+        {
+            "title": "Java",
+            "image": "images/tools/java.svg",
+            "appearance": "original",
+            "sort_order": 17
+        }
     ]
 }

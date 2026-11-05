@@ -36,6 +36,7 @@ class PortfolioContent
             if (! is_array($content)) {
                 throw new \RuntimeException('Invalid portfolio snapshot.');
             }
+            $content['tools'] ??= [];
             foreach (config('cms') as $table => $fields) {
                 if (! isset($content[$table]) || ! is_array($content[$table]) || ! array_is_list($content[$table])) {
                     throw new \RuntimeException('Invalid portfolio section.');
