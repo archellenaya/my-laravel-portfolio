@@ -14,3 +14,15 @@ Both Laravel and static templates include a skip link, a labeled navigation butt
 - 32 PHP tests and 5 static-build tests pass.
 
 These are measurements of the generated site served locally with compression and the configured static security headers. They are not a rerun of the deployed site's original test under identical network conditions. Commit the templates, scripts, CSS, optimized JPEGs and updated JSON, redeploy Vercel, and rerun mobile Lighthouse against the public domain. Automated accessibility checks do not substitute for a full manual accessibility review. Remaining Lighthouse opportunities include CSS minification, cache lifetime tuning and further image/font optimization.
+
+
+## Scroll transitions
+
+Lightweight IntersectionObserver-triggered entrances animate below-the-fold content once using the Web Animations API (20 px upward movement, 550 ms, up to 165 ms stagger). The intro heading is excluded, and content remains visible before JavaScript or if it fails. Focused controls skip/cancel reveals; switching to reduced motion cancels running reveals and disables decorative CSS animations. Hover transitions, project-dialog entrance and a three-cycle down-arrow hint use transform/opacity rather than layout-changing properties. Browser checks confirmed once-only reveals, visible headings and fully disabled reveals under reduced motion.
+
+
+## Particle hero
+
+An original gold particle globe adds movement inspired by https://www.borndigital.be/ while preserving the existing portfolio layout. A small native Canvas script rotates and gently deforms the globe with subtle fine-pointer response. It uses 480 particles on desktop and 180 on mobile, caps pixel density at 1.5 and redraws at up to 24 fps. It pauses when the hero is offscreen or the document is hidden, renders a still frame for reduced motion, and does not intercept input or expose decorative content to assistive technology. It does not delay or animate the initial heading.
+
+Browser checks passed for moving/still states, offscreen pausing, no JavaScript errors and mobile down-arrow clicks. Five static-build tests pass. A fresh local mobile Lighthouse run with the particle effect enabled scored **99 Performance and 100 Accessibility**, with **LCP 1.5 s**. See [particle audit summary](lighthouse-particles.json). Deployed scores may differ; rerun Lighthouse after publishing.

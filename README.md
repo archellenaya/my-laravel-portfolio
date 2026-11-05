@@ -139,3 +139,7 @@ Open `https://localhost/admin` and click **Publish Static** after saving content
 Docker includes Node. The existing site volume exposes its `dist/` directory to the local workspace. The entrypoint grants the web-server user write access only to the generated content and output directories needed for this feature. Rebuild the app image after pulling the updated entrypoint (`docker compose up -d --build app`) on another installation.
 
 This button prepares local deployment files. Commit the updated JSON and staged assets and push/redeploy to update Vercel; it does not publish or push commits automatically. The generated dist directory remains ignored by Git because Vercel builds them again from the committed source.
+
+### Intro headshot upload
+
+In the CMS, open **Profile & site content → Edit → Intro headshot**. Upload a JPG, PNG, WebP or GIF (up to 8 MB); a square image around 600 × 600 pixels is recommended. Leaving the field empty keeps the current headshot. This field is separate from the About-section photos. Save, click **Publish Static**, and commit/push the updated JSON and staged image to publish it on Vercel.

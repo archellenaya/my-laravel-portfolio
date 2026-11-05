@@ -67,6 +67,9 @@
         <!-- ## main content
         ==================================================- -->
         <main id="main-content" class="s-content" tabindex="-1">
+            <div class="particle-backdrop" aria-hidden="true">
+                <canvas class="hero-particles" aria-hidden="true"></canvas>
+            </div>
  
             @yield('content') 
 
@@ -91,5 +94,6 @@
     <!-- Java Script
     ================================================== -->
     <script defer src="{{asset('js/main.js')}}"></script>
+    <script defer src="{{asset('js/particles.js')}}"></script>
 </body>
 </html>

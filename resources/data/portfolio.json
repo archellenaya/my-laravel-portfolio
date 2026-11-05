@@ -17,6 +17,7 @@
             "greeting": "Hello World",
             "page_title": "Archell Enaya | Backend Web Developer",
             "meta_description": "Archell Enaya is a Backend Web Developer with over 8 years of experience in PHP, Laravel, REST API integrations, Drupal, and WordPress.",
+            "headshot": "storage/cms/G7osgsWWpvm90wE9hwrdUPge3e1koGd3ufCJIPsl.png",
             "photo": "storage/cms/ZDwjlvop5eyN0UowU88fWMzDCMHM9gWeSgapc5Vr.png",
             "photo_retina": "storage/cms/mxFDZtcSAbZSq4WHwRI0twJvrAUa6b2Fihg47NPW.png",
             "resume": "storage/cms/CVU1NLCR0w3lQMDdPqPWoWcS7UVE6fMjwnC7qBO7.pdf",
@@ -65,7 +66,7 @@
         {
             "id": 2,
             "title": "Web",
-            "description": "JavaScript, HTML, CSS",
+            "description": "JavaScript, HTML, CSS, PHP",
             "sort_order": 1
         },
         {
@@ -103,6 +104,18 @@
             "title": "Languages",
             "description": "Filipino (native); English (strong written communication, spoken proficiency developing)",
             "sort_order": 7
+        },
+        {
+            "id": 9,
+            "title": "Integrations",
+            "description": "Xero, Stripe, WooCommerce, SendGrid, Twilio, Mailgun, Google OAuth, Auth0, SAML",
+            "sort_order": 8
+        },
+        {
+            "id": 10,
+            "title": "Frameworks",
+            "description": "Laravel, Lumen, Drupal, Wordpress",
+            "sort_order": 9
         }
     ],
     "experiences": [

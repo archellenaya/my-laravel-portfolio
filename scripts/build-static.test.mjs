@@ -68,7 +68,7 @@ test('deployment uses staged CMS uploads when the runtime storage file is absent
         await mkdir(path.dirname(staged), {recursive:true});
         const image = await readFile(path.join(site, 'public/images/about-photo.png'));
         await writeFile(staged, image);
-        content.profiles[0].photo = relative;
+        content.profiles[0].headshot = relative;
         const snapshot = path.join(temporary, 'content.json');
         await writeFile(snapshot, JSON.stringify(content));
         const output = await build({snapshot});

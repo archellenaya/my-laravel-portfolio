@@ -60,7 +60,7 @@ class CmsController extends Controller
         }
         $rules = ['sort_order' => 'required|integer|min:0|max:100000'];
         foreach ($fields as $field => $type) {
-            if (in_array($field, ['photo', 'photo_retina', 'image', 'resume'])) {
+            if (in_array($field, ['headshot', 'photo', 'photo_retina', 'image', 'resume'])) {
                 $rules[$field.'_upload'] = [empty($existing?->$field) ? 'required' : 'nullable', 'file', $field === 'resume' ? 'mimes:pdf' : 'image', $field === 'resume' ? 'max:10240' : 'max:8192'];
                 if ($field !== 'resume') {
                     $rules[$field.'_upload'][] = 'mimes:jpg,jpeg,png,webp,gif';
@@ -85,12 +85,12 @@ class CmsController extends Controller
         }
         $values = $request->validate($rules);
         $stored = [];
-        foreach (['photo', 'photo_retina', 'image', 'resume'] as $field) {
+        foreach (['headshot', 'photo', 'photo_retina', 'image', 'resume'] as $field) {
             unset($values[$field.'_upload']);
         }
         try {
             foreach (array_keys($fields) as $field) {
-                if (in_array($field, ['photo', 'photo_retina', 'image', 'resume']) && $request->hasFile($field.'_upload')) {
+                if (in_array($field, ['headshot', 'photo', 'photo_retina', 'image', 'resume']) && $request->hasFile($field.'_upload')) {
                     $path = $request->file($field.'_upload')->store('cms', 'public');
                     if (! $path) {
                         throw new \RuntimeException('Unable to save uploaded file.');

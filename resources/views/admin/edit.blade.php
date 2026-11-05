@@ -5,8 +5,8 @@
 <form class="panel" method="post" enctype="multipart/form-data" action="{{$row ? route('admin.update', [$section, $row->id]) : route('admin.store', $section)}}">
 @csrf @if($row) @method('PUT') @endif
 @foreach($fields as $field => $type)
-<label for="{{$field}}">{{ucwords(str_replace('_', ' ', $field))}}</label>
-@if(in_array($field, ['photo', 'photo_retina', 'image', 'resume']))
+<label for="{{$field}}">{{$field === 'headshot' ? 'Intro headshot' : ucwords(str_replace('_', ' ', $field))}}</label>
+@if(in_array($field, ['headshot', 'photo', 'photo_retina', 'image', 'resume']))
 @if(!empty($row->$field))
 @if($field === 'resume')<p><a href="{{url('/download-cv')}}" target="_blank" rel="noopener">Download current resume</a></p>
 @else<img src="{{asset($row->$field)}}" alt="Current {{str_replace('_', ' ', $field)}}" style="max-width:220px;max-height:180px;object-fit:contain;display:block;margin-bottom:12px">@endif

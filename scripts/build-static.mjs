@@ -76,6 +76,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
         return '/' + relative.split('/').map(encodeURIComponent).join('/');
     }
     const images = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif'];
+    profile.headshot_url = await asset(profile.headshot ?? 'images/formal-photo.jpg', images);
     profile.photo_url = await asset(profile.photo, images);
     profile.photo_retina_url = await asset(profile.photo_retina, images);
     await asset(profile.resume, ['.pdf']);

@@ -28,17 +28,18 @@ class UploadsTest extends TestCase
     {
         $profile = (array) DB::table('profiles')->first();
         $payload = $profile + [
+            'headshot_upload' => UploadedFile::fake()->image('headshot.jpg'),
             'photo_upload' => UploadedFile::fake()->image('portrait.jpg'),
             'photo_retina_upload' => UploadedFile::fake()->image('portrait-large.png'),
             'resume_upload' => new UploadedFile(public_path('archell-enaya-resume.pdf'), 'resume.pdf', 'application/pdf', null, true),
         ];
         $this->put('/admin/content/profiles/'.$profile['id'], $payload)->assertRedirect('/admin/content/profiles');
         $saved = DB::table('profiles')->first();
-        foreach (['photo', 'photo_retina', 'resume'] as $field) {
+        foreach (['headshot', 'photo', 'photo_retina', 'resume'] as $field) {
             $this->assertStringStartsWith('storage/cms/', $saved->$field);
             Storage::disk('public')->assertExists(substr($saved->$field, 8));
         }
-        $this->get('/')->assertOk()->assertSee(asset($saved->photo));
+        $this->get('/')->assertOk()->assertSee(asset($saved->photo))->assertSee(asset($saved->headshot));
         $this->get('/download-cv')->assertOk()->assertDownload(basename($saved->resume));
     }
 
@@ -47,6 +48,7 @@ class UploadsTest extends TestCase
         $profile = (array) DB::table('profiles')->first();
         $profile['fullname'] = 'Updated profile';
         $this->put('/admin/content/profiles/'.$profile['id'], $profile)->assertRedirect('/admin/content/profiles');
+        $this->assertSame($profile['headshot'], DB::table('profiles')->value('headshot'));
         $this->assertSame($profile['photo'], DB::table('profiles')->value('photo'));
         $this->assertSame($profile['resume'], DB::table('profiles')->value('resume'));
         $this->get('/admin/content/profiles/'.$profile['id'].'/edit')->assertOk()->assertSee('multipart/form-data')->assertSee('type="file"', false);
@@ -56,9 +58,10 @@ class UploadsTest extends TestCase
     {
         $profile = (array) DB::table('profiles')->first();
         $this->put('/admin/content/profiles/'.$profile['id'], $profile + [
+            'headshot_upload' => UploadedFile::fake()->create('headshot.php', 1, 'application/x-httpd-php'),
             'photo_upload' => UploadedFile::fake()->create('script.php', 1, 'application/x-httpd-php'),
             'resume_upload' => UploadedFile::fake()->image('not-a-pdf.jpg'),
-        ])->assertSessionHasErrors(['photo_upload', 'resume_upload']);
+        ])->assertSessionHasErrors(['headshot_upload', 'photo_upload', 'resume_upload']);
         $this->put('/admin/content/profiles/'.$profile['id'], $profile + [
             'photo_upload' => UploadedFile::fake()->image('large.jpg')->size(8193),
             'resume_upload' => UploadedFile::fake()->create('large.pdf', 10241, 'application/pdf'),

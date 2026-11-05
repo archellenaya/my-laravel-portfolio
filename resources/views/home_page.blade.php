@@ -8,7 +8,11 @@
 
       <div class="row intro-content wide">
 
-          <div class="column">
+          <figure class="intro-portrait">
+              <img src="{{asset($data['headshot'])}}" alt="Formal portrait of {{$data['fullname']}}" width="600" height="600" fetchpriority="high" decoding="async">
+          </figure>
+
+          <div class="column intro-copy">
               <div class="text-pretitle with-line">
                   {{$data['greeting']}}
               </div>
