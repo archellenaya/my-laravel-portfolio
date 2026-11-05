@@ -14,3 +14,9 @@ Claude Code uses the Claude brand mark; Codex uses the OpenAI brand mark; MySQL 
 Open `/admin` → **Tool logos**. Use **Add logo** or **Edit** to set the display name, upload a PNG, WebP, JPG, or GIF, choose original colors or a white logo, and set its display order (lower numbers appear first). Transparent PNG or WebP images work best on the dark backdrop. Existing bundled SVG logos remain usable; new uploads use raster formats.
 
 Saved changes appear immediately on the database-backed portfolio. Use **Publish Static** from the dashboard to export the updated logo records, stage uploaded images, and rebuild the static portfolio. Deleting every logo restores the binary-digit globe.
+
+- TeamViewer, FileZilla, and AnyDesk: [Simple Icons](https://github.com/simple-icons/simple-icons/tree/develop/icons), rendered in their brand colors.
+
+- StyleShout: SVG brand mark from the header of [styleshout.com](https://styleshout.com/).
+- GoDaddy, cPanel, and Google Maps: [Simple Icons](https://github.com/simple-icons/simple-icons/tree/develop/icons), colored for the dark backdrop.
+- Google, Slack, and Chrome: original multicolor SVGs from [Devicon](https://github.com/devicons/devicon/tree/master/icons).

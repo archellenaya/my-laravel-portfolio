@@ -313,6 +313,76 @@
             "image": "images/tools/java.svg",
             "appearance": "original",
             "sort_order": 17
+        },
+        {
+            "id": 27,
+            "title": "TeamViewer",
+            "image": "images/tools/teamviewer.svg",
+            "appearance": "original",
+            "sort_order": 18
+        },
+        {
+            "id": 28,
+            "title": "FileZilla",
+            "image": "images/tools/filezilla.svg",
+            "appearance": "original",
+            "sort_order": 19
+        },
+        {
+            "id": 29,
+            "title": "AnyDesk",
+            "image": "images/tools/anydesk.svg",
+            "appearance": "original",
+            "sort_order": 20
+        },
+        {
+            "id": 30,
+            "title": "StyleShout",
+            "image": "images/tools/styleshout.svg",
+            "appearance": "original",
+            "sort_order": 21
+        },
+        {
+            "id": 31,
+            "title": "GoDaddy",
+            "image": "images/tools/godaddy.svg",
+            "appearance": "original",
+            "sort_order": 22
+        },
+        {
+            "id": 32,
+            "title": "cPanel",
+            "image": "images/tools/cpanel.svg",
+            "appearance": "original",
+            "sort_order": 23
+        },
+        {
+            "id": 33,
+            "title": "Google Maps",
+            "image": "images/tools/googlemaps.svg",
+            "appearance": "original",
+            "sort_order": 24
+        },
+        {
+            "id": 34,
+            "title": "Google",
+            "image": "images/tools/google.svg",
+            "appearance": "original",
+            "sort_order": 25
+        },
+        {
+            "id": 35,
+            "title": "Slack",
+            "image": "images/tools/slack.svg",
+            "appearance": "original",
+            "sort_order": 26
+        },
+        {
+            "id": 36,
+            "title": "Chrome",
+            "image": "images/tools/googlechrome.svg",
+            "appearance": "original",
+            "sort_order": 27
         }
     ],
     "projects": [
