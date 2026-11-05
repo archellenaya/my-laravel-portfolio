@@ -140,31 +140,194 @@
     ],
     "projects": [
         {
-            "id": 1,
-            "title": "E-Commerce Synchronization Platform",
-            "category": "Laravel + WooCommerce",
-            "description": "Built a Laravel REST API integration to synchronize orders, product prices, and inventory between WooCommerce and a client’s internal inventory system. Developed a multi-tenant version of the integration platform.",
-            "tags": "Laravel, WooCommerce, REST APIs, Multi-tenancy",
-            "image": "images/portfolio/laravel.png",
-            "sort_order": 0
+            "id": 4,
+            "title": "Frank Salt Real Estate",
+            "category": "Real Estate",
+            "description": "Property website for buying, renting, and selling residential and commercial real estate in Malta.",
+            "tags": "Property Search, Real Estate, Malta",
+            "image": "images/projects/franksalt-com-mt.jpg",
+            "website_url": "https://franksalt.com.mt/",
+            "sort_order": 3
         },
         {
-            "id": 2,
-            "title": "Estate Agency Platform",
-            "category": "Laravel + WordPress",
-            "description": "Built a Laravel REST API integration to synchronize real estate property data from a client’s internal CMS to a WordPress frontend. Developed a multi-tenant version of the platform.",
-            "tags": "Laravel, WordPress, REST APIs, Multi-tenancy",
-            "image": "images/portfolio/laravel.png",
-            "sort_order": 1
+            "id": 5,
+            "title": "Nicheave",
+            "category": "Real Estate",
+            "description": "Real estate website with buying and rental searches, property filters, and information for sellers in Malta.",
+            "tags": "Property Search, Real Estate, Malta",
+            "image": "images/projects/nicheave-com.jpg",
+            "website_url": "https://nicheave.com/",
+            "sort_order": 4
         },
         {
-            "id": 3,
-            "title": "Drupal-Based Headless CMS",
-            "category": "Drupal + Next.js",
-            "description": "Developed custom Drupal modules and content types, created Paragraph-based forms, and exposed structured content through JSON:API. Worked with a headless CMS architecture in which Drupal manages content and a Next.js frontend handles presentation.",
-            "tags": "Drupal, Next.js, JSON:API, Headless CMS",
-            "image": "images/portfolio/drupal.png",
-            "sort_order": 2
+            "id": 6,
+            "title": "Ben Estates",
+            "category": "Real Estate",
+            "description": "Property website featuring residential and commercial sales and rentals, agency offices, and agent information.",
+            "tags": "Property Listings, Real Estate, Malta",
+            "image": "images/projects/benestates-com.jpg",
+            "website_url": "https://benestates.com/",
+            "sort_order": 5
+        },
+        {
+            "id": 7,
+            "title": "Excel Homes",
+            "category": "Real Estate",
+            "description": "Real estate website with property searches by type, location, region, and price, alongside agent and office information.",
+            "tags": "Property Search, Real Estate, Malta",
+            "image": "storage/cms/xJ9BCmYuIiT1uRjyANZZuK4jbpPisV6pKbp4l1pD.png",
+            "website_url": "https://excel.com.mt/",
+            "sort_order": 6
+        },
+        {
+            "id": 8,
+            "title": "Juniors",
+            "category": "E-Commerce",
+            "description": "Online toy shop with shopping by age and brand, product listings, special offers, and cart functionality.",
+            "tags": "Toys, Product Catalogue, Online Shopping",
+            "image": "images/projects/juniors-com-mt.jpg",
+            "website_url": "https://juniors.com.mt/",
+            "sort_order": 7
+        },
+        {
+            "id": 9,
+            "title": "Global Semiconductor Conference Malta",
+            "category": "Conference Website",
+            "description": "Conference website presenting semiconductor industry speakers, programme information, venue details, and registration options.",
+            "tags": "Events, Semiconductors, Conference",
+            "image": "images/projects/gscm-maltaenterprise-com.jpg",
+            "website_url": "https://gscm.maltaenterprise.com/",
+            "sort_order": 8
+        },
+        {
+            "id": 11,
+            "title": "ARMS",
+            "category": "Utilities Portal",
+            "description": "Utilities portal with bill information, payment services, consumption and meter readings, and service applications.",
+            "tags": "Utilities, Customer Services, Web Portal",
+            "image": "images/projects/arms-com-mt.jpg",
+            "website_url": "https://arms.com.mt/",
+            "sort_order": 10
+        },
+        {
+            "id": 12,
+            "title": "Apcopay",
+            "category": "Payments Website",
+            "description": "Corporate website presenting payment platform products, business solutions, developer resources, and customer support.",
+            "tags": "Payments, Business Solutions, Corporate Website",
+            "image": "images/projects/apcopay-com.jpg",
+            "website_url": "https://www.apcopay.com/",
+            "sort_order": 11
+        },
+        {
+            "id": 13,
+            "title": "Malta Enterprise",
+            "category": "Public Sector",
+            "description": "Economic development website sharing business support information, investment resources, news, and company testimonials.",
+            "tags": "Business Support, Investment, Malta",
+            "image": "images/projects/maltaenterprise-com.jpg",
+            "website_url": "https://maltaenterprise.com/",
+            "sort_order": 12
+        },
+        {
+            "id": 14,
+            "title": "B.home",
+            "category": "E-Commerce",
+            "description": "Home decor website with product categories, search, sale selections, and information about tiles and bathrooms.",
+            "tags": "Home Decor, Product Catalogue, Online Shopping",
+            "image": "images/projects/bhome-com-mt.jpg",
+            "website_url": "https://bhome.com.mt/",
+            "sort_order": 13
+        },
+        {
+            "id": 16,
+            "title": "Pitré Home",
+            "category": "E-Commerce",
+            "description": "Home and outdoor living website showcasing furniture, barbecues, outdoor ovens, lighting, and related products.",
+            "tags": "Furniture, Home and Garden, Product Catalogue",
+            "image": "images/projects/pitreonline-com.jpg",
+            "website_url": "https://pitreonline.com/",
+            "sort_order": 15
+        },
+        {
+            "id": 17,
+            "title": "Pitré Hardware",
+            "category": "E-Commerce",
+            "description": "Hardware shop website with categories for fittings, tools, locks, lighting, kitchen fixtures, and accessories.",
+            "tags": "Hardware, Product Catalogue, Online Shopping",
+            "image": "images/projects/pitrehardware-com.jpg",
+            "website_url": "https://pitrehardware.com/",
+            "sort_order": 16
+        },
+        {
+            "id": 18,
+            "title": "JGB Autoparts",
+            "category": "E-Commerce",
+            "description": "Automotive parts website with categories for genuine vehicle parts, batteries, workshop equipment, oils, and accessories.",
+            "tags": "Automotive, Parts Catalogue, Online Shopping",
+            "image": "images/projects/jgbautoparts-com-mt.jpg",
+            "website_url": "https://www.jgbautoparts.com.mt/",
+            "sort_order": 17
+        },
+        {
+            "id": 19,
+            "title": "EyeWearThese",
+            "category": "E-Commerce",
+            "description": "Eyewear storefront offering glasses, sunglasses, contact lenses, and accessories with browsing by style, shape, and brand.",
+            "tags": "Eyewear, Product Catalogue, Online Shopping",
+            "image": "images/projects/eyewearthese-com.jpg",
+            "website_url": "https://eyewearthese.com/",
+            "sort_order": 18
+        },
+        {
+            "id": 20,
+            "title": "Dive Systems Malta",
+            "category": "Diving and Tourism",
+            "description": "Diving centre website presenting beginner experiences, diving courses, guided dives, and dive holiday options in Malta.",
+            "tags": "Diving, Tourism, Courses",
+            "image": "storage/cms/SGKAvOKAyu36q9HjX4sT7jRtbrl7i9fXWsfummNv.png",
+            "website_url": "https://divesystemsmalta.com/",
+            "sort_order": 19
+        },
+        {
+            "id": 21,
+            "title": "National Coordinating Committee",
+            "category": "Public Sector",
+            "description": "Public information website for Malta’s National Coordinating Committee on Combating Money Laundering and Funding of Terrorism, with reports, policies, and resources.",
+            "tags": "Public Information, Resources, Malta",
+            "image": "storage/cms/ucHZDVQMEeQruiaj6Tot1rKXmfSMzU4bNaZKwHit.png",
+            "website_url": "https://ncc.gov.mt/",
+            "sort_order": 20
+        },
+        {
+            "id": 22,
+            "title": "John Busuttil",
+            "category": "Business Website",
+            "description": "Website project for John Busuttil.",
+            "tags": "Business Website",
+            "image": "storage/cms/zou6XFPcsowBbHezJQkBLMsKBHeRLw3kC2ObdPUb.png",
+            "website_url": "https://johnbusuttil.com/",
+            "sort_order": 21
+        },
+        {
+            "id": 23,
+            "title": "A2W Pharma",
+            "category": "Business Website",
+            "description": "Website project for A2W Pharma.",
+            "tags": "Business Website",
+            "image": "images/projects/a2wpharma-com.jpg",
+            "website_url": "https://a2wpharma.com/",
+            "sort_order": 22
+        },
+        {
+            "id": 25,
+            "title": "BDL Books",
+            "category": "E-Commerce",
+            "description": "Bookshop and publishing website with an online shop, education catalogue, author information, and reading resources.",
+            "tags": "Books, Publishing, Online Shopping",
+            "image": "storage/cms/Mtlv2GZ3Eh0mtsu0gqplNymyrW70wl7MvKHoROit.png",
+            "website_url": "https://bdlbooks.com/",
+            "sort_order": 24
         }
     ]
 }

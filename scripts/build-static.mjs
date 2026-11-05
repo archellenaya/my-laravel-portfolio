@@ -75,7 +75,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
         assets.set(relative, source);
         return '/' + relative.split('/').map(encodeURIComponent).join('/');
     }
-    const images = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif'];
+    const images = ['.svg', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif'];
     let headshot = profile.headshot ?? 'images/formal-photo.jpg';
     const optimizedHeadshot = `images/optimized/${path.parse(headshot).name}.webp`;
     try {
@@ -92,7 +92,13 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     const context = { ...content, profile, year: new Date().getFullYear() };
     for (const section of ['expertise', 'skills', 'experiences', 'education']) context[section] = sorted(content[section]);
     for (const section of ['experiences', 'education']) context[section] = context[section].map(row => ({...row, bullets: (row.description ?? '').split('\n').filter(line => line.trim()).map(text => ({text}))}));
-    context.projects = await Promise.all(sorted(content.projects).map(async (row, index) => ({...row, image_url: await asset(row.image, images), modal_id: `modal-project-${index + 1}`, tags: (row.tags ?? '').split(',').map(text => ({text: text.trim()})).filter(row => row.text)})));
+    context.projects = await Promise.all(sorted(content.projects).map(async (row, index) => {
+        const website = row.website_url ?? '';
+        if (website && !['https:', 'http:'].includes(new URL(website).protocol)) throw new Error('Invalid project website URL');
+        return {...row, image_url: await asset(row.image, images), modal_id: `modal-project-${index + 1}`,
+            website_links: website ? [{url: website, title: row.title}] : [],
+            tags: (row.tags ?? '').split(',').map(text => ({text: text.trim()})).filter(row => row.text)};
+    }));
     const html = render(await readFile(path.join(site, 'resources/views/static/index.html'), 'utf8'), context);
     if (/{{|@foreach|@extends/.test(html)) throw new Error('Unrendered template syntax');
 

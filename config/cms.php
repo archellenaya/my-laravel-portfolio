@@ -6,5 +6,5 @@ return [
     'skills' => ['title' => 'text', 'description' => 'textarea'],
     'experiences' => ['title' => 'text', 'organization' => 'text', 'period' => 'text', 'description' => 'textarea'],
     'education' => ['title' => 'text', 'organization' => 'text', 'period' => 'text', 'description' => 'textarea'],
-    'projects' => ['title' => 'text', 'category' => 'text', 'description' => 'textarea', 'tags' => 'text', 'image' => 'text'],
+    'projects' => ['title' => 'text', 'category' => 'text', 'description' => 'textarea', 'tags' => 'text', 'image' => 'text', 'website_url' => 'text'],
 ];

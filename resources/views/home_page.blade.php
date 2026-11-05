@@ -219,6 +219,9 @@
                         <div class="modal-popup__desc" style="text-align: left;">
                             <h2>{{$project['title']}}</h2>
                             <p>{{$project['description']}}</p>
+                            @if(!empty($project['website_url']) && in_array(strtolower(parse_url($project['website_url'], PHP_URL_SCHEME) ?? ''), ['http', 'https']))
+                                <p><a href="{{$project['website_url']}}" target="_blank" rel="noopener noreferrer">Visit {{$project['title']}} website <span aria-hidden="true">↗</span></a></p>
+                            @endif
                             <ul class="modal-popup__cat">
                                 @foreach (array_filter(array_map('trim', explode(',', $project['tags'] ?? ''))) as $tag) 
                                     <li>{{$tag}}</li>

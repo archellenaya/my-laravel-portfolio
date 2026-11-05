@@ -1,0 +1,150 @@
+[
+    {
+        "title": "Frank Salt Real Estate",
+        "url": "https://franksalt.com.mt/",
+        "image": "images/projects/franksalt-com-mt.jpg",
+        "pageTitle": "Frank Salt Real Estate – Property For Sale and Rent in Malta",
+        "status": "captured"
+    },
+    {
+        "title": "Excel Homes",
+        "url": "https://excel.com.mt/",
+        "status": "failed",
+        "error": "HTTP 403"
+    },
+    {
+        "title": "Nicheave",
+        "url": "https://nicheave.com/",
+        "image": "images/projects/nicheave-com.jpg",
+        "pageTitle": "Nicheave – Top Real Estate Agency in Malta for Buying & Selling",
+        "status": "captured"
+    },
+    {
+        "title": "Ben Estates",
+        "url": "https://benestates.com/",
+        "image": "images/projects/benestates-com.jpg",
+        "pageTitle": "Ben Estates",
+        "status": "captured"
+    },
+    {
+        "title": "Juniors",
+        "url": "https://juniors.com.mt/",
+        "image": "images/projects/juniors-com-mt.jpg",
+        "pageTitle": "Juniors Toy Shops Malta | Buy Toys Online & In-Store",
+        "status": "captured"
+    },
+    {
+        "title": "OHSA EMIS",
+        "url": "https://emis.ohsa.mt/",
+        "status": "failed",
+        "error": "HTTP 403"
+    },
+    {
+        "title": "Global Semiconductor Conference Malta",
+        "url": "https://gscm.maltaenterprise.com/",
+        "image": "images/projects/gscm-maltaenterprise-com.jpg",
+        "pageTitle": "Homepage | GSCM",
+        "status": "captured"
+    },
+    {
+        "title": "ARMS",
+        "url": "https://arms.com.mt/",
+        "image": "images/projects/arms-com-mt.jpg",
+        "pageTitle": "Home | ARMS Portal for Utilities",
+        "status": "captured"
+    },
+    {
+        "title": "Apcopay",
+        "url": "https://www.apcopay.com/",
+        "image": "images/projects/apcopay-com.jpg",
+        "pageTitle": "Apcopay",
+        "status": "captured"
+    },
+    {
+        "title": "Tessera",
+        "url": "https://tessera.com.mt/",
+        "status": "failed",
+        "error": "HTTP 403"
+    },
+    {
+        "title": "Malta Enterprise",
+        "url": "https://maltaenterprise.com/",
+        "image": "images/projects/maltaenterprise-com.jpg",
+        "pageTitle": "Malta Enterprise |",
+        "status": "captured"
+    },
+    {
+        "title": "B.home",
+        "url": "https://bhome.com.mt/",
+        "image": "images/projects/bhome-com-mt.jpg",
+        "pageTitle": "B.home | Home Decor Malta",
+        "status": "captured"
+    },
+    {
+        "title": "Pitré Hardware",
+        "url": "https://pitrehardware.com/",
+        "image": "images/projects/pitrehardware-com.jpg",
+        "pageTitle": "",
+        "status": "captured"
+    },
+    {
+        "title": "Pitré Home",
+        "url": "https://pitreonline.com/",
+        "image": "images/projects/pitreonline-com.jpg",
+        "pageTitle": "Pitré Home - Pitré Home",
+        "status": "captured"
+    },
+    {
+        "title": "Dive Systems Malta",
+        "url": "https://divesystemsmalta.com/",
+        "status": "failed",
+        "error": "HTTP 403"
+    },
+    {
+        "title": "National Coordinating Committee",
+        "url": "https://ncc.gov.mt/",
+        "status": "failed",
+        "error": "HTTP 403"
+    },
+    {
+        "title": "John Busuttil",
+        "url": "https://johnbusuttil.com/",
+        "status": "failed",
+        "error": "HTTP 403"
+    },
+    {
+        "title": "EyeWearThese",
+        "url": "https://eyewearthese.com/",
+        "image": "images/projects/eyewearthese-com.jpg",
+        "pageTitle": "Glasses, Sunglasses & Contact Lenses - EyeWearThese",
+        "status": "captured"
+    },
+    {
+        "title": "BigMat Malta",
+        "url": "http://bigmat.com.mt/",
+        "image": "images/projects/bigmat-com-mt.jpg",
+        "pageTitle": "bigmat.com.mt",
+        "status": "failed",
+        "error": "Homepage displays a domain-registration holding page, not the project website."
+    },
+    {
+        "title": "BDL Books",
+        "url": "https://bdlbooks.com/",
+        "status": "failed",
+        "error": "HTTP 403"
+    },
+    {
+        "title": "JGB Autoparts",
+        "url": "https://www.jgbautoparts.com.mt/",
+        "image": "images/projects/jgbautoparts-com-mt.jpg",
+        "pageTitle": "JGB Autoparts",
+        "status": "captured"
+    },
+    {
+        "title": "A2W Pharma",
+        "url": "https://a2wpharma.com/",
+        "image": "images/projects/a2wpharma-com.jpg",
+        "pageTitle": "Home - A2W Pharma",
+        "status": "captured"
+    }
+]

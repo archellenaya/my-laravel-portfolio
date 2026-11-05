@@ -289,6 +289,9 @@
                         <div class="modal-popup__desc" style="text-align: left;">
                             <h2>{{title}}</h2>
                             <p>{{description}}</p>
+                            {{#website_links}}
+                                <p><a href="{{url}}" target="_blank" rel="noopener noreferrer">Visit {{title}} website <span aria-hidden="true">↗</span></a></p>
+                            {{/website_links}}
                             <ul class="modal-popup__cat">
                                 {{#tags}} 
                                     <li>{{text}}</li>

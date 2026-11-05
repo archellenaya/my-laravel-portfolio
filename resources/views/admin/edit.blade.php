@@ -14,7 +14,7 @@
 <input id="{{$field}}" type="file" name="{{$field}}_upload" accept="{{$field === 'resume' ? 'application/pdf' : 'image/jpeg,image/png,image/webp,image/gif'}}" @if(empty($row->$field)) required @endif>
 <small>{{$field === 'resume' ? 'PDF, up to 10 MB.' : 'JPG, PNG, WebP or GIF, up to 8 MB.'}} Leave empty to keep the current file.</small>
 @elseif($type === 'textarea')<textarea id="{{$field}}" name="{{$field}}" required maxlength="20000">{{old($field, $row->$field ?? '')}}</textarea>
-@else<input id="{{$field}}" name="{{$field}}" type="{{$field === 'email' ? 'email' : (str_ends_with($field, '_url') ? 'url' : 'text')}}" value="{{old($field, $row->$field ?? '')}}" required maxlength="1000">@endif
+@else<input id="{{$field}}" name="{{$field}}" type="{{$field === 'email' ? 'email' : (str_ends_with($field, '_url') ? 'url' : 'text')}}" value="{{old($field, $row->$field ?? '')}}" @if($field !== 'website_url') required @endif maxlength="1000">@endif
 
 @if($field === 'tags')<small>Separate tags with commas.</small>@endif
 @if($field === 'description' && in_array($section, ['experiences', 'education']))<small>Use one line per bullet point.</small>@endif

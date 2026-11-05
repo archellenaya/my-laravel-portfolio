@@ -1,120 +1,321 @@
 {
-  "profiles": [
-    {
-      "display_name": "Arch",
-      "fullname": "Archell Enaya",
-      "email": "archell.asilo.enaya@gmail.com",
-      "whatsapp": "639383998076",
-      "contact_number": "+639753942619",
-      "linkedin_url": "https://www.linkedin.com/in/archell-enaya-b52093207",
-      "instagram_url": "https://www.instagram.com/instag_arch?igsh=MWM2dDUxMDcxYnl4",
-      "github_url": "https://github.com/archellenaya",
-      "facebook_url": "https://www.facebook.com/archell.enaya.980",
-      "role": "Backend Web Developer",
-      "location": "the Philippines",
-      "contact_location": "Surigao del Norte, Philippines",
-      "greeting": "Hello World",
-      "page_title": "Archell Enaya | Backend Web Developer",
-      "meta_description": "Archell Enaya is a Backend Web Developer with over 8 years of experience in PHP, Laravel, REST API integrations, Drupal, and WordPress.",
-      "photo": "images/about-photo.jpg",
-      "photo_retina": "images/about-photo@2x.jpg",
-      "resume": "archell-enaya-resume.pdf",
-      "works_intro": "Selected backend integrations and CMS projects from my professional experience.",
-      "confidentiality": "Project source code and proprietary implementation details cannot be shared due to confidentiality obligations.",
-      "contact_intro": "Have a project or question? Let’s connect! I bring over 8 years of backend web development experience in PHP, Laravel, REST API integrations, Drupal, and WordPress.",
-      "summary": "Backend Web Developer with over 8 years of professional experience specializing in PHP and Laravel application development, REST API integrations, and backend system architecture. Experienced in building and maintaining scalable web applications, integrating third-party services, and developing custom solutions using Drupal and WordPress.",
-      "about": "Contributed to projects for private-sector clients and government-related organizations in Malta, with hands-on experience in multi-tenant applications, e-commerce integrations, and headless CMS architecture. I collaborate with international teams to deliver maintainable solutions aligned with business requirements.",
-      "headshot": "images/formal-photo.jpg"
-    }
-  ],
-  "expertise": [
-    {
-      "title": "PHP & Laravel"
-    },
-    {
-      "title": "REST API Integrations"
-    },
-    {
-      "title": "Multi-tenant Applications"
-    },
-    {
-      "title": "Drupal & Headless CMS"
-    },
-    {
-      "title": "WordPress & WooCommerce"
-    }
-  ],
-  "skills": [
-    {
-      "title": "Databases",
-      "description": "MySQL, PostgreSQL"
-    },
-    {
-      "title": "Web",
-      "description": "JavaScript, HTML, CSS"
-    },
-    {
-      "title": "Tools",
-      "description": "Git, Composer, Postman, Insomnia, VS Code, Bitbucket, GitHub, Jira"
-    },
-    {
-      "title": "Environment",
-      "description": "cPanel, SSH"
-    },
-    {
-      "title": "AI-assisted development",
-      "description": "Claude Code for coding, debugging, code exploration, and implementation workflows"
-    },
-    {
-      "title": "Academic familiarity",
-      "description": "Java, C++, C#, Python, PHP, and object-oriented programming fundamentals"
-    },
-    {
-      "title": "Currently exploring",
-      "description": "Vue.js, React, Angular, and growing frontend development skills"
-    },
-    {
-      "title": "Languages",
-      "description": "Filipino (native); English (strong written communication, spoken proficiency developing)"
-    }
-  ],
-  "experiences": [
-    {
-      "title": "Backend Web Developer",
-      "organization": "Born Digital Ltd. – Malta, Europe",
-      "period": "2018–Present",
-      "description": "Develop and maintain Laravel backend systems for internal and client-facing platforms.\nDesign and implement REST API integrations between Laravel, WordPress, and WooCommerce systems.\nBuild data synchronization for orders, product pricing, inventory, and property information.\nDevelop custom Drupal modules, structured content, and Paragraph-based forms.\nExpose structured Drupal content through JSON:API for headless CMS implementations.\nCollaborate with project managers and developers across Malta and the Philippines.\nWrite maintainable code and support ongoing improvements to CMS-based websites and custom applications."
-    }
-  ],
-  "education": [
-    {
-      "title": "Bachelor of Science in Computer Science, Major in Software Engineering",
-      "organization": "Mindanao State University - Marawi City",
-      "period": "Graduated: 2018",
-      "description": "Studied core programming in Java and C++\nObject Oriented Programming (Class/Object, Encapsulation, Inheritance, Polymorphism, etc)\nData Structures (linked list, stacks and queues, arrays, graphs and trees)\nCompleted coursework in web development, software engineering, and database management, Expert System, Data Mining"
-    }
-  ],
-  "projects": [
-    {
-      "category": "Laravel + WooCommerce",
-      "title": "E-Commerce Synchronization Platform",
-      "description": "Built a Laravel REST API integration to synchronize orders, product prices, and inventory between WooCommerce and a client’s internal inventory system. Developed a multi-tenant version of the integration platform.",
-      "tags": "Laravel, WooCommerce, REST APIs, Multi-tenancy",
-      "image": "images/portfolio/laravel.png"
-    },
-    {
-      "category": "Laravel + WordPress",
-      "title": "Estate Agency Platform",
-      "description": "Built a Laravel REST API integration to synchronize real estate property data from a client’s internal CMS to a WordPress frontend. Developed a multi-tenant version of the platform.",
-      "tags": "Laravel, WordPress, REST APIs, Multi-tenancy",
-      "image": "images/portfolio/laravel.png"
-    },
-    {
-      "category": "Drupal + Next.js",
-      "title": "Drupal-Based Headless CMS",
-      "description": "Developed custom Drupal modules and content types, created Paragraph-based forms, and exposed structured content through JSON:API. Worked with a headless CMS architecture in which Drupal manages content and a Next.js frontend handles presentation.",
-      "tags": "Drupal, Next.js, JSON:API, Headless CMS",
-      "image": "images/portfolio/drupal.png"
-    }
-  ]
+    "profiles": [
+        {
+            "display_name": "Arch",
+            "fullname": "Archell Enaya",
+            "email": "archell.asilo.enaya@gmail.com",
+            "whatsapp": "639383998076",
+            "contact_number": "+639753942619",
+            "linkedin_url": "https://www.linkedin.com/in/archell-enaya-b52093207",
+            "instagram_url": "https://www.instagram.com/instag_arch?igsh=MWM2dDUxMDcxYnl4",
+            "github_url": "https://github.com/archellenaya",
+            "facebook_url": "https://www.facebook.com/archell.enaya.980",
+            "role": "Backend Web Developer",
+            "location": "the Philippines",
+            "contact_location": "Surigao del Norte, Philippines",
+            "greeting": "Hello World",
+            "page_title": "Archell Enaya | Backend Web Developer",
+            "meta_description": "Archell Enaya is a Backend Web Developer with over 8 years of experience in PHP, Laravel, REST API integrations, Drupal, and WordPress.",
+            "photo": "images/about-photo.jpg",
+            "photo_retina": "images/about-photo@2x.jpg",
+            "resume": "archell-enaya-resume.pdf",
+            "works_intro": "Selected backend integrations and CMS projects from my professional experience.",
+            "confidentiality": "Project source code and proprietary implementation details cannot be shared due to confidentiality obligations.",
+            "contact_intro": "Have a project or question? Let’s connect! I bring over 8 years of backend web development experience in PHP, Laravel, REST API integrations, Drupal, and WordPress.",
+            "summary": "Backend Web Developer with over 8 years of professional experience specializing in PHP and Laravel application development, REST API integrations, and backend system architecture. Experienced in building and maintaining scalable web applications, integrating third-party services, and developing custom solutions using Drupal and WordPress.",
+            "about": "Contributed to projects for private-sector clients and government-related organizations in Malta, with hands-on experience in multi-tenant applications, e-commerce integrations, and headless CMS architecture. I collaborate with international teams to deliver maintainable solutions aligned with business requirements.",
+            "headshot": "images/formal-photo.jpg"
+        }
+    ],
+    "expertise": [
+        {
+            "title": "PHP & Laravel"
+        },
+        {
+            "title": "REST API Integrations"
+        },
+        {
+            "title": "Multi-tenant Applications"
+        },
+        {
+            "title": "Drupal & Headless CMS"
+        },
+        {
+            "title": "WordPress & WooCommerce"
+        }
+    ],
+    "skills": [
+        {
+            "title": "Databases",
+            "description": "MySQL, PostgreSQL"
+        },
+        {
+            "title": "Web",
+            "description": "JavaScript, HTML, CSS"
+        },
+        {
+            "title": "Tools",
+            "description": "Git, Composer, Postman, Insomnia, VS Code, Bitbucket, GitHub, Jira"
+        },
+        {
+            "title": "Environment",
+            "description": "cPanel, SSH"
+        },
+        {
+            "title": "AI-assisted development",
+            "description": "Claude Code for coding, debugging, code exploration, and implementation workflows"
+        },
+        {
+            "title": "Academic familiarity",
+            "description": "Java, C++, C#, Python, PHP, and object-oriented programming fundamentals"
+        },
+        {
+            "title": "Currently exploring",
+            "description": "Vue.js, React, Angular, and growing frontend development skills"
+        },
+        {
+            "title": "Languages",
+            "description": "Filipino (native); English (strong written communication, spoken proficiency developing)"
+        }
+    ],
+    "experiences": [
+        {
+            "title": "Backend Web Developer",
+            "organization": "Born Digital Ltd. – Malta, Europe",
+            "period": "2018–Present",
+            "description": "Develop and maintain Laravel backend systems for internal and client-facing platforms.\nDesign and implement REST API integrations between Laravel, WordPress, and WooCommerce systems.\nBuild data synchronization for orders, product pricing, inventory, and property information.\nDevelop custom Drupal modules, structured content, and Paragraph-based forms.\nExpose structured Drupal content through JSON:API for headless CMS implementations.\nCollaborate with project managers and developers across Malta and the Philippines.\nWrite maintainable code and support ongoing improvements to CMS-based websites and custom applications."
+        }
+    ],
+    "education": [
+        {
+            "title": "Bachelor of Science in Computer Science, Major in Software Engineering",
+            "organization": "Mindanao State University - Marawi City",
+            "period": "Graduated: 2018",
+            "description": "Studied core programming in Java and C++\nObject Oriented Programming (Class/Object, Encapsulation, Inheritance, Polymorphism, etc)\nData Structures (linked list, stacks and queues, arrays, graphs and trees)\nCompleted coursework in web development, software engineering, and database management, Expert System, Data Mining"
+        }
+    ],
+    "projects": [
+        {
+            "category": "Laravel + WooCommerce",
+            "title": "E-Commerce Synchronization Platform",
+            "description": "Built a Laravel REST API integration to synchronize orders, product prices, and inventory between WooCommerce and a client’s internal inventory system. Developed a multi-tenant version of the integration platform.",
+            "tags": "Laravel, WooCommerce, REST APIs, Multi-tenancy",
+            "image": "images/portfolio/laravel.png",
+            "website_url": ""
+        },
+        {
+            "category": "Laravel + WordPress",
+            "title": "Estate Agency Platform",
+            "description": "Built a Laravel REST API integration to synchronize real estate property data from a client’s internal CMS to a WordPress frontend. Developed a multi-tenant version of the platform.",
+            "tags": "Laravel, WordPress, REST APIs, Multi-tenancy",
+            "image": "images/portfolio/laravel.png",
+            "website_url": ""
+        },
+        {
+            "category": "Drupal + Next.js",
+            "title": "Drupal-Based Headless CMS",
+            "description": "Developed custom Drupal modules and content types, created Paragraph-based forms, and exposed structured content through JSON:API. Worked with a headless CMS architecture in which Drupal manages content and a Next.js frontend handles presentation.",
+            "tags": "Drupal, Next.js, JSON:API, Headless CMS",
+            "image": "images/portfolio/drupal.png",
+            "website_url": ""
+        },
+        {
+            "title": "Frank Salt Real Estate",
+            "category": "Real Estate",
+            "description": "Property website for buying, renting, and selling residential and commercial real estate in Malta.",
+            "tags": "Property Search, Real Estate, Malta",
+            "image": "images/projects/franksalt-com-mt.jpg",
+            "website_url": "https://franksalt.com.mt/",
+            "sort_order": 3
+        },
+        {
+            "title": "Nicheave",
+            "category": "Real Estate",
+            "description": "Real estate website with buying and rental searches, property filters, and information for sellers in Malta.",
+            "tags": "Property Search, Real Estate, Malta",
+            "image": "images/projects/nicheave-com.jpg",
+            "website_url": "https://nicheave.com/",
+            "sort_order": 4
+        },
+        {
+            "title": "Ben Estates",
+            "category": "Real Estate",
+            "description": "Property website featuring residential and commercial sales and rentals, agency offices, and agent information.",
+            "tags": "Property Listings, Real Estate, Malta",
+            "image": "images/projects/benestates-com.jpg",
+            "website_url": "https://benestates.com/",
+            "sort_order": 5
+        },
+        {
+            "title": "Excel Homes",
+            "category": "Real Estate",
+            "description": "Real estate website with property searches by type, location, region, and price, alongside agent and office information.",
+            "tags": "Property Search, Real Estate, Malta",
+            "image": "images/projects/excel-com-mt.svg",
+            "website_url": "https://excel.com.mt/",
+            "sort_order": 6
+        },
+        {
+            "title": "Juniors",
+            "category": "E-Commerce",
+            "description": "Online toy shop with shopping by age and brand, product listings, special offers, and cart functionality.",
+            "tags": "Toys, Product Catalogue, Online Shopping",
+            "image": "images/projects/juniors-com-mt.jpg",
+            "website_url": "https://juniors.com.mt/",
+            "sort_order": 7
+        },
+        {
+            "title": "Global Semiconductor Conference Malta",
+            "category": "Conference Website",
+            "description": "Conference website presenting semiconductor industry speakers, programme information, venue details, and registration options.",
+            "tags": "Events, Semiconductors, Conference",
+            "image": "images/projects/gscm-maltaenterprise-com.jpg",
+            "website_url": "https://gscm.maltaenterprise.com/",
+            "sort_order": 8
+        },
+        {
+            "title": "OHSA EMIS",
+            "category": "Web Portal",
+            "description": "EMIS portal at the Occupational Health and Safety Authority domain in Malta.",
+            "tags": "Web Portal, Malta",
+            "image": "images/projects/emis-ohsa-mt.svg",
+            "website_url": "https://emis.ohsa.mt/",
+            "sort_order": 9
+        },
+        {
+            "title": "ARMS",
+            "category": "Utilities Portal",
+            "description": "Utilities portal with bill information, payment services, consumption and meter readings, and service applications.",
+            "tags": "Utilities, Customer Services, Web Portal",
+            "image": "images/projects/arms-com-mt.jpg",
+            "website_url": "https://arms.com.mt/",
+            "sort_order": 10
+        },
+        {
+            "title": "Apcopay",
+            "category": "Payments Website",
+            "description": "Corporate website presenting payment platform products, business solutions, developer resources, and customer support.",
+            "tags": "Payments, Business Solutions, Corporate Website",
+            "image": "images/projects/apcopay-com.jpg",
+            "website_url": "https://www.apcopay.com/",
+            "sort_order": 11
+        },
+        {
+            "title": "Malta Enterprise",
+            "category": "Public Sector",
+            "description": "Economic development website sharing business support information, investment resources, news, and company testimonials.",
+            "tags": "Business Support, Investment, Malta",
+            "image": "images/projects/maltaenterprise-com.jpg",
+            "website_url": "https://maltaenterprise.com/",
+            "sort_order": 12
+        },
+        {
+            "title": "B.home",
+            "category": "E-Commerce",
+            "description": "Home decor website with product categories, search, sale selections, and information about tiles and bathrooms.",
+            "tags": "Home Decor, Product Catalogue, Online Shopping",
+            "image": "images/projects/bhome-com-mt.jpg",
+            "website_url": "https://bhome.com.mt/",
+            "sort_order": 13
+        },
+        {
+            "title": "Tessera",
+            "category": "Business Website",
+            "description": "Website project for Tessera in Malta.",
+            "tags": "Business Website, Malta",
+            "image": "images/projects/tessera-com-mt.svg",
+            "website_url": "https://tessera.com.mt/",
+            "sort_order": 14
+        },
+        {
+            "title": "Pitré Home",
+            "category": "E-Commerce",
+            "description": "Home and outdoor living website showcasing furniture, barbecues, outdoor ovens, lighting, and related products.",
+            "tags": "Furniture, Home and Garden, Product Catalogue",
+            "image": "images/projects/pitreonline-com.jpg",
+            "website_url": "https://pitreonline.com/",
+            "sort_order": 15
+        },
+        {
+            "title": "Pitré Hardware",
+            "category": "E-Commerce",
+            "description": "Hardware shop website with categories for fittings, tools, locks, lighting, kitchen fixtures, and accessories.",
+            "tags": "Hardware, Product Catalogue, Online Shopping",
+            "image": "images/projects/pitrehardware-com.jpg",
+            "website_url": "https://pitrehardware.com/",
+            "sort_order": 16
+        },
+        {
+            "title": "JGB Autoparts",
+            "category": "E-Commerce",
+            "description": "Automotive parts website with categories for genuine vehicle parts, batteries, workshop equipment, oils, and accessories.",
+            "tags": "Automotive, Parts Catalogue, Online Shopping",
+            "image": "images/projects/jgbautoparts-com-mt.jpg",
+            "website_url": "https://www.jgbautoparts.com.mt/",
+            "sort_order": 17
+        },
+        {
+            "title": "EyeWearThese",
+            "category": "E-Commerce",
+            "description": "Eyewear storefront offering glasses, sunglasses, contact lenses, and accessories with browsing by style, shape, and brand.",
+            "tags": "Eyewear, Product Catalogue, Online Shopping",
+            "image": "images/projects/eyewearthese-com.jpg",
+            "website_url": "https://eyewearthese.com/",
+            "sort_order": 18
+        },
+        {
+            "title": "Dive Systems Malta",
+            "category": "Diving and Tourism",
+            "description": "Diving centre website presenting beginner experiences, diving courses, guided dives, and dive holiday options in Malta.",
+            "tags": "Diving, Tourism, Courses",
+            "image": "images/projects/divesystemsmalta-com.svg",
+            "website_url": "https://divesystemsmalta.com/",
+            "sort_order": 19
+        },
+        {
+            "title": "National Coordinating Committee",
+            "category": "Public Sector",
+            "description": "Public information website for Malta’s National Coordinating Committee on Combating Money Laundering and Funding of Terrorism, with reports, policies, and resources.",
+            "tags": "Public Information, Resources, Malta",
+            "image": "images/projects/ncc-gov-mt.svg",
+            "website_url": "https://ncc.gov.mt/",
+            "sort_order": 20
+        },
+        {
+            "title": "John Busuttil",
+            "category": "Business Website",
+            "description": "Website project for John Busuttil.",
+            "tags": "Business Website",
+            "image": "images/projects/johnbusuttil-com.svg",
+            "website_url": "https://johnbusuttil.com/",
+            "sort_order": 21
+        },
+        {
+            "title": "A2W Pharma",
+            "category": "Business Website",
+            "description": "Website project for A2W Pharma.",
+            "tags": "Business Website",
+            "image": "images/projects/a2wpharma-com.jpg",
+            "website_url": "https://a2wpharma.com/",
+            "sort_order": 22
+        },
+        {
+            "title": "BigMat Malta",
+            "category": "Business Website",
+            "description": "Website project for BigMat Malta.",
+            "tags": "Business Website, Malta",
+            "image": "images/projects/bigmat-com-mt.svg",
+            "website_url": "http://bigmat.com.mt/",
+            "sort_order": 23
+        },
+        {
+            "title": "BDL Books",
+            "category": "E-Commerce",
+            "description": "Bookshop and publishing website with an online shop, education catalogue, author information, and reading resources.",
+            "tags": "Books, Publishing, Online Shopping",
+            "image": "images/projects/bdlbooks-com.svg",
+            "website_url": "https://bdlbooks.com/",
+            "sort_order": 24
+        }
+    ]
 }

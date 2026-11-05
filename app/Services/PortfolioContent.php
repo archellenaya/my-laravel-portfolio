@@ -45,6 +45,9 @@ class PortfolioContent
                         throw new \RuntimeException('Invalid portfolio record.');
                     }
                     foreach (array_keys($fields) as $field) {
+                        if ($table === 'projects' && $field === 'website_url' && !isset($row[$field])) {
+                            continue;
+                        }
                         if (! isset($row[$field]) || ! is_string($row[$field])) {
                             throw new \RuntimeException('Invalid portfolio field.');
                         }

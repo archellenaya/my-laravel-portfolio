@@ -69,6 +69,12 @@ class CmsController extends Controller
                 continue;
             }
 
+            if ($section === 'projects' && $field === 'website_url') {
+                $rules[$field] = ['nullable', 'string', 'max:1000', 'url:http,https'];
+
+                continue;
+            }
+
             $rules[$field] = ['required', 'string', $type === 'textarea' ? 'max:20000' : 'max:1000'];
             if ($field === 'email') {
                 $rules[$field][] = 'email';
@@ -84,6 +90,9 @@ class CmsController extends Controller
             }
         }
         $values = $request->validate($rules);
+        if ($section === 'projects') {
+            $values['website_url'] = $values['website_url'] ?? '';
+        }
         $stored = [];
         foreach (['headshot', 'photo', 'photo_retina', 'image', 'resume'] as $field) {
             unset($values[$field.'_upload']);
