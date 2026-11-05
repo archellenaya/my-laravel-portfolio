@@ -76,7 +76,15 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
         return '/' + relative.split('/').map(encodeURIComponent).join('/');
     }
     const images = ['.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif'];
-    profile.headshot_url = await asset(profile.headshot ?? 'images/formal-photo.jpg', images);
+    let headshot = profile.headshot ?? 'images/formal-photo.jpg';
+    const optimizedHeadshot = `images/optimized/${path.parse(headshot).name}.webp`;
+    try {
+        await realpath(path.join(site, 'public', optimizedHeadshot));
+        headshot = optimizedHeadshot;
+    } catch (error) {
+        if (error.code !== 'ENOENT') throw error;
+    }
+    profile.headshot_url = await asset(headshot, images);
     profile.photo_url = await asset(profile.photo, images);
     profile.photo_retina_url = await asset(profile.photo_retina, images);
     await asset(profile.resume, ['.pdf']);

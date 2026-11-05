@@ -4299,11 +4299,11 @@ html { scroll-behavior: smooth; }
     80% { transform: translateY(5px); }
     90% { transform: translateY(0); }
 }
-/* A viewport-sized backdrop that follows every main-content section. */
+/* Keep the binary globe fixed at the center of the viewport. */
 .s-content { position: relative; isolation: isolate; }
 .s-content > section { position: relative; z-index: 1; }
 .particle-backdrop {
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: 0;
     pointer-events: none;
@@ -4311,8 +4311,8 @@ html { scroll-behavior: smooth; }
 }
 .hero-particles {
     display: block;
-    position: sticky;
-    top: 0;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100vh;
     height: 100svh;

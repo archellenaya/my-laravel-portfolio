@@ -11,6 +11,10 @@ class HomeController extends Controller
         $snapshot = $portfolio->load();
         $data = $snapshot['profiles'][0] ?? [];
         abort_unless($data, 503, 'Portfolio content has not been initialized.');
+        $optimizedHeadshot = 'images/optimized/'.pathinfo($data['headshot'], PATHINFO_FILENAME).'.webp';
+        if (is_file(public_path($optimizedHeadshot))) {
+            $data['headshot'] = $optimizedHeadshot;
+        }
         $content = [];
         foreach (['expertise', 'skills', 'experiences', 'education'] as $table) {
             $content[$table] = collect($snapshot[$table])->map(fn ($row) => (object) $row);
