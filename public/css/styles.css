@@ -4274,3 +4274,6 @@ html { scroll-behavior: smooth; }
 .intro-social { font-size: 1.4rem; }
 .intro-social a, .contact-social a { display: inline-flex; align-items: center; min-height: 44px; }
 .dialog-close:hover, .dialog-close:focus, .dialog-close:focus-visible { background: #333; color: #fff; }
+/* Keep the scroll control above the rotated social list's bounding box. */
+.intro-scrolldown { z-index: 2; }
+.s-pagewrap .circles { pointer-events: none; }
