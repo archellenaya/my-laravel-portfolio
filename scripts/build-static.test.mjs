@@ -119,7 +119,8 @@ test('CMS tool logos render names, images, appearance and order for the globe', 
         assert.ok(html.includes('data-appearance="light"'));
         assert.ok(html.includes('id="globe-logos"'));
         assert.ok(!html.includes('data-tool-marquee'));
-        await access(path.join(output, content.profiles[0].photo));
+        const logoSource = html.match(/<img src="([^"]+)" alt="First &amp; Tool"/)[1];
+        await access(path.join(output, decodeURIComponent(logoSource)));
         content.tools = [];
         await writeFile(snapshot, JSON.stringify(content));
         await build({snapshot});

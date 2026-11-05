@@ -1,0 +1,39 @@
+{
+  "production_before": {
+    "url": "https://www.archellenaya.com/",
+    "fetchTime": "2026-11-05T21:10:46.372Z",
+    "lighthouseVersion": "13.6.0",
+    "performance": 81,
+    "metrics": {
+      "first-contentful-paint": "2.7\u00a0s",
+      "largest-contentful-paint": "2.7\u00a0s",
+      "total-blocking-time": "450\u00a0ms",
+      "total-byte-weight": "Total size was 7,266\u00a0KiB"
+    }
+  },
+  "local_before": {
+    "url": "https://localhost/",
+    "fetchTime": "2026-11-05T21:10:35.153Z",
+    "lighthouseVersion": "13.6.0",
+    "performance": 86,
+    "metrics": {
+      "first-contentful-paint": "1.7\u00a0s",
+      "largest-contentful-paint": "2.1\u00a0s",
+      "total-blocking-time": "500\u00a0ms",
+      "total-byte-weight": "Total size was 7,288\u00a0KiB"
+    }
+  },
+  "local_after": {
+    "url": "https://localhost/",
+    "fetchTime": "2026-11-05T21:12:35.438Z",
+    "lighthouseVersion": "13.6.0",
+    "performance": 98,
+    "metrics": {
+      "first-contentful-paint": "1.7\u00a0s",
+      "largest-contentful-paint": "2.1\u00a0s",
+      "total-blocking-time": "0\u00a0ms",
+      "total-byte-weight": "Total size was 274\u00a0KiB"
+    }
+  },
+  "limits": "Production was audited before the local changes. Redeployment and a fresh production audit are required to measure the production improvement."
+}

@@ -11,14 +11,24 @@ class HomeController extends Controller
         $snapshot = $portfolio->load();
         $data = $snapshot['profiles'][0] ?? [];
         abort_unless($data, 503, 'Portfolio content has not been initialized.');
-        $optimizedHeadshot = 'images/optimized/'.pathinfo($data['headshot'], PATHINFO_FILENAME).'.webp';
-        if (is_file(public_path($optimizedHeadshot))) {
-            $data['headshot'] = $optimizedHeadshot;
+        foreach (['headshot', 'photo', 'photo_retina'] as $field) {
+            $optimized = 'images/optimized/'.pathinfo($data[$field], PATHINFO_FILENAME).'.webp';
+            if (is_file(public_path($optimized))) {
+                $data[$field] = $optimized;
+            }
         }
         $content = [];
         foreach (['expertise', 'skills', 'experiences', 'education', 'tools'] as $table) {
             $content[$table] = collect($snapshot[$table])->map(fn ($row) => (object) $row);
         }
+        $content['tools'] = $content['tools']->map(function ($tool) {
+            $optimized = 'images/optimized/'.pathinfo($tool->image, PATHINFO_FILENAME).'.webp';
+            if (is_file(public_path($optimized))) {
+                $tool->image = $optimized;
+            }
+
+            return $tool;
+        });
         $projects = collect($snapshot['projects']);
 
         return view('home_page', compact('data', 'projects') + $content);

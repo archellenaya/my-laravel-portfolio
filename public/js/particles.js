@@ -175,6 +175,8 @@
                         timeout = setTimeout(() => reject(new Error('Logo load timeout')), 5000);
                     })]);
                 } finally { clearTimeout(timeout); }
+                // Spread decoded logo rasterization across tasks to keep input responsive.
+                await new Promise(resolve => setTimeout(resolve, 0));
                 const sprite = document.createElement('canvas');
                 sprite.width = sprite.height = 96;
                 const ink = sprite.getContext('2d');

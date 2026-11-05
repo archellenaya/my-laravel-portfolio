@@ -76,17 +76,19 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
         return '/' + relative.split('/').map(encodeURIComponent).join('/');
     }
     const images = ['.svg', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif'];
-    let headshot = profile.headshot ?? 'images/formal-photo.jpg';
-    const optimizedHeadshot = `images/optimized/${path.parse(headshot).name}.webp`;
-    try {
-        await realpath(path.join(site, 'public', optimizedHeadshot));
-        headshot = optimizedHeadshot;
-    } catch (error) {
-        if (error.code !== 'ENOENT') throw error;
+    async function optimizedImage(relative) {
+        const optimized = `images/optimized/${path.parse(relative).name}.webp`;
+        try {
+            await realpath(path.join(site, 'public', optimized));
+            return optimized;
+        } catch (error) {
+            if (error.code !== 'ENOENT') throw error;
+            return relative;
+        }
     }
-    profile.headshot_url = await asset(headshot, images);
-    profile.photo_url = await asset(profile.photo, images);
-    profile.photo_retina_url = await asset(profile.photo_retina, images);
+    profile.headshot_url = await asset(await optimizedImage(profile.headshot ?? 'images/formal-photo.jpg'), images);
+    profile.photo_url = await asset(await optimizedImage(profile.photo), images);
+    profile.photo_retina_url = await asset(await optimizedImage(profile.photo_retina), images);
     await asset(profile.resume, ['.pdf']);
     const sorted = rows => [...rows].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0) || (a.id ?? 0) - (b.id ?? 0));
     const context = { ...content, profile, year: new Date().getFullYear() };
@@ -94,7 +96,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     for (const section of ['experiences', 'education']) context[section] = context[section].map(row => ({...row, bullets: (row.description ?? '').split('\n').filter(line => line.trim()).map(text => ({text}))}));
     const tools = await Promise.all(sorted(content.tools ?? []).map(async tool => {
         if (!['original', 'light'].includes(tool.appearance)) throw new Error('Invalid tool logo appearance');
-        return {...tool, image_url: await asset(tool.image, images), image_class: tool.appearance === 'light' ? 'tool-logo--light' : ''};
+        return {...tool, image_url: await asset(await optimizedImage(tool.image), images), image_class: tool.appearance === 'light' ? 'tool-logo--light' : ''};
     }));
     context.tools = tools;
     context.projects = await Promise.all(sorted(content.projects).map(async (row, index) => {
