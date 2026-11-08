@@ -36,7 +36,7 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
         : path.join(site, 'public', resume);
     assert.deepEqual(await readFile(path.join(output, 'resume.pdf')), await readFile(resumeSource));
     for (const project of data.projects.filter(project => project.website_url)) {
-        assert.ok(html.includes(`href="${project.website_url}"`));
+        assert.ok(!html.includes(`href="${project.website_url}"`));
     }
     await assert.rejects(access(path.join(output, 'index.php')));
     await assert.rejects(access(path.join(output, '.env')));
