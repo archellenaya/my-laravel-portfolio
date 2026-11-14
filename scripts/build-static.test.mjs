@@ -4,7 +4,8 @@ import { readFile, access, mkdtemp, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { build, render } from './build-static.mjs';
+import vm from 'node:vm';
+import { analyticsScript, build, render } from './build-static.mjs';
 
 const site = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -21,6 +22,8 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
     const html = await readFile(path.join(output, 'index.html'), 'utf8');
     const data = JSON.parse(await readFile(path.join(site, 'resources/data/portfolio.json'), 'utf8'));
     assert.ok(html.includes(data.profiles[0].fullname));
+    assert.ok(html.includes('src="/js/vercel-analytics.js"'));
+    assert.ok((await readFile(path.join(output, 'js/vercel-analytics.js'), 'utf8')).includes('window.va'));
     assert.ok(!html.includes('https://localhost'));
     assert.ok(!/{{|@foreach|@extends|\$counter/.test(html));
     assert.equal((html.match(/class="folio-list__item column"/g) ?? []).length, data.projects.length);
@@ -130,4 +133,24 @@ test('CMS tool logos render names, images, appearance and order for the globe', 
         await rm(temporary, {recursive: true, force: true});
         await build();
     }
+});
+
+
+test('static Analytics loader uses Vercel endpoints and initializes its queue', () => {
+    for (const custom of [false, true]) {
+        const config = custom ? JSON.stringify({analytics: {scriptSrc: '/metrics/script.js', viewEndpoint: '/metrics/view', eventEndpoint: '/metrics/event'}}) : '{}';
+        const scripts = [], window = {};
+        vm.runInNewContext(analyticsScript(config), {window, document: {
+            createElement: () => ({dataset: {}}), head: {appendChild: script => scripts.push(script)},
+        }});
+        assert.equal(scripts.length, 1);
+        assert.equal(scripts[0].src, custom ? '/metrics/script.js' : '/_vercel/insights/script.js');
+        if (custom) {
+            assert.equal(scripts[0].dataset.viewEndpoint, '/metrics/view');
+            assert.equal(scripts[0].dataset.eventEndpoint, '/metrics/event');
+        }
+        window.va('event', 'example');
+        assert.equal(window.vaq[0][0], 'event');
+    }
+    assert.throws(() => analyticsScript('{"analytics":{"scriptSrc":"//external.example/script.js"}}'), /same-origin/);
 });

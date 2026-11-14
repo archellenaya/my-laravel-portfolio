@@ -8,6 +8,30 @@ process.umask(0o002);
 const site = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 
+// Vercel supplies version 2 endpoint paths through this build-time configuration.
+export function analyticsScript(rawConfig = process.env.VERCEL_OBSERVABILITY_CLIENT_CONFIG) {
+    const options = rawConfig ? JSON.parse(rawConfig).analytics ?? {} : {};
+    const config = {
+        scriptSrc: options.scriptSrc || '/_vercel/insights/script.js',
+        ...Object.fromEntries(['eventEndpoint', 'viewEndpoint'].filter(key => options[key]).map(key => [key, options[key]])),
+    };
+    for (const value of Object.values(config)) {
+        if (typeof value !== 'string' || !value.startsWith('/') || value.startsWith('//')) {
+            throw new Error('Analytics endpoints must use same-origin paths');
+        }
+    }
+    return `(() => {
+    const config = ${JSON.stringify(config)};
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = config.scriptSrc;
+    if (config.eventEndpoint) script.dataset.eventEndpoint = config.eventEndpoint;
+    if (config.viewEndpoint) script.dataset.viewEndpoint = config.viewEndpoint;
+    document.head.appendChild(script);
+})();\n`;
+}
+
 // A deliberately small, non-executable template format: escaped values and list sections.
 export function render(template, context) {
     const root = [], stack = [{ name: null, children: root }];
@@ -43,6 +67,7 @@ export function render(template, context) {
 }
 
 export async function build({ output = path.join(site, 'dist'), snapshot = path.join(site, 'resources/data/portfolio.json'), stageAssets = false } = {}) {
+    const analytics = analyticsScript();
     const content = JSON.parse(await readFile(snapshot, 'utf8'));
     for (const section of ['profiles', 'expertise', 'skills', 'experiences', 'education', 'projects']) {
         if (!Array.isArray(content[section])) throw new Error(`Missing content section: ${section}`);
@@ -144,6 +169,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     for (const name of ['favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'robots.txt', 'site.webmanifest']) await copy(path.join(site, 'public', name), name);
     for (const [relative, source] of assets) await copy(source, relative);
     await copy(assets.get(profile.resume), 'resume.pdf');
+    await writeFile(path.join(output, 'js/vercel-analytics.js'), analytics);
     await writeFile(path.join(output, 'index.html'), html);
     await writeFile(path.join(output, '404.html'), '<!doctype html><html lang="en"><meta charset="utf-8"><title>Page not found</title><h1>Page not found</h1><a href="/">Return to portfolio</a></html>');
     console.log(`Built static portfolio: ${output}`);

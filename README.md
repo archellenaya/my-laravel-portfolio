@@ -143,3 +143,9 @@ This button prepares local deployment files. Commit the updated JSON and staged 
 ### Intro headshot upload
 
 In the CMS, open **Profile & site content → Edit → Intro headshot**. Upload a JPG, PNG, WebP or GIF (up to 8 MB); a square image around 600 × 600 pixels is recommended. Leaving the field empty keeps the current headshot. This field is separate from the About-section photos. Save, click **Publish Static**, and commit/push the updated JSON and staged image to publish it on Vercel.
+
+### Vercel Web Analytics
+
+Enable Web Analytics in the Vercel project dashboard, then redeploy. The static build writes `js/vercel-analytics.js` and loads it from the exported page; the Laravel Vite entry is not used by the static build. Vercel's build-time `VERCEL_OBSERVABILITY_CLIENT_CONFIG` supplies current script and collection paths, with the standard `/_vercel/insights/script.js` path used as a fallback. All requests stay on the same origin, matching the Content Security Policy.
+
+On the deployed site, check the browser Network panel for a successful Analytics script request and a page-view request, then confirm the visit in the project's Analytics dashboard. Local builds do not provide Vercel's collection endpoints.
