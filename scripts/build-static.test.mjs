@@ -154,3 +154,20 @@ test('static Analytics loader uses Vercel endpoints and initializes its queue', 
     }
     assert.throws(() => analyticsScript('{"analytics":{"scriptSrc":"//external.example/script.js"}}'), /same-origin/);
 });
+
+
+test('Analytics normalizes Vercel paths without a leading slash', () => {
+    const scripts = [];
+    const source = analyticsScript(JSON.stringify({analytics: {
+        scriptSrc: 'abc123/script.js', viewEndpoint: 'abc123/view', eventEndpoint: '/abc123/event',
+    }}));
+    vm.runInNewContext(source, {window: {}, document: {
+        createElement: () => ({dataset: {}}), head: {appendChild: script => scripts.push(script)},
+    }});
+    assert.equal(scripts[0].src, '/abc123/script.js');
+    assert.equal(scripts[0].dataset.viewEndpoint, '/abc123/view');
+    assert.equal(scripts[0].dataset.eventEndpoint, '/abc123/event');
+    for (const scriptSrc of ['https://external.example/script.js', '//external.example/script.js', 'javascript:alert(1)', '/\\external.example/script.js']) {
+        assert.throws(() => analyticsScript(JSON.stringify({analytics: {scriptSrc}})), /same-origin/);
+    }
+});

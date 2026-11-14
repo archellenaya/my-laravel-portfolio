@@ -15,10 +15,12 @@ export function analyticsScript(rawConfig = process.env.VERCEL_OBSERVABILITY_CLI
         scriptSrc: options.scriptSrc || '/_vercel/insights/script.js',
         ...Object.fromEntries(['eventEndpoint', 'viewEndpoint'].filter(key => options[key]).map(key => [key, options[key]])),
     };
-    for (const value of Object.values(config)) {
-        if (typeof value !== 'string' || !value.startsWith('/') || value.startsWith('//')) {
+    for (const [key, value] of Object.entries(config)) {
+        // Vercel can supply deployment paths without a leading slash.
+        if (typeof value !== 'string' || !value || /^[a-z][a-z0-9+.-]*:/i.test(value) || /[\\\s]/.test(value) || value.startsWith('//')) {
             throw new Error('Analytics endpoints must use same-origin paths');
         }
+        config[key] = '/' + value.replace(/^\/+/, '');
     }
     return `(() => {
     const config = ${JSON.stringify(config)};
