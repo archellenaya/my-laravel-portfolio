@@ -96,5 +96,35 @@
     "availability": {
         "remote": false,
         "freelance": false
+    },
+    "template_preferences": {
+        "default_template": "modern",
+        "default_theme": "system",
+        "templates": [
+            {
+                "id": "modern",
+                "name": "Modern Developer",
+                "enabled": true,
+                "supports_theme": true
+            },
+            {
+                "id": "minimal",
+                "name": "Minimal Professional",
+                "enabled": true,
+                "supports_theme": false
+            },
+            {
+                "id": "creative",
+                "name": "Creative Developer",
+                "enabled": true,
+                "supports_theme": false
+            },
+            {
+                "id": "terminal",
+                "name": "Terminal Developer",
+                "enabled": true,
+                "supports_theme": false
+            }
+        ]
     }
 }

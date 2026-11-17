@@ -94,6 +94,26 @@ function normalizeContent(content, contract) {
     return normalized;
 }
 
+export function templatePreferences(settings) {
+    const templates = settings.templates.filter(template => template.enabled === true);
+    if (!templates.length) throw new Error('Enable at least one portfolio template.');
+    const ids = templates.map(template => template.id);
+    const defaultTemplate = ids.includes(settings.default_template) ? settings.default_template : ids[0];
+    const themed = templates.filter(template => template.supports_theme === true).map(template => template.id);
+
+    return {
+        options: templates.map(template => ({
+            ...template,
+            selected: template.id === defaultTemplate ? [{}] : [],
+        })),
+        default_template: defaultTemplate,
+        default_theme: settings.default_theme,
+        enabled_templates: ids.join(' '),
+        themed_templates: themed.join(' '),
+        initial_theme: themed.includes(defaultTemplate) ? settings.default_theme : '',
+    };
+}
+
 async function readTemplate(file, parents = []) {
     if (parents.includes(file)) throw new Error(`Circular static template include: ${file}`);
     const source = await readFile(path.join(site, 'resources/views/static', file), 'utf8');
@@ -160,7 +180,12 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     profile.photo_retina_url = await asset(await optimizedImage(profile.photo_retina), images);
     await asset(profile.resume, ['.pdf']);
     const sorted = rows => [...rows].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0) || (a.id ?? 0) - (b.id ?? 0));
-    const context = { ...content, profile, anchors: contract.anchors, resume_path: contract.resume_path, year: new Date().getFullYear() };
+    const context = {
+        ...content, profile, anchors: contract.anchors, resume_path: contract.resume_path,
+        year: new Date().getFullYear(),
+        template_preferences: templatePreferences(contract.template_preferences),
+        canonical_url: new URL('/', contract.public_origin).href,
+    };
     for (const section of ['expertise', 'skills', 'experiences', 'education']) context[section] = sorted(content[section]);
     for (const section of ['experiences', 'education']) context[section] = context[section].map(row => ({...row, bullets: (row.description ?? '').split('\n').filter(line => line.trim()).map(text => ({text}))}));
     const tools = await Promise.all(sorted(content.tools ?? []).map(async tool => {

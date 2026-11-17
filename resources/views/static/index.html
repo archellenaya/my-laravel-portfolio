@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en"
+    data-template="{{template_preferences.default_template}}"
+    data-theme="{{template_preferences.initial_theme}}"
+    data-default-theme="{{template_preferences.default_theme}}"
+    data-enabled-templates="{{template_preferences.enabled_templates}}"
+    data-themed-templates="{{template_preferences.themed_templates}}">
 <head> 
     <!--- basic page needs
     ================================================== -->
@@ -11,6 +16,9 @@
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="canonical" href="{{canonical_url}}">
+    <script src="/js/portfolio-preferences.js"></script>
 
     <link rel="preload" as="image" href="{{profile.headshot_url}}" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -71,6 +79,7 @@
         <!-- ## footer
         ================================================== -->
         <footer class="s-footer"> 
+{{> preferences}}
             <div class="row">
                 <div class="column ss-copyright">
                     <span>© {{year}} {{profile.display_name}}</span> 

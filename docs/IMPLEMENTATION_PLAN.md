@@ -15,11 +15,11 @@ Inventory public and CMS features, rendering and data ownership, deployment, loc
 
 Gate: existing routes, rendered content, static build and CMS behavior pass parity and regression checks.
 
-## Phase 3 — Template switching foundation
+## Phase 3 — Template switching foundation (completed)
 
-1. Add the registry, configurable default and enabled list. Expose the available choices in both renderers.
-2. Render a labeled selector and apply localStorage preferences via a same-origin early script. Keep theme separate and scoped to templates that support it.
-3. Test refresh, blocked storage, invalid and disabled IDs, no JavaScript, focus retention, shared content and stable canonical URL.
+- [x] Add the registry, configurable default and enabled list. Expose the available choices in both renderers.
+- [x] Render a labeled selector and apply localStorage preferences via a same-origin early script. Keep theme separate and scoped to templates that support it.
+- [x] Test refresh, blocked storage, invalid and disabled IDs, no JavaScript, focus retention, shared content and stable canonical URL.
 
 Gate: instant selection and reliable fallback on both delivery paths.
 

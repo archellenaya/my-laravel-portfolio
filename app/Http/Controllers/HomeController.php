@@ -42,7 +42,10 @@ class HomeController extends Controller
         $anchors = $contract['anchors'];
         $resumePath = $contract['resume_path'];
 
-        return view('home_page', compact('data', 'projects', 'anchors', 'resumePath') + $content);
+        return view('home_page', compact('data', 'projects', 'anchors', 'resumePath') + $content + [
+            'templatePreferences' => PortfolioContract::templatePreferences($contract),
+            'canonicalUrl' => rtrim($contract['public_origin'], '/').'/',
+        ]);
     }
 
     public function download_cv(PortfolioContent $portfolio)

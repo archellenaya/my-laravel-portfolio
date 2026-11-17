@@ -71,3 +71,36 @@ Suggested commit message
 ```text
 refactor: share portfolio content contract and public sections
 ```
+
+
+## Phase 3 — Completed 18 November 2026
+
+Both public renderers now read `template_preferences` from `config/portfolio-contract.json`. Each template has a stable ID, display name, enabled flag and theme capability. Modern Developer is the default. An unavailable configured default falls back to the first enabled entry. The four registered choices share the existing layout during this phase.
+
+The labeled native selector is in the footer. Its selected value reflects the active template. A same-origin head script reads `portfolio.template` before styles load and applies the selected ID to the root element. The script handles unavailable storage and stale IDs, and the rendered default serves visitors with JavaScript disabled. The independent `portfolio.theme` preference accepts system, light or dark and applies to theme-capable templates. Theme controls and visual variations are scheduled for Phase 4. Both renderers emit the same canonical homepage URL regardless of selection.
+
+### Files changed
+
+- `config/portfolio-contract.json`, `app/Services/PortfolioContract.php` and `app/Http/Controllers/HomeController.php`
+- `resources/views/layouts/app.blade.php`, `resources/views/portfolio/preferences.blade.php`, `resources/views/static/index.html` and `resources/views/static/sections/preferences.html`
+- `public/js/portfolio-preferences.js`, `public/css/styles.css` and `scripts/build-static.mjs`
+- `scripts/build-static.test.mjs` and `tests/Feature/StaticContentTest.php`
+- `docs/IMPLEMENTATION_PLAN.md` and `docs/PROGRESS.md`
+
+### Verification
+
+| Check | Result |
+| --- | --- |
+| Node static tests | 11 passed, including blocked storage, unavailable IDs, persistence and template-scoped theme preferences. |
+| PHP tests | 39 passed with 392 assertions in an isolated checkout using temporary GD. |
+| Build and asset staging | `npm run build` and `npm run static:stage` passed in the isolated checkout. |
+| Chromium smoke test | Static at 375 px and Blade at 1440 px passed keyboard selection, focus retention, reload persistence, JavaScript-disabled fallback, content and canonical URL checks. Requests were served from the generated files through browser interception. |
+| Lint | Pint passed for the three changed PHP files. Node syntax checks and `git diff --check` passed. |
+
+Phase 4 awaits owner instruction. Start with Modern Developer and its light and dark styles, then implement the remaining visual layouts using the root template and theme attributes. Production and cross-browser verification remain pending. A separate schema-version-only change to the checked-in portfolio snapshot appeared in the working tree during Phase 3 and is outside the phase changes.
+
+Suggested commit message
+
+```text
+feat: add persistent portfolio template preferences
+```

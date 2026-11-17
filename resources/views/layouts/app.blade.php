@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="en"
+    data-template="{{ $templatePreferences['default_template'] }}"
+    data-theme="{{ $templatePreferences['initial_theme'] }}"
+    data-default-theme="{{ $templatePreferences['default_theme'] }}"
+    data-enabled-templates="{{ $templatePreferences['enabled_templates'] }}"
+    data-themed-templates="{{ $templatePreferences['themed_templates'] }}">
 <head> 
     <!--- basic page needs
     ================================================== -->
@@ -11,6 +16,9 @@
     <!-- mobile specific metas
     ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="canonical" href="{{ $canonicalUrl }}">
+    <script src="/js/portfolio-preferences.js"></script>
 
     <link rel="preload" as="image" href="{{asset($data['headshot'])}}" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,6 +73,7 @@
         <!-- ## footer
         ================================================== -->
         <footer class="s-footer"> 
+            @include('portfolio.preferences')
             <div class="row">
                 <div class="column ss-copyright">
                     <span>© {{date('Y')}} {{$data['display_name']}}</span> 

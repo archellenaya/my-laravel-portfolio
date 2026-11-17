@@ -9,6 +9,28 @@ class PortfolioContract
         return json_decode(file_get_contents(config_path('portfolio-contract.json')), true, 512, JSON_THROW_ON_ERROR);
     }
 
+    public static function templatePreferences(array $contract): array
+    {
+        $settings = $contract['template_preferences'];
+        $templates = array_values(array_filter($settings['templates'], fn ($template) => $template['enabled'] === true));
+        if (! $templates) {
+            throw new \RuntimeException('Enable at least one portfolio template.');
+        }
+
+        $ids = array_column($templates, 'id');
+        $default = in_array($settings['default_template'], $ids, true) ? $settings['default_template'] : $ids[0];
+        $themed = array_column(array_filter($templates, fn ($template) => $template['supports_theme'] === true), 'id');
+
+        return [
+            'options' => $templates,
+            'default_template' => $default,
+            'default_theme' => $settings['default_theme'],
+            'enabled_templates' => implode(' ', $ids),
+            'themed_templates' => implode(' ', $themed),
+            'initial_theme' => in_array($default, $themed, true) ? $settings['default_theme'] : '',
+        ];
+    }
+
     public static function normalize(array $content): array
     {
         $contract = self::definition();

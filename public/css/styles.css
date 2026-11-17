@@ -4341,3 +4341,31 @@ html { scroll-behavior: smooth; }
     .intro-portrait { flex: 0 0 auto; width: min(100%, 520px); margin: 0 auto; }
     .intro-social { flex-basis: 100%; }
 }
+
+.portfolio-preferences {
+    margin-bottom: var(--vspace-1);
+}
+
+.portfolio-preferences label {
+    color: var(--color-text-light);
+}
+
+.portfolio-preferences select {
+    width: 100%;
+    max-width: 26rem;
+    margin-bottom: 0;
+}
+
+.portfolio-preferences option {
+    background-color: var(--color-body);
+    color: var(--color-text);
+}
+
+.portfolio-preferences select:focus-visible {
+    outline: 3px solid #f5d06f;
+    outline-offset: 3px;
+}
+
+.portfolio-preferences[hidden] {
+    display: none;
+}

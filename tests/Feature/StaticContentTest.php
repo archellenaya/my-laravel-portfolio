@@ -58,6 +58,14 @@ class StaticContentTest extends TestCase
         DB::shouldReceive('transaction')->never();
         $response = $this->get('/')->assertOk()
             ->assertSee('Static-only name')
+            ->assertSee('data-template="modern"', false)
+            ->assertSee('data-theme="system"', false)
+            ->assertSee('<link rel="canonical" href="https://www.archellenaya.com/">', false)
+            ->assertSeeInOrder(['<script src="/js/portfolio-preferences.js"></script>', '<link rel="stylesheet"'], false)
+            ->assertSee('class="row portfolio-preferences" hidden', false)
+            ->assertSee('<label for="portfolio-template">Portfolio template</label>', false)
+            ->assertSee('<option value="modern" selected>Modern Developer</option>', false)
+            ->assertSee('Terminal Developer')
             ->assertSee('href="https://example.test/?a=1&amp;b=2"', false)
             ->assertSee('href="#modal-01"', false)
             ->assertSee('id="modal-01"', false)
@@ -67,6 +75,20 @@ class StaticContentTest extends TestCase
             $response->assertSee('id="'.$anchor.'"', false)->assertSee('href="#'.$anchor.'"', false);
         }
         $this->get('/download-cv')->assertDownload('archell-enaya-resume.pdf');
+    }
+
+    public function test_template_preferences_filter_disabled_templates_and_choose_the_configured_default(): void
+    {
+        $contract = PortfolioContract::definition();
+        $contract['template_preferences']['templates'][0]['enabled'] = false;
+        $preferences = PortfolioContract::templatePreferences($contract);
+        $this->assertSame('minimal', $preferences['default_template']);
+        $this->assertSame('minimal creative terminal', $preferences['enabled_templates']);
+        $this->assertSame('', $preferences['initial_theme']);
+
+        $contract['template_preferences']['default_template'] = 'creative';
+        $preferences = PortfolioContract::templatePreferences($contract);
+        $this->assertSame('creative', $preferences['default_template']);
     }
 
     public function test_database_mode_ignores_json_and_reflects_database_changes(): void

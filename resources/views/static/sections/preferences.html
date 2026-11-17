@@ -1,0 +1,10 @@
+<div class="row portfolio-preferences" hidden>
+    <div class="column">
+        <label for="portfolio-template">Portfolio template</label>
+        <select id="portfolio-template" autocomplete="off">
+            {{#template_preferences.options}}
+                <option value="{{id}}"{{#selected}} selected{{/selected}}>{{name}}</option>
+            {{/template_preferences.options}}
+        </select>
+    </div>
+</div>

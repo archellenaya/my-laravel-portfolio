@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
-import { analyticsScript, build, render } from './build-static.mjs';
+import { analyticsScript, build, render, templatePreferences } from './build-static.mjs';
 
 const site = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -17,12 +17,104 @@ test('escapes content and handles nested lists without executing expressions', (
     assert.throws(() => render('{{missing}}', {}), /Missing template value/);
 });
 
+test('registry selects an enabled configured default or the first enabled template', () => {
+    const settings = {
+        default_template: 'terminal',
+        default_theme: 'system',
+        templates: [
+            {id: 'modern', enabled: true, supports_theme: true},
+            {id: 'minimal', enabled: true, supports_theme: false},
+            {id: 'terminal', enabled: false, supports_theme: false},
+        ],
+    };
+    const fallback = templatePreferences(settings);
+    assert.equal(fallback.default_template, 'modern');
+    assert.equal(fallback.initial_theme, 'system');
+    assert.equal(fallback.enabled_templates, 'modern minimal');
+    assert.deepEqual(fallback.options.map(template => template.selected.length), [1, 0]);
+
+    const configured = templatePreferences({...settings, default_template: 'minimal'});
+    assert.equal(configured.default_template, 'minimal');
+    assert.equal(configured.initial_theme, '');
+    assert.deepEqual(configured.options.map(template => template.selected.length), [0, 1]);
+});
+
+test('browser preferences apply early, persist selection and handle stale or blocked storage', async () => {
+    const source = await readFile(path.join(site, 'public/js/portfolio-preferences.js'), 'utf8');
+    const run = (saved, blocked = false) => {
+        const dataset = {template: 'modern', defaultTheme: 'system', enabledTemplates: 'modern creative', themedTemplates: 'modern'};
+        const container = {hidden: true};
+        let ready;
+        let change;
+        const select = {
+            closest: () => container,
+            addEventListener: (name, callback) => { assert.equal(name, 'change'); change = callback; },
+        };
+        const document = {
+            documentElement: {dataset},
+            getElementById: () => select,
+            addEventListener: (name, callback) => { assert.equal(name, 'DOMContentLoaded'); ready = callback; },
+            activeElement: select,
+        };
+        const window = {
+            get localStorage() {
+                if (blocked) throw new Error('Storage blocked');
+                return {
+                    getItem: key => saved.get(key) ?? null,
+                    setItem: (key, value) => saved.set(key, value),
+                };
+            },
+        };
+        vm.runInNewContext(source, {document, window});
+        const early = {...dataset};
+        assert.ok(container.hidden);
+        ready();
+        assert.ok(!container.hidden);
+        return {
+            early, dataset, select,
+            choose: value => {
+                select.value = value;
+                change();
+                assert.equal(document.activeElement, select);
+            },
+        };
+    };
+
+    const saved = new Map([['portfolio.template', 'creative'], ['portfolio.theme', 'dark']]);
+    const current = run(saved);
+    assert.equal(current.early.template, 'creative');
+    assert.equal(current.early.theme, '');
+    assert.equal(current.select.value, 'creative');
+    current.choose('modern');
+    assert.equal(current.dataset.theme, 'dark');
+    assert.equal(run(saved).early.template, 'modern');
+    assert.equal(run(saved).early.theme, 'dark');
+
+    for (const unavailable of ['terminal', 'invalid']) {
+        saved.set('portfolio.template', unavailable);
+        assert.equal(run(saved).early.template, 'modern');
+    }
+    const blocked = run(saved, true);
+    assert.equal(blocked.early.theme, 'system');
+    blocked.choose('creative');
+    assert.equal(blocked.dataset.template, 'creative');
+    assert.equal(run(saved, true).early.template, 'modern');
+});
+
 test('build produces HTML, linked assets and resume without PHP or secret files', async () => {
     const output = await build();
     const html = await readFile(path.join(output, 'index.html'), 'utf8');
     const data = JSON.parse(await readFile(path.join(site, 'resources/data/portfolio.json'), 'utf8'));
     assert.ok(html.includes(data.profiles[0].fullname));
     assert.ok(html.includes('src="/js/vercel-analytics.js"'));
+    assert.ok(html.includes('data-template="modern"'));
+    assert.ok(html.includes('data-theme="system"'));
+    assert.ok(html.includes('<link rel="canonical" href="https://www.archellenaya.com/">'));
+    assert.ok(html.indexOf('<script src="/js/portfolio-preferences.js"></script>') < html.indexOf('<link rel="stylesheet"'));
+    assert.ok(html.includes('class="row portfolio-preferences" hidden'));
+    assert.ok(html.includes('<label for="portfolio-template">Portfolio template</label>'));
+    assert.ok(html.includes('<option value="modern" selected>Modern Developer</option>'));
+    assert.ok(html.includes('<option value="terminal">Terminal Developer</option>'));
     assert.ok((await readFile(path.join(output, 'js/vercel-analytics.js'), 'utf8')).includes('window.va'));
     assert.ok(!html.includes('https://localhost'));
     assert.ok(!/{{|@foreach|@extends|\$counter/.test(html));
