@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Services\PortfolioContract;
 use Database\Seeders\PortfolioSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +34,13 @@ class StaticContentTest extends TestCase
         $this->artisan('portfolio:export')->assertSuccessful();
         $snapshot = json_decode(file_get_contents($this->snapshot), true, 512, JSON_THROW_ON_ERROR);
         $this->assertSame('Current database name', $snapshot['profiles'][0]['fullname']);
+        $this->assertSame(1, $snapshot['schema_version']);
+        unset($snapshot['schema_version']);
         $this->assertSame(array_keys(config('cms')), array_keys($snapshot));
+        $sections = PortfolioContract::definition()['sections'];
+        foreach (config('cms') as $section => $fields) {
+            $this->assertSame(array_keys($fields), $sections[$section]['fields']);
+        }
         $this->assertArrayNotHasKey('users', $snapshot);
         $this->assertArrayNotHasKey('password', $snapshot['profiles'][0]);
     }
@@ -42,11 +49,23 @@ class StaticContentTest extends TestCase
     {
         $snapshot = json_decode(file_get_contents(database_path('seeders/portfolio.json')), true);
         $snapshot['profiles'][0]['display_name'] = 'Static-only name';
+        unset($snapshot['profiles'][0]['headshot'], $snapshot['projects'][0]['website_url'], $snapshot['tools']);
+        $snapshot['projects'][1]['website_url'] = 'https://example.test/?a=1&b=2';
+        $snapshot['projects'][2]['website_url'] = 'https://example.test\\spoof.test';
         file_put_contents($this->snapshot, json_encode($snapshot));
         config(['portfolio.static' => true]);
         DB::shouldReceive('table')->never();
         DB::shouldReceive('transaction')->never();
-        $this->get('/')->assertOk()->assertSee('Static-only name');
+        $response = $this->get('/')->assertOk()
+            ->assertSee('Static-only name')
+            ->assertSee('href="https://example.test/?a=1&amp;b=2"', false)
+            ->assertSee('href="#modal-01"', false)
+            ->assertSee('id="modal-01"', false)
+            ->assertSee('images/formal-photo.jpg')
+            ->assertDontSee('spoof.test');
+        foreach (['intro', 'about', 'works', 'contact'] as $anchor) {
+            $response->assertSee('id="'.$anchor.'"', false)->assertSee('href="#'.$anchor.'"', false);
+        }
         $this->get('/download-cv')->assertDownload('archell-enaya-resume.pdf');
     }
 
@@ -65,6 +84,8 @@ class StaticContentTest extends TestCase
         file_put_contents($this->snapshot, '{bad json');
         DB::shouldReceive('table')->never();
         DB::shouldReceive('transaction')->never();
+        $this->get('/')->assertStatus(503);
+        file_put_contents($this->snapshot, '{"schema_version":999}');
         $this->get('/')->assertStatus(503);
         unlink($this->snapshot);
         $this->get('/download-cv')->assertStatus(503);

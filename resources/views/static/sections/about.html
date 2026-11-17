@@ -1,0 +1,33 @@
+  <!-- ### about
+  ================================================== -->
+  <section id="{{anchors.about}}" class="s-about target-section">
+
+      <div class="row about-info wide" data-animate-block>
+
+          <div class="column lg-6 md-12 about-info__pic-block">
+              <img loading="lazy" decoding="async" src="{{profile.photo_url}}"
+                    srcset="{{profile.photo_url}} 1x, {{profile.photo_retina_url}} 2x" alt="{{profile.fullname}}" width="600" height="600" class="about-info__pic" data-animate-el>
+          </div>
+
+          <div class="column lg-6 md-12">
+              <div class="about-info__text" >
+
+                  <h2 class="text-pretitle with-line" data-animate-el>
+                      About
+                  </h2>
+                  <p class="attention-getter" data-animate-el>
+                      {{profile.summary}}
+                  </p>
+                  <p data-animate-el>
+                      {{profile.about}}
+                  </p>
+                  <a href="{{resume_path}}" download="resume.pdf" class="btn btn--medium u-fullwidth" data-animate-el>Download CV</a>
+
+              </div>
+          </div>
+      </div> <!-- about-info -->
+
+
+{{> skills}}
+{{> experience}}
+  </section> <!-- end s-about -->

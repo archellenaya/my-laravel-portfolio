@@ -36,27 +36,8 @@ class PortfolioContent
             if (! is_array($content)) {
                 throw new \RuntimeException('Invalid portfolio snapshot.');
             }
-            $content['tools'] ??= [];
-            foreach (config('cms') as $table => $fields) {
-                if (! isset($content[$table]) || ! is_array($content[$table]) || ! array_is_list($content[$table])) {
-                    throw new \RuntimeException('Invalid portfolio section.');
-                }
-                foreach ($content[$table] as $row) {
-                    if (! is_array($row)) {
-                        throw new \RuntimeException('Invalid portfolio record.');
-                    }
-                    foreach (array_keys($fields) as $field) {
-                        if ($table === 'projects' && $field === 'website_url' && !isset($row[$field])) {
-                            continue;
-                        }
-                        if (! isset($row[$field]) || ! is_string($row[$field])) {
-                            throw new \RuntimeException('Invalid portfolio field.');
-                        }
-                    }
-                }
-            }
 
-            return $content;
+            return PortfolioContract::normalize($content);
         } catch (\Throwable $error) {
             report($error);
             abort(503, 'Static portfolio content is unavailable.');

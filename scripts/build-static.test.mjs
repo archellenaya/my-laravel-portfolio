@@ -27,6 +27,10 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
     assert.ok(!html.includes('https://localhost'));
     assert.ok(!/{{|@foreach|@extends|\$counter/.test(html));
     assert.equal((html.match(/class="folio-list__item column"/g) ?? []).length, data.projects.length);
+    for (const id of ['intro', 'about', 'works', 'contact']) {
+        assert.ok(html.includes(`id="${id}"`));
+        assert.ok(html.includes(`href="#${id}"`));
+    }
     const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
     for (const match of html.matchAll(/href="#(modal-[^"]+)"/g)) assert.ok(ids.has(match[1]));
     for (const match of html.matchAll(/(?:src|href)="(\/[^"#]*)"/g)) {
@@ -39,7 +43,7 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
         : path.join(site, 'public', resume);
     assert.deepEqual(await readFile(path.join(output, 'resume.pdf')), await readFile(resumeSource));
     for (const project of data.projects.filter(project => project.website_url)) {
-        assert.ok(!html.includes(`href="${project.website_url}"`));
+        assert.ok(html.includes(`href="${project.website_url}"`));
     }
     await assert.rejects(access(path.join(output, 'index.php')));
     await assert.rejects(access(path.join(output, '.env')));
@@ -67,6 +71,32 @@ test('rejects missing assets, unsafe paths and unsafe social links before emitti
     } finally { await rm(temporary, {recursive:true, force:true}); }
 });
 
+
+test('loads legacy snapshots and rejects unsafe project links or unknown versions', async () => {
+    const temporary = await mkdtemp(path.join(tmpdir(), 'portfolio-legacy-'));
+    try {
+        const snapshot = path.join(temporary, 'portfolio.json');
+        const content = JSON.parse(await readFile(path.join(site, 'resources/data/portfolio.json'), 'utf8'));
+        delete content.profiles[0].headshot;
+        delete content.tools;
+        delete content.projects[0].website_url;
+        content.projects[1].website_url = 'https://example.test/?a=1&b=2';
+        await writeFile(snapshot, JSON.stringify(content));
+        const output = await build({snapshot});
+        const html = await readFile(path.join(output, 'index.html'), 'utf8');
+        assert.ok(html.includes('/images/formal-photo.jpg'));
+        assert.ok(html.includes('href="https://example.test/?a=1&amp;b=2"'));
+        assert.ok(!html.includes('href="https://franksalt.com.mt/"'));
+
+        content.projects[0].website_url = 'javascript:alert(1)';
+        await writeFile(snapshot, JSON.stringify(content));
+        await assert.rejects(build({snapshot}), /Invalid project website URL/);
+
+        content.schema_version = 999;
+        await writeFile(snapshot, JSON.stringify(content));
+        await assert.rejects(build({snapshot}), /Unsupported portfolio schema version/);
+    } finally { await rm(temporary, {recursive:true, force:true}); }
+});
 
 test('deployment uses staged CMS uploads when the runtime storage file is absent', async () => {
     const temporary = await mkdtemp(path.join(tmpdir(), 'portfolio-static-upload-'));

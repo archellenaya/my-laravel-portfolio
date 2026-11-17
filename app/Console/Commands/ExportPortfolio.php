@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\PortfolioContent;
+use App\Services\PortfolioContract;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -22,7 +23,8 @@ class ExportPortfolio extends Command
         }
         $path = config('portfolio.snapshot');
         File::ensureDirectoryExists(dirname($path));
-        File::replace($path, json_encode($rows, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR).PHP_EOL);
+        $snapshot = ['schema_version' => PortfolioContract::definition()['version']] + $rows;
+        File::replace($path, json_encode($snapshot, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR).PHP_EOL);
         $this->info('Exported public content to '.$path);
         foreach ($rows as $table => $records) {
             $this->line($table.': '.count($records));

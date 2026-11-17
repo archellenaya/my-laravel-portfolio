@@ -68,12 +68,54 @@ export function render(template, context) {
     return walk(root, context);
 }
 
+function normalizeContent(content, contract) {
+    if (!content || typeof content !== 'object' || Array.isArray(content)) {
+        throw new Error('Invalid portfolio snapshot');
+    }
+    if (Object.hasOwn(content, 'schema_version') && content.schema_version !== contract.version) {
+        throw new Error('Unsupported portfolio schema version');
+    }
+    const normalized = { schema_version: contract.version };
+    for (const [section, rules] of Object.entries(contract.sections)) {
+        const rows = content[section] ?? (rules.optional ? [] : null);
+        if (!Array.isArray(rows)) throw new Error(`Invalid portfolio section: ${section}`);
+        normalized[section] = rows.map(row => {
+            if (!row || typeof row !== 'object' || Array.isArray(row)) {
+                throw new Error(`Invalid portfolio record: ${section}`);
+            }
+            const record = { ...row };
+            for (const field of rules.fields) {
+                record[field] ??= rules.defaults?.[field];
+                if (typeof record[field] !== 'string') throw new Error(`Invalid portfolio field: ${section}.${field}`);
+            }
+            return record;
+        });
+    }
+    return normalized;
+}
+
+async function readTemplate(file, parents = []) {
+    if (parents.includes(file)) throw new Error(`Circular static template include: ${file}`);
+    const source = await readFile(path.join(site, 'resources/views/static', file), 'utf8');
+    const include = /{{>\s*([a-z][a-z0-9-]*)\s*}}/g;
+    const includes = [...source.matchAll(include)];
+    const parts = await Promise.all(includes.map(([, name]) => readTemplate(`sections/${name}.html`, [...parents, file])));
+    let index = 0;
+    return source.replace(include, () => parts[index++]);
+}
+
+function projectWebsite(website) {
+    if (!website) return '';
+    if (!/^https?:\/\/[^/\s?#]+/i.test(website) || /[\\\s\x00-\x1f\x7f]/.test(website) || !URL.canParse(website)) {
+        throw new Error('Invalid project website URL');
+    }
+    return website;
+}
+
 export async function build({ output = path.join(site, 'dist'), snapshot = path.join(site, 'resources/data/portfolio.json'), stageAssets = false } = {}) {
     const analytics = analyticsScript();
-    const content = JSON.parse(await readFile(snapshot, 'utf8'));
-    for (const section of ['profiles', 'expertise', 'skills', 'experiences', 'education', 'projects']) {
-        if (!Array.isArray(content[section])) throw new Error(`Missing content section: ${section}`);
-    }
+    const contract = JSON.parse(await readFile(path.join(site, 'config/portfolio-contract.json'), 'utf8'));
+    const content = normalizeContent(JSON.parse(await readFile(snapshot, 'utf8')), contract);
     const profile = { ...content.profiles[0] };
     if (!profile.fullname) throw new Error('A profile is required');
     for (const field of ['linkedin_url', 'facebook_url', 'instagram_url', 'github_url']) {
@@ -113,12 +155,12 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
             return relative;
         }
     }
-    profile.headshot_url = await asset(await optimizedImage(profile.headshot ?? 'images/formal-photo.jpg'), images);
+    profile.headshot_url = await asset(await optimizedImage(profile.headshot), images);
     profile.photo_url = await asset(await optimizedImage(profile.photo), images);
     profile.photo_retina_url = await asset(await optimizedImage(profile.photo_retina), images);
     await asset(profile.resume, ['.pdf']);
     const sorted = rows => [...rows].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0) || (a.id ?? 0) - (b.id ?? 0));
-    const context = { ...content, profile, year: new Date().getFullYear() };
+    const context = { ...content, profile, anchors: contract.anchors, resume_path: contract.resume_path, year: new Date().getFullYear() };
     for (const section of ['expertise', 'skills', 'experiences', 'education']) context[section] = sorted(content[section]);
     for (const section of ['experiences', 'education']) context[section] = context[section].map(row => ({...row, bullets: (row.description ?? '').split('\n').filter(line => line.trim()).map(text => ({text}))}));
     const tools = await Promise.all(sorted(content.tools ?? []).map(async tool => {
@@ -127,13 +169,12 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     }));
     context.tools = tools;
     context.projects = await Promise.all(sorted(content.projects).map(async (row, index) => {
-        const website = row.website_url ?? '';
-        if (website && !['https:', 'http:'].includes(new URL(website).protocol)) throw new Error('Invalid project website URL');
+        const website = projectWebsite(row.website_url);
         return {...row, image_url: await asset(row.image, images), modal_id: `modal-project-${index + 1}`,
             website_links: website ? [{url: website, title: row.title}] : [],
             tags: (row.tags ?? '').split(',').map(text => ({text: text.trim()})).filter(row => row.text)};
     }));
-    const html = render(await readFile(path.join(site, 'resources/views/static/index.html'), 'utf8'), context);
+    const html = render(await readTemplate('index.html'), context);
     if (/{{|@foreach|@extends/.test(html)) throw new Error('Unrendered template syntax');
 
     if (stageAssets) {

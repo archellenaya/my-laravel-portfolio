@@ -1,0 +1,58 @@
+      <div class="row about-timelines" data-animate-block>
+
+          <div class="column lg-6 tab-12">
+
+              <h2 class="text-pretitle" data-animate-el>
+                  Experience
+              </h2>
+
+              <div class="timeline" data-animate-el>
+
+                  {{#experiences}}
+                  <div class="timeline__block">
+                      <div class="timeline__bullet"></div>
+                      <div class="timeline__header">
+                          <h3 class="timeline__title">{{title}}</h3>
+                          <p class="timeline__meta">{{organization}}</p>
+                          <p class="timeline__timeframe">{{period}}</p>
+                      </div>
+                      <div class="timeline__desc"><ul>
+                          {{#bullets}}
+                              <li>{{text}}</li>
+                          {{/bullets}}
+                      </ul></div>
+                  </div>
+                  {{/experiences}}
+              </div> <!-- end timeline -->
+
+          </div> <!-- end column -->
+
+          <div class="column lg-6 tab-12">
+
+              <h2 class="text-pretitle" data-animate-el>
+                  Education
+              </h2>
+
+              <div class="timeline" data-animate-el>
+
+                  {{#education}}
+                  <div class="timeline__block">
+                      <div class="timeline__bullet"></div>
+                      <div class="timeline__header">
+                          <h3 class="timeline__title">{{title}}</h3>
+                          <p class="timeline__meta">{{organization}}</p>
+                          <p class="timeline__timeframe">{{period}}</p>
+                      </div>
+                      <div class="timeline__desc"><ul>
+                          {{#bullets}}
+                              <li>{{text}}</li>
+                          {{/bullets}}
+                      </ul></div>
+                  </div>
+                  {{/education}}
+              </div> <!-- end timeline -->
+
+          </div> <!-- end column -->
+
+
+      </div> <!-- end about-timelines -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\PortfolioContent;
+use App\Services\PortfolioContract;
 
 class HomeController extends Controller
 {
@@ -29,9 +30,19 @@ class HomeController extends Controller
 
             return $tool;
         });
-        $projects = collect($snapshot['projects']);
+        $projects = collect($snapshot['projects'])->map(function (array $project, int $index) {
+            $project['modal_id'] = 'modal-0'.($index + 1);
+            $project['image_url'] = asset($project['image']);
+            $project['website_link'] = PortfolioContract::projectWebsite($project['website_url'] ?? null);
+            $project['tags_list'] = array_filter(array_map('trim', explode(',', $project['tags'] ?? '')));
 
-        return view('home_page', compact('data', 'projects') + $content);
+            return $project;
+        });
+        $contract = PortfolioContract::definition();
+        $anchors = $contract['anchors'];
+        $resumePath = $contract['resume_path'];
+
+        return view('home_page', compact('data', 'projects', 'anchors', 'resumePath') + $content);
     }
 
     public function download_cv(PortfolioContent $portfolio)

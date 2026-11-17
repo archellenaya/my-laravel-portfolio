@@ -1,0 +1,100 @@
+{
+    "version": 1,
+    "sections": {
+        "profiles": {
+            "fields": [
+                "display_name",
+                "fullname",
+                "email",
+                "whatsapp",
+                "contact_number",
+                "linkedin_url",
+                "instagram_url",
+                "github_url",
+                "facebook_url",
+                "role",
+                "location",
+                "contact_location",
+                "greeting",
+                "page_title",
+                "meta_description",
+                "headshot",
+                "photo",
+                "photo_retina",
+                "resume",
+                "works_intro",
+                "confidentiality",
+                "contact_intro",
+                "summary",
+                "about"
+            ],
+            "defaults": {
+                "headshot": "images/formal-photo.jpg"
+            }
+        },
+        "expertise": {
+            "fields": [
+                "title"
+            ]
+        },
+        "skills": {
+            "fields": [
+                "title",
+                "description"
+            ]
+        },
+        "experiences": {
+            "fields": [
+                "title",
+                "organization",
+                "period",
+                "description"
+            ]
+        },
+        "education": {
+            "fields": [
+                "title",
+                "organization",
+                "period",
+                "description"
+            ]
+        },
+        "tools": {
+            "fields": [
+                "title",
+                "image",
+                "appearance"
+            ],
+            "optional": true
+        },
+        "projects": {
+            "fields": [
+                "title",
+                "category",
+                "description",
+                "tags",
+                "image",
+                "website_url"
+            ],
+            "defaults": {
+                "website_url": ""
+            }
+        }
+    },
+    "anchors": {
+        "intro": "intro",
+        "about": "about",
+        "works": "works",
+        "contact": "contact"
+    },
+    "resume_path": "/download-cv",
+    "public_origin": "https://www.archellenaya.com",
+    "optional_sections": {
+        "featured_projects": [],
+        "services": []
+    },
+    "availability": {
+        "remote": false,
+        "freelance": false
+    }
+}
