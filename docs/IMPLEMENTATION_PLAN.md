@@ -23,11 +23,11 @@ Gate: existing routes, rendered content, static build and CMS behavior pass pari
 
 Gate: instant selection and reliable fallback on both delivery paths.
 
-## Phase 4 — Initial templates
+## Phase 4 — Initial templates (completed)
 
-1. Implement Modern Developer and its light and dark variants.
-2. Implement Minimal Professional, Creative Developer and Terminal Developer using the shared rendered sections and documented per-template styling.
-3. Check all designs at representative widths of 375, 768, 1024 and 1440 CSS pixels, including navigation, project interactions, text resizing, focus, contrast and reduced motion.
+- [x] Implement Modern Developer and its light and dark variants.
+- [x] Implement Minimal Professional, Creative Developer and Terminal Developer using the shared rendered sections and documented per-template styling.
+- [x] Check all designs at representative widths of 375, 768, 1024 and 1440 CSS pixels, including navigation, project interactions, text resizing, focus, contrast and reduced motion.
 
 Gate: all four templates present the same content and preserve reading order and usable navigation.
 

@@ -15,30 +15,48 @@
         }
     }
 
+    function savePreference(key, value) {
+        try {
+            window.localStorage.setItem(key, value);
+        } catch {
+            // Preferences still apply for this page view.
+        }
+    }
+
+    const storedTheme = readPreference(themeKey);
+    let themePreference = themes.includes(storedTheme) ? storedTheme : defaultTheme;
+
     function applyTemplate(requested) {
         const template = enabled.includes(requested) ? requested : defaultTemplate;
         root.dataset.template = template;
-        root.dataset.theme = '';
-        if (themed.includes(template)) {
-            const theme = readPreference(themeKey);
-            root.dataset.theme = themes.includes(theme) ? theme : defaultTheme;
-        }
+        root.dataset.theme = themed.includes(template) ? themePreference : '';
     }
 
     applyTemplate(readPreference(templateKey));
 
     document.addEventListener('DOMContentLoaded', () => {
         const select = document.getElementById('portfolio-template');
-        if (!select) return;
-        select.value = root.dataset.template;
+        const themeSelect = document.getElementById('portfolio-theme');
+        const themeField = document.getElementById('portfolio-theme-field');
+        if (!select || !themeSelect || !themeField) return;
+
+        function syncControls() {
+            select.value = root.dataset.template;
+            themeSelect.value = themePreference;
+            themeField.hidden = !themed.includes(select.value);
+        }
+
+        syncControls();
         select.addEventListener('change', () => {
             applyTemplate(select.value);
-            select.value = root.dataset.template;
-            try {
-                window.localStorage.setItem(templateKey, select.value);
-            } catch {
-                // The selected template still applies for this page view.
-            }
+            syncControls();
+            savePreference(templateKey, select.value);
+        });
+        themeSelect.addEventListener('change', () => {
+            themePreference = themes.includes(themeSelect.value) ? themeSelect.value : defaultTheme;
+            applyTemplate(select.value);
+            syncControls();
+            savePreference(themeKey, themePreference);
         });
         select.closest('.portfolio-preferences').hidden = false;
     });

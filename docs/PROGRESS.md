@@ -104,3 +104,36 @@ Suggested commit message
 ```text
 feat: add persistent portfolio template preferences
 ```
+
+
+## Phase 4 — Completed 18 November 2026
+
+One stylesheet applies layout and palette rules to the shared page using its root template attributes. Modern Developer uses a technical card grid with System, Light and Dark themes. Minimal Professional uses a narrower measure, a wider experience column and single-column project rows. Creative Developer uses gradients and a full-width lead project with motion gated by the browser preference. Terminal Developer uses monospace typography, a prompt-styled intro and dashed borders. The lead project follows the existing project order. Both public renderers keep the same content, DOM reading order and project dialog behavior.
+
+The color theme selector appears for theme-capable templates. The choice persists separately from template selection and is restored when returning to Modern Developer. System responds to the browser color scheme. With storage unavailable, both choices still apply within the current page.
+
+### Files changed
+
+- `public/css/portfolio-templates.css` and `public/css/styles.css`
+- `public/js/portfolio-preferences.js`
+- `resources/views/layouts/app.blade.php`, `resources/views/portfolio/preferences.blade.php`, `resources/views/static/index.html` and `resources/views/static/sections/preferences.html`
+- `scripts/build-static.test.mjs` and `tests/Feature/StaticContentTest.php`
+- `docs/IMPLEMENTATION_PLAN.md` and `docs/PROGRESS.md`
+
+### Verification
+
+| Check | Result |
+| --- | --- |
+| Node static tests | 11 passed, including theme persistence, template scope and blocked storage. |
+| PHPUnit | 39 passed with 395 assertions in an isolated checkout using temporary GD. |
+| Static production build and staging | `npm run build` and `npm run static:stage` passed. |
+| Chromium matrix | Both renderers passed at 375, 768, 1024 and 1440 CSS pixels for all four templates, including both explicit Modern themes. Checks covered content parity, no horizontal overflow, mobile navigation, dialog opening and focus return, visible focus, sampled text contrast and reduced motion. Tested 200% root font size at 375 px and System theme changes and theme persistence in both renderers. |
+| Lint | Pint, Node syntax checks and `git diff --check` passed. Chromium parsed and exercised the template stylesheet. |
+
+Phase 5 awaits owner instruction. Gather approved case study details and confirm availability before publishing new copy. Production, other browsers and a full accessibility audit remain release tasks.
+
+Suggested commit message
+
+```text
+feat: introduce four responsive portfolio templates
+```

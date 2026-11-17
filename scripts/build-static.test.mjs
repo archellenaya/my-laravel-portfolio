@@ -50,9 +50,19 @@ test('browser preferences apply early, persist selection and handle stale or blo
             closest: () => container,
             addEventListener: (name, callback) => { assert.equal(name, 'change'); change = callback; },
         };
+        const themeField = {hidden: true};
+        let changeTheme;
+        const themeSelect = {
+            addEventListener: (name, callback) => { assert.equal(name, 'change'); changeTheme = callback; },
+        };
+        const controls = {
+            'portfolio-template': select,
+            'portfolio-theme': themeSelect,
+            'portfolio-theme-field': themeField,
+        };
         const document = {
             documentElement: {dataset},
-            getElementById: () => select,
+            getElementById: id => controls[id],
             addEventListener: (name, callback) => { assert.equal(name, 'DOMContentLoaded'); ready = callback; },
             activeElement: select,
         };
@@ -71,7 +81,11 @@ test('browser preferences apply early, persist selection and handle stale or blo
         ready();
         assert.ok(!container.hidden);
         return {
-            early, dataset, select,
+            early, dataset, select, themeField, themeSelect,
+            chooseTheme: value => {
+                themeSelect.value = value;
+                changeTheme();
+            },
             choose: value => {
                 select.value = value;
                 change();
@@ -89,6 +103,15 @@ test('browser preferences apply early, persist selection and handle stale or blo
     assert.equal(current.dataset.theme, 'dark');
     assert.equal(run(saved).early.template, 'modern');
     assert.equal(run(saved).early.theme, 'dark');
+    assert.equal(current.themeField.hidden, false);
+    current.chooseTheme('light');
+    assert.equal(current.dataset.theme, 'light');
+    assert.equal(run(saved).themeSelect.value, 'light');
+    current.choose('creative');
+    assert.equal(current.themeField.hidden, true);
+    assert.equal(current.dataset.theme, '');
+    current.choose('modern');
+    assert.equal(current.dataset.theme, 'light');
 
     for (const unavailable of ['terminal', 'invalid']) {
         saved.set('portfolio.template', unavailable);
@@ -96,8 +119,11 @@ test('browser preferences apply early, persist selection and handle stale or blo
     }
     const blocked = run(saved, true);
     assert.equal(blocked.early.theme, 'system');
+    blocked.chooseTheme('dark');
     blocked.choose('creative');
     assert.equal(blocked.dataset.template, 'creative');
+    blocked.choose('modern');
+    assert.equal(blocked.dataset.theme, 'dark');
     assert.equal(run(saved, true).early.template, 'modern');
 });
 
@@ -113,6 +139,9 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
     assert.ok(html.indexOf('<script src="/js/portfolio-preferences.js"></script>') < html.indexOf('<link rel="stylesheet"'));
     assert.ok(html.includes('class="row portfolio-preferences" hidden'));
     assert.ok(html.includes('<label for="portfolio-template">Portfolio template</label>'));
+    assert.ok(html.includes('<label for="portfolio-theme">Color theme</label>'));
+    assert.ok(html.includes('id="portfolio-theme-field" hidden'));
+    assert.ok(html.includes('href="/css/portfolio-templates.css"'));
     assert.ok(html.includes('<option value="modern" selected>Modern Developer</option>'));
     assert.ok(html.includes('<option value="terminal">Terminal Developer</option>'));
     assert.ok((await readFile(path.join(output, 'js/vercel-analytics.js'), 'utf8')).includes('window.va'));

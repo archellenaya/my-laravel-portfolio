@@ -4267,7 +4267,7 @@ html { scroll-behavior: smooth; }
 }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: 0s !important; animation-iteration-count: 1 !important; }
 }
 :root { --color-text-light: #b9b9b9; }
 .intro-social a, .contact-links, .contact-links a, .contact-social a { color: #b9b9b9; }
