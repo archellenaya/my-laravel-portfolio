@@ -188,3 +188,15 @@ The owner approved both availability badges and requested a CMS review workflow.
 In database mode, only approved case studies and gallery details appear on the public page. Publish Static exports those same approved records and rebuilds the local static site. Unchecking Approved removes the selected details from live database output and from subsequent exports. Case study screenshots can reference an existing cleared public image under `images/` and require descriptive alt text.
 
 Additional changes cover `config/cms.php`, `config/portfolio-contract.json`, the CMS and homepage controllers, portfolio content and presentation services, admin views, the case-study migration, and the Node build. The follow-up verification passed 41 PHPUnit tests with 455 assertions and 12 static tests. Pint, Node syntax, the static build and asset staging passed. Tests covered authorized review, draft privacy, approval, removal from subsequent exports and public rendering. The migration was applied to the workspace Docker database and the local case study route redirected unauthenticated requests to login. Phase 5 remains open for owner review.
+
+### Phase 5 checkpoint — 18 November 2026
+
+The checked-in snapshot contains the approved Property Data Synchronization summary. Commerce Integrations, Headless Drupal and any gallery contribution details still require an owner decision. The implementation plan records the exported summary and keeps the remaining review open.
+
+Updated `scripts/build-static.test.mjs` so the homepage smoke test checks case study visibility against the snapshot's approval flags and compares the generated resume with the runtime upload or staged PDF. The isolated checkout passed all 12 static tests, the production static build and asset staging. The focused CMS and static-content PHPUnit suites passed 8 tests with 113 assertions using a temporary application key. Pint, Node syntax and `git diff --check` passed.
+
+Suggested commit message
+
+```text
+test(static): verify approved case studies and staged resume assets
+```

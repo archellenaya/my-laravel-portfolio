@@ -159,7 +159,8 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
     assert.equal((html.match(/aria-label="Discuss /g) ?? []).length, 6);
     assert.ok(html.includes('Web: JavaScript, HTML, CSS</li>'));
     assert.ok(html.includes('Server-side Languages: PHP</li>'));
-    assert.ok(!html.includes('Featured Technical Case Studies'));
+    const hasApprovedStudies = (data.case_studies ?? []).some(study => study.approved === true);
+    assert.equal(html.includes('Featured Technical Case Studies'), hasApprovedStudies);
     assert.ok(html.includes('Available for remote employment'));
     assert.ok(html.includes('Available for freelance projects'));
     assert.ok(html.includes('src="/js/vercel-analytics.js"'));
@@ -189,10 +190,13 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
         await access(path.join(output, decodeURIComponent(match[1])));
     }
     const resume = data.profiles[0].resume;
-    const resumeSource = resume.startsWith('storage/cms/')
-        ? path.join(site, 'storage/app/public', resume.slice(8))
-        : path.join(site, 'public', resume);
-    assert.deepEqual(await readFile(path.join(output, 'resume.pdf')), await readFile(resumeSource));
+    const resumeBytes = resume.startsWith('storage/cms/')
+        ? await readFile(path.join(site, 'storage/app/public', resume.slice(8))).catch(error => {
+            if (error.code !== 'ENOENT') throw error;
+            return readFile(path.join(site, 'resources/data/assets', resume));
+        })
+        : await readFile(path.join(site, 'public', resume));
+    assert.deepEqual(await readFile(path.join(output, 'resume.pdf')), resumeBytes);
     for (const project of data.projects.filter(project => project.website_url)) {
         assert.ok(html.includes(`href="${project.website_url}"`));
     }

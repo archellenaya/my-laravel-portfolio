@@ -38,7 +38,8 @@ Gate: all four templates present the same content and preserve reading order and
 - [x] Add approval-gated rendering for technical case studies and client gallery contributions.
 - [x] Confirm and enable both remote employment and freelance project availability badges.
 - [x] Add case-study drafts and gallery approval controls to the existing authenticated CMS.
-- [ ] Review the property synchronization, commerce integration, and headless Drupal drafts in the CMS. Approve only the studies and gallery details cleared for public use, or leave them as drafts.
+- [x] Export the approved Property Data Synchronization summary to the checked-in snapshot.
+- [ ] Finish owner review of the Commerce Integrations and Headless Drupal drafts and any gallery contribution details. Approve only the details cleared for public use, or leave them as drafts.
 
 Gate: owner-reviewed claims and confidentiality, working resume and contact actions, and preserved client listings.
 
