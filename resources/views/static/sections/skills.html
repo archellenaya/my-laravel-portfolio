@@ -1,20 +1,15 @@
-      <div class="row about-expertise" data-animate-block>
-          <div class="column lg-12">
-
-              <h2 class="text-pretitle" data-animate-el>Expertise</h2>
-
-              <ul class="skills-list h1" data-animate-el>
-                  {{#expertise}}
-                      <li>{{title}}</li>
-                  {{/expertise}}
-              </ul>
-          </div>
-          <div class="column lg-12" data-animate-el>
-              <h3>Technical Skills</h3>
-              <dl>
-                  {{#skills}}
-                      <dt>{{title}}</dt><dd>{{description}}</dd>
-                  {{/skills}}
-              </dl>
-          </div>
-      </div> <!-- end about-expertise -->
+<div class="row about-expertise" data-animate-block>
+    <div class="column lg-12">
+        <h2 class="text-pretitle" data-animate-el>Technical Skills</h2>
+        <div class="portfolio-content-grid">
+            {{#skill_groups}}
+                <article class="portfolio-content-card">
+                    <h3>{{title}}</h3>
+                    <ul>
+                        {{#items}}<li>{{title}}{{#descriptions}}: {{text}}{{/descriptions}}</li>{{/items}}
+                    </ul>
+                </article>
+            {{/skill_groups}}
+        </div>
+    </div>
+</div>

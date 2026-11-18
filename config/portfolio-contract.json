@@ -29,7 +29,12 @@
                 "about"
             ],
             "defaults": {
-                "headshot": "images/formal-photo.jpg"
+                "headshot": "images/formal-photo.jpg",
+                "linkedin_url": "",
+                "github_url": "",
+                "facebook_url": "",
+                "instagram_url": "",
+                "whatsapp": ""
             }
         },
         "expertise": {
@@ -85,17 +90,72 @@
         "intro": "intro",
         "about": "about",
         "works": "works",
-        "contact": "contact"
+        "contact": "contact",
+        "services": "services"
     },
     "resume_path": "/download-cv",
     "public_origin": "https://www.archellenaya.com",
     "optional_sections": {
-        "featured_projects": [],
-        "services": []
+        "services": [
+            {
+                "title": "Custom Laravel Web Applications",
+                "description": "Build or extend Laravel applications for business workflows and internal tools.",
+                "technologies": [
+                    "PHP",
+                    "Laravel",
+                    "MySQL"
+                ]
+            },
+            {
+                "title": "REST API Development and Integration",
+                "description": "Connect applications and third-party services, including workflows that synchronize data between platforms.",
+                "technologies": [
+                    "REST APIs",
+                    "Laravel",
+                    "JSON"
+                ]
+            },
+            {
+                "title": "Drupal Development and Custom Modules",
+                "description": "Build custom modules and structured content, or expose Drupal content to a separate frontend.",
+                "technologies": [
+                    "Drupal",
+                    "PHP",
+                    "JSON:API"
+                ]
+            },
+            {
+                "title": "WordPress Development and Customization",
+                "description": "Extend WordPress with custom functionality and connect it to existing systems.",
+                "technologies": [
+                    "WordPress",
+                    "PHP",
+                    "REST APIs"
+                ]
+            },
+            {
+                "title": "WooCommerce Development and Integration",
+                "description": "Connect WooCommerce with other systems for order, pricing and inventory workflows.",
+                "technologies": [
+                    "WooCommerce",
+                    "WordPress",
+                    "REST APIs"
+                ]
+            },
+            {
+                "title": "Website Maintenance and Optimization",
+                "description": "Troubleshoot backend issues and maintain existing Laravel, Drupal and WordPress applications.",
+                "technologies": [
+                    "Laravel",
+                    "Drupal",
+                    "WordPress"
+                ]
+            }
+        ]
     },
     "availability": {
-        "remote": false,
-        "freelance": false
+        "remote": true,
+        "freelance": true
     },
     "template_preferences": {
         "default_template": "modern",
@@ -126,5 +186,71 @@
                 "supports_theme": false
             }
         ]
+    },
+    "hero": {
+        "specialization": "PHP, Laravel & API Integrations",
+        "experience_label": "8+ years of professional experience"
+    },
+    "experience_intro": "My work includes building and maintaining Laravel backends, integrating third-party systems, and developing custom CMS functionality with teams in Malta and the Philippines.",
+    "skill_groups": {
+        "Backend Development": [
+            "PHP & Laravel",
+            "Multi-tenant Applications",
+            "Frameworks",
+            "Server-side Languages"
+        ],
+        "CMS & E-commerce": [
+            "Drupal & Headless CMS",
+            "WordPress & WooCommerce",
+            "CMS Frameworks"
+        ],
+        "Databases": [
+            "Databases"
+        ],
+        "Frontend Development": [
+            "Web"
+        ],
+        "APIs & Integrations": [
+            "REST API Integrations",
+            "Integrations"
+        ],
+        "DevOps & Development Tools": [
+            "Tools",
+            "Environment"
+        ],
+        "AI-Assisted Development": [
+            "AI-assisted development"
+        ],
+        "Learning & Academic Background": [
+            "Currently exploring",
+            "Academic familiarity"
+        ],
+        "Languages": [
+            "Languages"
+        ]
+    },
+    "case_study_fields": {
+        "problem": "Business problem",
+        "responsibilities": "My responsibilities",
+        "architecture": "Architecture",
+        "challenges": "Technical challenges",
+        "solutions": "Solutions",
+        "outcomes": "Outcomes",
+        "confidentiality": "Confidentiality"
+    },
+    "skill_splits": {
+        "Web": {
+            "title": "Server-side Languages",
+            "technologies": [
+                "PHP"
+            ]
+        },
+        "Frameworks": {
+            "title": "CMS Frameworks",
+            "technologies": [
+                "Drupal",
+                "WordPress"
+            ]
+        }
     }
 }

@@ -5,6 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
+import { caseStudies } from './portfolio-presentation.mjs';
 import { analyticsScript, build, render, templatePreferences } from './build-static.mjs';
 
 const site = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -127,11 +128,40 @@ test('browser preferences apply early, persist selection and handle stale or blo
     assert.equal(run(saved, true).early.template, 'modern');
 });
 
+test('only approved case studies resolve assets and expose optional details', async () => {
+    const approved = {
+        approved: true, title: 'Approved example', description: 'Example description',
+        problem: 'Example problem', technologies: 'PHP',
+        screenshot_path: 'images/example.png', screenshot_alt: 'Approved preview',
+        repository_url: 'https://example.test/repository',
+    };
+    const contract = {
+        case_study_fields: {problem: 'Business problem', outcomes: 'Results'},
+    };
+    const studies = await caseStudies([{title: 'Private draft', screenshot_path: '../draft.png'}, approved], contract, url => url, async file => '/' + file);
+    assert.equal(studies.length, 1);
+    assert.equal(studies[0].title, approved.title);
+    assert.deepEqual(studies[0].details, [{label: 'Business problem', text: approved.problem}]);
+    assert.deepEqual(studies[0].links, [{label: 'Public repository', url: approved.repository_url}]);
+    assert.deepEqual(studies[0].screenshots, [{alt: 'Approved preview', url: '/images/example.png'}]);
+});
+
 test('build produces HTML, linked assets and resume without PHP or secret files', async () => {
     const output = await build();
     const html = await readFile(path.join(output, 'index.html'), 'utf8');
     const data = JSON.parse(await readFile(path.join(site, 'resources/data/portfolio.json'), 'utf8'));
     assert.ok(html.includes(data.profiles[0].fullname));
+    for (const text of [
+        '8+ years of professional experience', 'Download Resume', 'View Projects',
+        'Technical Skills', 'Learning &amp; Academic Background',
+        'Client Website Gallery', 'Freelance Services',
+    ]) assert.ok(html.includes(text));
+    assert.equal((html.match(/aria-label="Discuss /g) ?? []).length, 6);
+    assert.ok(html.includes('Web: JavaScript, HTML, CSS</li>'));
+    assert.ok(html.includes('Server-side Languages: PHP</li>'));
+    assert.ok(!html.includes('Featured Technical Case Studies'));
+    assert.ok(html.includes('Available for remote employment'));
+    assert.ok(html.includes('Available for freelance projects'));
     assert.ok(html.includes('src="/js/vercel-analytics.js"'));
     assert.ok(html.includes('data-template="modern"'));
     assert.ok(html.includes('data-theme="system"'));
@@ -148,7 +178,7 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
     assert.ok(!html.includes('https://localhost'));
     assert.ok(!/{{|@foreach|@extends|\$counter/.test(html));
     assert.equal((html.match(/class="folio-list__item column"/g) ?? []).length, data.projects.length);
-    for (const id of ['intro', 'about', 'works', 'contact']) {
+    for (const id of ['intro', 'about', 'works', 'services', 'contact']) {
         assert.ok(html.includes(`id="${id}"`));
         assert.ok(html.includes(`href="#${id}"`));
     }
@@ -200,6 +230,13 @@ test('loads legacy snapshots and rejects unsafe project links or unknown version
         const content = JSON.parse(await readFile(path.join(site, 'resources/data/portfolio.json'), 'utf8'));
         delete content.profiles[0].headshot;
         delete content.tools;
+        content.case_studies = [
+            {title: 'Draft must stay private', approved: false},
+            {title: 'Approved site example', description: 'Approved study description.', technologies: 'PHP, Laravel', approved: true},
+        ];
+        content.projects[0].contribution = 'Approved gallery contribution.';
+        content.projects[0].technologies = 'Laravel';
+        delete content.profiles[0].github_url;
         delete content.projects[0].website_url;
         content.projects[1].website_url = 'https://example.test/?a=1&b=2';
         await writeFile(snapshot, JSON.stringify(content));
@@ -208,6 +245,10 @@ test('loads legacy snapshots and rejects unsafe project links or unknown version
         assert.ok(html.includes('/images/formal-photo.jpg'));
         assert.ok(html.includes('href="https://example.test/?a=1&amp;b=2"'));
         assert.ok(!html.includes('href="https://franksalt.com.mt/"'));
+        assert.ok(!html.includes('>GitHub</a>'));
+        assert.ok(html.includes('Approved site example'));
+        assert.ok(html.includes('Approved gallery contribution.'));
+        assert.ok(!html.includes('Draft must stay private'));
 
         content.projects[0].website_url = 'javascript:alert(1)';
         await writeFile(snapshot, JSON.stringify(content));

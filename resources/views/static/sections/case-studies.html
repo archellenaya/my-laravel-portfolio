@@ -1,0 +1,21 @@
+{{#featured}}
+    <section aria-labelledby="case-studies-heading">
+        <h3 id="case-studies-heading">Featured Technical Case Studies</h3>
+        <div class="portfolio-content-grid">
+            {{#studies}}
+                <article class="portfolio-content-card">
+                    <h4>{{title}}</h4>
+                    <p>{{description}}</p>
+                    <ul class="portfolio-badges">
+                        {{#technologies}}<li>{{name}}</li>{{/technologies}}
+                    </ul>
+                    <dl>
+                        {{#details}}<dt>{{label}}</dt><dd>{{text}}</dd>{{/details}}
+                    </dl>
+                    {{#screenshots}}<img loading="lazy" decoding="async" src="{{url}}" alt="{{alt}}">{{/screenshots}}
+                    {{#links}}<p><a href="{{url}}" rel="noopener noreferrer" target="_blank">{{label}}</a></p>{{/links}}
+                </article>
+            {{/studies}}
+        </div>
+    </section>
+{{/featured}}

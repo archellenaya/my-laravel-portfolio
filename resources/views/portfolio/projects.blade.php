@@ -15,6 +15,8 @@
 
               </p>
               <small><b>Note:</b> {{$data['confidentiality']}}</small>
+              @include('portfolio.case-studies')
+              <h3>Client Website Gallery</h3>
                 <ul class="folio-list row block-lg-one-half block-stack-on-1000">
                    @if($projects)
                         @foreach ($projects as $project)
@@ -56,7 +58,17 @@
                         <div class="modal-popup__desc" style="text-align: left;">
                             <h2>{{$project['title']}}</h2>
                             <p>{{$project['description']}}</p>
-                            <ul class="modal-popup__cat">
+                            @if ($project['contribution'])
+                                <p><strong>My contribution:</strong> {{ $project['contribution'] }}</p>
+                            @endif
+                            @if ($project['technologies'])
+                                <ul class="portfolio-badges">
+                                    @foreach ($project['technologies'] as $technology)
+                                        <li>{{ $technology }}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <ul class="modal-popup__cat portfolio-badges">
                                 @foreach ($project['tags_list'] as $tag)
                                     <li>{{$tag}}</li>
                                 @endforeach

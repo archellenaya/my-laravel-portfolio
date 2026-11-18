@@ -1,0 +1,21 @@
+{{#services_section}}
+<section id="{{anchors.services}}" class="portfolio-services target-section" aria-labelledby="services-heading">
+    <div class="row">
+        <div class="column lg-12">
+            <h2 id="services-heading" class="text-pretitle">Freelance Services</h2>
+            <div class="portfolio-content-grid">
+                {{#services}}
+                    <article class="portfolio-content-card">
+                        <h3>{{title}}</h3>
+                        <p>{{description}}</p>
+                        <ul class="portfolio-badges">
+                            {{#technologies}}<li>{{name}}</li>{{/technologies}}
+                        </ul>
+                        <a href="#{{anchors.contact}}" aria-label="Discuss {{title}}">Discuss this service</a>
+                    </article>
+                {{/services}}
+            </div>
+        </div>
+    </div>
+</section>
+{{/services_section}}

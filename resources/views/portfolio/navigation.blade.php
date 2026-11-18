@@ -11,6 +11,9 @@
                         <li class="current"><a href="#{{$anchors['intro']}}" class="smoothscroll">Intro</a></li>
                         <li><a href="#{{$anchors['about']}}" class="smoothscroll">About</a></li>
                         <li><a href="#{{$anchors['works']}}" class="smoothscroll">Works</a></li>
+                        @if ($services)
+                            <li><a href="#{{ $anchors['services'] }}" class="smoothscroll">Services</a></li>
+                        @endif
                         <li><a href="#{{$anchors['contact']}}" class="smoothscroll">Say Hello</a></li>
                     </ul>
                 </nav>

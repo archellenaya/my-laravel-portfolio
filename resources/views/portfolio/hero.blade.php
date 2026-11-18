@@ -13,19 +13,28 @@
                   {{$data['greeting']}}
               </div>
 
-              <h1 class="text-huge-title">
-                  I am {{$data['display_name']}}, <br>
-                  {{$data['role']}}<br>
-                  based in {{$data['location']}}.
-              </h1>
+              <h1 class="text-huge-title">Hi, I’m {{ $data['display_name'] }}.</h1>
+              <p class="hero-specialization">{{ $data['role'] }} · {{ $hero['specialization'] }}</p>
+              <p class="hero-summary">{{ $data['summary'] }}</p>
+              <ul class="portfolio-badges">
+                  <li>{{ $hero['experience_label'] }}</li>
+                  <li>Based in {{ $data['location'] }}</li>
+                  @if ($availability['remote'] === true)<li>Available for remote employment</li>@endif
+                  @if ($availability['freelance'] === true)<li>Available for freelance projects</li>@endif
+              </ul>
+              <div class="hero-actions">
+                  <a href="{{ url($resumePath) }}">Download Resume</a>
+                  <a href="#{{ $anchors['works'] }}">View Projects</a>
+                  <a href="#{{ $anchors['contact'] }}">Contact</a>
+              </div>
           </div>
 
           <ul class="intro-social">
-             <li><a href="{{$data['linkedin_url']}}" target="_blank" rel="noopener noreferrer">Linkedin</a></li>
-              <li><a href="{{$data['facebook_url']}}" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-              <li><a href="{{$data['instagram_url']}}" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="https://wa.me/{{$data['whatsapp']}}" target="_blank" rel="noopener noreferrer">Whatsapp</a></li>
-              <li><a href="{{$data['github_url']}}" target="_blank" rel="noopener noreferrer">Github</a></li>
+             @if ($data['linkedin_url'])<li><a href="{{ $data['linkedin_url'] }}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>@endif
+              @if ($data['facebook_url'])<li><a href="{{ $data['facebook_url'] }}" target="_blank" rel="noopener noreferrer">Facebook</a></li>@endif
+              @if ($data['instagram_url'])<li><a href="{{ $data['instagram_url'] }}" target="_blank" rel="noopener noreferrer">Instagram</a></li>@endif
+              @if ($data['whatsapp'])<li><a href="https://wa.me/{{ $data['whatsapp'] }}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>@endif
+              @if ($data['github_url'])<li><a href="{{ $data['github_url'] }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>@endif
           </ul>
 
       </div> <!-- end intro content -->

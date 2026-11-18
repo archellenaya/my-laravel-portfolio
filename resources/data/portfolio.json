@@ -577,5 +577,24 @@
             "website_url": "https://bdlbooks.com/",
             "sort_order": 24
         }
+    ],
+    "case_studies": [
+        {
+            "title": "Property Data Synchronization",
+            "description": "Work on synchronizing property information.",
+            "problem": null,
+            "responsibilities": null,
+            "technologies": null,
+            "architecture": null,
+            "challenges": null,
+            "solutions": null,
+            "outcomes": null,
+            "confidentiality": null,
+            "live_url": null,
+            "repository_url": null,
+            "screenshot_path": null,
+            "screenshot_alt": null,
+            "approved": true
+        }
     ]
 }

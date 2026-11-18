@@ -13,19 +13,28 @@
                   {{profile.greeting}}
               </div>
 
-              <h1 class="text-huge-title">
-                  I am {{profile.display_name}}, <br>
-                  {{profile.role}}<br>
-                  based in {{profile.location}}.
-              </h1>
+              <h1 class="text-huge-title">Hi, I’m {{profile.display_name}}.</h1>
+              <p class="hero-specialization">{{profile.role}} · {{hero.specialization}}</p>
+              <p class="hero-summary">{{profile.summary}}</p>
+              <ul class="portfolio-badges">
+                  <li>{{hero.experience_label}}</li>
+                  <li>Based in {{profile.location}}</li>
+                  {{#remote_availability}}<li>Available for remote employment</li>{{/remote_availability}}
+                  {{#freelance_availability}}<li>Available for freelance projects</li>{{/freelance_availability}}
+              </ul>
+              <div class="hero-actions">
+                  <a href="{{resume_path}}">Download Resume</a>
+                  <a href="#{{anchors.works}}">View Projects</a>
+                  <a href="#{{anchors.contact}}">Contact</a>
+              </div>
           </div>
 
           <ul class="intro-social">
-             <li><a href="{{profile.linkedin_url}}" target="_blank" rel="noopener noreferrer">Linkedin</a></li>
-              <li><a href="{{profile.facebook_url}}" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-              <li><a href="{{profile.instagram_url}}" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-              <li><a href="https://wa.me/{{profile.whatsapp}}" target="_blank" rel="noopener noreferrer">Whatsapp</a></li>
-              <li><a href="{{profile.github_url}}" target="_blank" rel="noopener noreferrer">Github</a></li>
+             {{#profile.linkedin_url_links}}<li><a href="{{url}}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>{{/profile.linkedin_url_links}}
+              {{#profile.facebook_url_links}}<li><a href="{{url}}" target="_blank" rel="noopener noreferrer">Facebook</a></li>{{/profile.facebook_url_links}}
+              {{#profile.instagram_url_links}}<li><a href="{{url}}" target="_blank" rel="noopener noreferrer">Instagram</a></li>{{/profile.instagram_url_links}}
+              {{#profile.whatsapp_links}}<li><a href="https://wa.me/{{number}}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>{{/profile.whatsapp_links}}
+              {{#profile.github_url_links}}<li><a href="{{url}}" target="_blank" rel="noopener noreferrer">GitHub</a></li>{{/profile.github_url_links}}
           </ul>
 
       </div> <!-- end intro content -->

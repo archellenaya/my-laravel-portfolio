@@ -1,3 +1,4 @@
+import { caseStudies, skillGroups } from './portfolio-presentation.mjs';
 import { readFile, writeFile, mkdir, readdir, realpath, copyFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -91,6 +92,8 @@ function normalizeContent(content, contract) {
             return record;
         });
     }
+    normalized.case_studies = content.case_studies ?? [];
+    if (!Array.isArray(normalized.case_studies)) throw new Error('Invalid portfolio case studies');
     return normalized;
 }
 
@@ -139,9 +142,11 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     const profile = { ...content.profiles[0] };
     if (!profile.fullname) throw new Error('A profile is required');
     for (const field of ['linkedin_url', 'facebook_url', 'instagram_url', 'github_url']) {
-        if (!['https:', 'http:'].includes(new URL(profile[field]).protocol)) throw new Error(`Invalid ${field}`);
+        if (profile[field] && !['https:', 'http:'].includes(new URL(profile[field]).protocol)) throw new Error(`Invalid ${field}`);
+        profile[field + '_links'] = profile[field] ? [{url: profile[field]}] : [];
     }
-    if (!/^\d{7,15}$/.test(profile.whatsapp) || /[\r\n]/.test(profile.email)) throw new Error('Invalid contact details');
+    if ((profile.whatsapp && !/^\d{7,15}$/.test(profile.whatsapp)) || /[\r\n]/.test(profile.email)) throw new Error('Invalid contact details');
+    profile.whatsapp_links = profile.whatsapp ? [{number: profile.whatsapp}] : [];
 
     const assets = new Map();
     async function asset(relative, extensions) {
@@ -187,6 +192,17 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
         canonical_url: new URL('/', contract.public_origin).href,
     };
     for (const section of ['expertise', 'skills', 'experiences', 'education']) context[section] = sorted(content[section]);
+    context.hero = contract.hero;
+    context.remote_availability = contract.availability.remote === true ? [{}] : [];
+    context.freelance_availability = contract.availability.freelance === true ? [{}] : [];
+    context.experience_intro = contract.experience_intro;
+    context.skill_groups = skillGroups(context.expertise, context.skills, contract);
+    context.services = contract.optional_sections.services.map(service => ({
+        ...service, technologies: service.technologies.map(name => ({name})),
+    }));
+    context.services_section = context.services.length ? [{}] : [];
+    const featured = await caseStudies(content.case_studies, contract, projectWebsite, relative => asset(relative, images));
+    context.featured = featured.length ? [{studies: featured}] : [];
     for (const section of ['experiences', 'education']) context[section] = context[section].map(row => ({...row, bullets: (row.description ?? '').split('\n').filter(line => line.trim()).map(text => ({text}))}));
     const tools = await Promise.all(sorted(content.tools ?? []).map(async tool => {
         if (!['original', 'light'].includes(tool.appearance)) throw new Error('Invalid tool logo appearance');
@@ -195,7 +211,10 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     context.tools = tools;
     context.projects = await Promise.all(sorted(content.projects).map(async (row, index) => {
         const website = projectWebsite(row.website_url);
+        const technologies = (row.technologies ?? '').split(',').map(name => name.trim()).filter(Boolean);
         return {...row, image_url: await asset(row.image, images), modal_id: `modal-project-${index + 1}`,
+            contributions: row.contribution ? [{text: row.contribution}] : [],
+            technology_badges: technologies.length ? [{items: technologies.map(name => ({name}))}] : [],
             website_links: website ? [{url: website, title: row.title}] : [],
             tags: (row.tags ?? '').split(',').map(text => ({text: text.trim()})).filter(row => row.text)};
     }));

@@ -15,6 +15,8 @@
 
               </p>
               <small><b>Note:</b> {{profile.confidentiality}}</small>
+              {{> case-studies}}
+              <h3>Client Website Gallery</h3>
                 <ul class="folio-list row block-lg-one-half block-stack-on-1000">
 
 
@@ -58,7 +60,11 @@
                         <div class="modal-popup__desc" style="text-align: left;">
                             <h2>{{title}}</h2>
                             <p>{{description}}</p>
-                            <ul class="modal-popup__cat">
+                            {{#contributions}}<p><strong>My contribution:</strong> {{text}}</p>{{/contributions}}
+                            {{#technology_badges}}
+                                <ul class="portfolio-badges">{{#items}}<li>{{name}}</li>{{/items}}</ul>
+                            {{/technology_badges}}
+                            <ul class="modal-popup__cat portfolio-badges">
                                 {{#tags}}
                                     <li>{{text}}</li>
                                 {{/tags}}

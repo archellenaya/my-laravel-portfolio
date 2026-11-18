@@ -7,5 +7,12 @@ return [
     'experiences' => ['title' => 'text', 'organization' => 'text', 'period' => 'text', 'description' => 'textarea'],
     'education' => ['title' => 'text', 'organization' => 'text', 'period' => 'text', 'description' => 'textarea'],
     'tools' => ['title' => 'text', 'image' => 'text', 'appearance' => 'text'],
-    'projects' => ['title' => 'text', 'category' => 'text', 'description' => 'textarea', 'tags' => 'text', 'image' => 'text', 'website_url' => 'text'],
+    'projects' => ['title' => 'text', 'category' => 'text', 'description' => 'textarea', 'tags' => 'text', 'image' => 'text', 'website_url' => 'text', 'contribution' => 'optional_textarea', 'technologies' => 'optional_text', 'approved' => 'approval'],
+    'case_studies' => [
+        'title' => 'text', 'description' => 'optional_textarea', 'problem' => 'optional_textarea', 'responsibilities' => 'optional_textarea',
+        'technologies' => 'optional_text', 'architecture' => 'optional_textarea', 'challenges' => 'optional_textarea',
+        'solutions' => 'optional_textarea', 'outcomes' => 'optional_textarea', 'confidentiality' => 'optional_textarea',
+        'live_url' => 'optional_text', 'repository_url' => 'optional_text', 'screenshot_path' => 'optional_text',
+        'screenshot_alt' => 'optional_text', 'approved' => 'approval',
+    ],
 ];

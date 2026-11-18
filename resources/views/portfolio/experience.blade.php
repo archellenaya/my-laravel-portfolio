@@ -6,6 +6,8 @@
                   Experience
               </h2>
 
+              <p class="experience-intro">{{ $experienceIntro }}</p>
+
               <div class="timeline" data-animate-el>
 
                   @foreach($experiences as $item)

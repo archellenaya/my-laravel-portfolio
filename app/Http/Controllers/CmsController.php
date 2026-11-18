@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PortfolioPresentation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -60,6 +61,11 @@ class CmsController extends Controller
         }
         $rules = ['sort_order' => 'required|integer|min:0|max:100000'];
         foreach ($fields as $field => $type) {
+            if ($type === 'approval') {
+                $rules[$field] = ['nullable', 'boolean'];
+
+                continue;
+            }
             if (in_array($field, ['headshot', 'photo', 'photo_retina', 'image', 'resume'])) {
                 $rules[$field.'_upload'] = [empty($existing?->$field) ? 'required' : 'nullable', 'file', $field === 'resume' ? 'mimes:pdf' : 'image', $field === 'resume' ? 'max:10240' : 'max:8192'];
                 if ($field !== 'resume') {
@@ -80,7 +86,22 @@ class CmsController extends Controller
                 continue;
             }
 
-            $rules[$field] = ['required', 'string', $type === 'textarea' ? 'max:20000' : 'max:1000'];
+            $presence = str_starts_with($type, 'optional_') ? 'nullable' : 'required';
+            $rules[$field] = [$presence, 'string', str_ends_with($type, 'textarea') ? 'max:20000' : 'max:1000'];
+            if ($section === 'case_studies' && $field === 'description' && $request->boolean('approved')) {
+                $rules[$field][0] = 'required';
+            }
+            if ($field === 'screenshot_path') {
+                $rules[$field][] = function ($attribute, $path, $fail) {
+                    if (! is_string($path) || ! PortfolioPresentation::publicScreenshot($path)) {
+                        $fail('Choose an existing public image path under images/.');
+                    }
+                };
+                $rules[$field][] = 'required_with:screenshot_alt';
+            }
+            if ($field === 'screenshot_alt') {
+                $rules[$field][] = 'required_with:screenshot_path';
+            }
             if ($field === 'email') {
                 $rules[$field][] = 'email';
             }
@@ -95,6 +116,9 @@ class CmsController extends Controller
             }
         }
         $values = $request->validate($rules);
+        if (array_key_exists('approved', $fields)) {
+            $values['approved'] = (bool) ($values['approved'] ?? false);
+        }
         if ($section === 'projects') {
             $values['website_url'] = $values['website_url'] ?? '';
         }
@@ -125,7 +149,15 @@ class CmsController extends Controller
             throw $error;
         }
 
-        return redirect()->route('admin.list', $section)->with('status', 'Content saved. Your changes are live on the site.');
+        $status = match ($section) {
+            'case_studies' => $values['approved']
+                ? 'Case study approved. Use Publish Static to include it in the next static build.'
+                : 'Draft saved. The case study is excluded from new public builds.',
+            'projects' => 'Project saved. Use Publish Static to refresh the static gallery.',
+            default => 'Content saved. Your changes are live on the site.',
+        };
+
+        return redirect()->route('admin.list', $section)->with('status', $status);
     }
 
     public function destroy(string $section, int $id)

@@ -137,3 +137,54 @@ Suggested commit message
 ```text
 feat: introduce four responsive portfolio templates
 ```
+
+
+## Phase 5 — Implemented content updates, awaiting owner review
+
+Updated the hero, added resume, project and contact actions, grouped CMS skills and distinguished learning from existing work. The experience lead draws from existing Laravel, integration and CMS responsibilities. Added six configurable freelance services and direct contact links. Both layouts retain existing client listings, descriptions, screenshots and valid links. No employment records, measurements or client attribution were added.
+
+The contract keeps remote and freelance badges disabled pending confirmation. Only featured entries with `approved: true` render. Client-specific contribution and technology fields also require approval and are keyed by the existing project website URL. Screenshots for approved studies use public image paths and descriptive alt text. Keep draft and confidential details out of the checked-in public configuration.
+
+### Editorial review required
+
+| Topic | Existing record | Owner review |
+| --- | --- | --- |
+| Property synchronization | Work on synchronization of property information | Confirm the problem, systems, responsibilities, challenges, solution and any shareable outcome. Confirm whether a client or screenshot may be named. |
+| Commerce integrations | Laravel, WordPress and WooCommerce integrations and order, pricing and inventory synchronization | Confirm which details belong to the same project and which can be published. |
+| Headless Drupal | Custom modules, structured content, Paragraph-based forms and JSON:API for headless CMS | Confirm which contributions belong together and provide approved architecture, challenges and outcomes where available. |
+
+Anonymous summaries are possible after approval. Leave measurements, screenshots and public URLs omitted when they are unavailable or confidential.
+
+### Files changed
+
+- `config/portfolio-contract.json`, `app/Http/Controllers/HomeController.php`, `app/Services/PortfolioPresentation.php`, `scripts/build-static.mjs` and `scripts/portfolio-presentation.mjs`
+- Both public entry views and paired partials for hero, skills, experience, navigation, projects, case studies, services and contact under `resources/views/`
+- `public/css/portfolio-templates.css`, `scripts/build-static.test.mjs` and `tests/Feature/StaticContentTest.php`
+- `docs/IMPLEMENTATION_PLAN.md` and `docs/PROGRESS.md`
+
+### Verification
+
+| Check | Result |
+| --- | --- |
+| Node static tests | 12 passed, including optional social links, categorized skills, all six services and the case study approval gate. |
+| PHPUnit | 40 passed with 413 assertions in an isolated copy using temporary GD. |
+| Static build and staged assets | `npm run build` and `npm run static:stage` passed. |
+| Browser | Chromium checked both renders at 375, 768, 1024 and 1440 CSS pixels across all four layouts, including services links, navigation, project dialogs, focus and horizontal overflow. |
+| Lint | Pint, Node syntax checks and `git diff --check` passed. |
+
+Resume Phase 5 after receiving the owner’s availability choice and approved case study and gallery details. Phase 6 remains pending.
+
+Suggested commit message for the implemented portion
+
+```text
+feat: improve portfolio content and add freelance services
+```
+
+
+### Phase 5 follow-up — availability and CMS review
+
+The owner approved both availability badges and requested a CMS review workflow. Both badges are enabled. The existing authenticated CMS now has a Case studies section at `/admin/content/case_studies`. The migration creates editable drafts for Property Data Synchronization, Commerce Integrations, and Headless Drupal, using only existing experience details. Add or edit optional details, select Approved for the studies cleared for public use, then save. The project editor also accepts optional contribution and technology fields with independent approval for each client listing.
+
+In database mode, only approved case studies and gallery details appear on the public page. Publish Static exports those same approved records and rebuilds the local static site. Unchecking Approved removes the selected details from live database output and from subsequent exports. Case study screenshots can reference an existing cleared public image under `images/` and require descriptive alt text.
+
+Additional changes cover `config/cms.php`, `config/portfolio-contract.json`, the CMS and homepage controllers, portfolio content and presentation services, admin views, the case-study migration, and the Node build. The follow-up verification passed 41 PHPUnit tests with 455 assertions and 12 static tests. Pint, Node syntax, the static build and asset staging passed. Tests covered authorized review, draft privacy, approval, removal from subsequent exports and public rendering. The migration was applied to the workspace Docker database and the local case study route redirected unauthenticated requests to login. Phase 5 remains open for owner review.

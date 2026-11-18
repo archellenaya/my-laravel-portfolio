@@ -31,11 +31,14 @@ Gate: instant selection and reliable fallback on both delivery paths.
 
 Gate: all four templates present the same content and preserve reading order and usable navigation.
 
-## Phase 5 — Content improvements
+## Phase 5 — Content improvements (awaiting owner review)
 
-1. Update configurable hero and set availability after owner confirmation. Consolidate skills by expertise and learning status. Edit experience for ownership and technical contribution.
-2. Gather permission and verify details for three featured case studies. Start with plausible areas from the existing experience record: property synchronization, commerce integrations and headless Drupal. Confirm project attribution separately.
-3. Preserve the client gallery and add verified contribution and technology details. Add six configured services and contact CTAs. Keep optional links conditional and give editorial gaps a review status.
+- [x] Update the shared hero, organize CMS skills by category and learning status, and clarify experience using existing responsibilities.
+- [x] Preserve the client gallery, add six configured services and contact CTAs, and keep optional links conditional.
+- [x] Add approval-gated rendering for technical case studies and client gallery contributions.
+- [x] Confirm and enable both remote employment and freelance project availability badges.
+- [x] Add case-study drafts and gallery approval controls to the existing authenticated CMS.
+- [ ] Review the property synchronization, commerce integration, and headless Drupal drafts in the CMS. Approve only the studies and gallery details cleared for public use, or leave them as drafts.
 
 Gate: owner-reviewed claims and confidentiality, working resume and contact actions, and preserved client listings.
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\PortfolioContent;
 use App\Services\PortfolioContract;
+use App\Services\PortfolioPresentation;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,7 @@ class HomeController extends Controller
             }
         }
         $content = [];
-        foreach (['expertise', 'skills', 'experiences', 'education', 'tools'] as $table) {
+        foreach (['experiences', 'education', 'tools'] as $table) {
             $content[$table] = collect($snapshot[$table])->map(fn ($row) => (object) $row);
         }
         $content['tools'] = $content['tools']->map(function ($tool) {
@@ -30,20 +31,35 @@ class HomeController extends Controller
 
             return $tool;
         });
+        foreach (['linkedin_url', 'github_url', 'facebook_url', 'instagram_url'] as $field) {
+            $data[$field] = PortfolioContract::projectWebsite($data[$field] ?? null);
+        }
+
+        $data['whatsapp'] = preg_match('/^\d{7,15}$/D', $data['whatsapp'] ?? '') ? $data['whatsapp'] : '';
+
+        $contract = PortfolioContract::definition();
         $projects = collect($snapshot['projects'])->map(function (array $project, int $index) {
             $project['modal_id'] = 'modal-0'.($index + 1);
             $project['image_url'] = asset($project['image']);
             $project['website_link'] = PortfolioContract::projectWebsite($project['website_url'] ?? null);
             $project['tags_list'] = array_filter(array_map('trim', explode(',', $project['tags'] ?? '')));
 
+            $project['contribution'] ??= '';
+            $project['technologies'] = PortfolioPresentation::technologies($project['technologies'] ?? '');
+
             return $project;
         });
-        $contract = PortfolioContract::definition();
         $anchors = $contract['anchors'];
         $resumePath = $contract['resume_path'];
 
         return view('home_page', compact('data', 'projects', 'anchors', 'resumePath') + $content + [
             'templatePreferences' => PortfolioContract::templatePreferences($contract),
+            'hero' => $contract['hero'],
+            'availability' => $contract['availability'],
+            'experienceIntro' => $contract['experience_intro'],
+            'skillGroups' => PortfolioPresentation::skills($snapshot, $contract),
+            'services' => $contract['optional_sections']['services'],
+            'featuredProjects' => PortfolioPresentation::caseStudies($snapshot['case_studies'], $contract),
             'canonicalUrl' => rtrim($contract['public_origin'], '/').'/',
         ]);
     }

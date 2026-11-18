@@ -26,15 +26,16 @@
           <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
               <h3 class="text-pretitle">Social</h3>
               <ul class="contact-social">
-                <li><a href="{{$data['linkedin_url']}}" target="_blank" rel="noopener noreferrer">Linkedin</a></li>
-                <li><a href="{{$data['facebook_url']}}" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                <li><a href="{{$data['instagram_url']}}" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                <li><a href="https://wa.me/{{$data['whatsapp']}}" target="_blank" rel="noopener noreferrer">Whatsapp</a></li>
-                <li><a href="{{$data['github_url']}}" target="_blank" rel="noopener noreferrer">Github</a></li>
+                @if ($data['linkedin_url'])<li><a href="{{ $data['linkedin_url'] }}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>@endif
+                @if ($data['facebook_url'])<li><a href="{{ $data['facebook_url'] }}" target="_blank" rel="noopener noreferrer">Facebook</a></li>@endif
+                @if ($data['instagram_url'])<li><a href="{{ $data['instagram_url'] }}" target="_blank" rel="noopener noreferrer">Instagram</a></li>@endif
+                @if ($data['whatsapp'])<li><a href="https://wa.me/{{ $data['whatsapp'] }}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>@endif
+                @if ($data['github_url'])<li><a href="{{ $data['github_url'] }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>@endif
               </ul>
           </div>
           <div class="column lg-4 md-12 contact-block">
               <a href="mailto:{{$data['email']}}" class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
+              <a class="contact-resume" href="{{ url($resumePath) }}">Download Resume</a>
           </div>
       </div> <!-- end contact-bottom -->
 

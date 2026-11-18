@@ -60,6 +60,12 @@ class PortfolioContract
             }, $rows);
         }
 
+        $studies = $content['case_studies'] ?? [];
+        if (! is_array($studies) || ! array_is_list($studies)) {
+            throw new \RuntimeException('Invalid portfolio case studies.');
+        }
+        $normalized['case_studies'] = $studies;
+
         return $normalized;
     }
 

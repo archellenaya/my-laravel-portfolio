@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('content')
 <a href="{{route('admin.list', $section)}}">← Back to {{ $section }}</a>
-<h1>{{$row ? 'Edit' : 'Add'}} {{ $section === 'profiles' ? 'profile & site content' : ($section === 'tools' ? 'tool logo' : rtrim($section, 's')) }}</h1>
+<h1>{{$row ? 'Edit' : 'Add'}} {{ $section === 'profiles' ? 'profile & site content' : ($section === 'tools' ? 'tool logo' : ($section === 'case_studies' ? 'case study' : rtrim($section, 's'))) }}</h1>
 <form class="panel" method="post" enctype="multipart/form-data" action="{{$row ? route('admin.update', [$section, $row->id]) : route('admin.store', $section)}}">
 @csrf @if($row) @method('PUT') @endif
 @foreach($fields as $field => $type)
@@ -19,10 +19,14 @@
     <option value="light" @selected(old('appearance', $row->appearance ?? 'original') === 'light')>White logo for dark background</option>
 </select>
 <small>Choose white for dark monochrome logos that would disappear in the globe.</small>
-@elseif($type === 'textarea')<textarea id="{{$field}}" name="{{$field}}" required maxlength="20000">{{old($field, $row->$field ?? '')}}</textarea>
-@else<input id="{{$field}}" name="{{$field}}" type="{{$field === 'email' ? 'email' : (str_ends_with($field, '_url') ? 'url' : 'text')}}" value="{{old($field, $row->$field ?? '')}}" @if($field !== 'website_url') required @endif maxlength="1000">@endif
+@elseif($type === 'approval')
+<input type="checkbox" id="{{$field}}" name="{{$field}}" value="1" @checked(old($field, $errors->any() ? false : ($row->$field ?? false)))>
+<small>{{$section === 'case_studies' ? 'Include this reviewed case study on the public site.' : 'Include the reviewed contribution and technologies in the public gallery. The original listing is displayed either way.'}}</small>
+@elseif(str_ends_with($type, 'textarea'))<textarea id="{{$field}}" name="{{$field}}" @required($type === 'textarea') maxlength="20000">{{old($field, $row->$field ?? '')}}</textarea>
+@else<input id="{{$field}}" name="{{$field}}" type="{{$field === 'email' ? 'email' : (str_ends_with($field, '_url') ? 'url' : 'text')}}" value="{{old($field, $row->$field ?? '')}}" @required($field !== 'website_url' && !str_starts_with($type, 'optional_')) maxlength="1000">@endif
 
-@if($field === 'tags')<small>Separate tags with commas.</small>@endif
+@if(in_array($field, ['tags', 'technologies']))<small>Separate entries with commas.</small>@endif
+@if($field === 'screenshot_path')<small>Optional. Use an existing public image path such as images/projects/example.jpg. Use only images cleared for public use.</small>@endif
 @if($field === 'description' && in_array($section, ['experiences', 'education']))<small>Use one line per bullet point.</small>@endif
 @endforeach
 <label for="sort_order">Display order</label><input type="number" id="sort_order" name="sort_order" min="0" max="100000" value="{{old('sort_order', $row->sort_order ?? 0)}}" required>
