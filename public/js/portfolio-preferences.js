@@ -48,9 +48,11 @@
 
         syncControls();
         select.addEventListener('change', () => {
+            const previous = root.dataset.template;
             applyTemplate(select.value);
             syncControls();
             savePreference(templateKey, select.value);
+            if (select.value !== previous) window.portfolioTrack?.('template_choice', { template: select.value });
         });
         themeSelect.addEventListener('change', () => {
             themePreference = themes.includes(themeSelect.value) ? themeSelect.value : defaultTheme;

@@ -41,6 +41,14 @@ class HomeController extends Controller
         $projects = collect($snapshot['projects'])->map(function (array $project, int $index) {
             $project['modal_id'] = 'modal-0'.($index + 1);
             $project['image_url'] = asset($project['image']);
+            $preview = 'images/optimized/projects/'.hash('sha256', $project['image']);
+            $candidates = [];
+            foreach ([400 => '-400.webp', 640 => '.webp'] as $width => $suffix) {
+                if (is_file(public_path($preview.$suffix))) {
+                    $candidates[] = asset($preview.$suffix).' '.$width.'w';
+                }
+            }
+            $project['preview_srcset'] = implode(', ', $candidates);
             $project['website_link'] = PortfolioContract::projectWebsite($project['website_url'] ?? null);
             $project['tags_list'] = array_filter(array_map('trim', explode(',', $project['tags'] ?? '')));
 
@@ -60,8 +68,26 @@ class HomeController extends Controller
             'skillGroups' => PortfolioPresentation::skills($snapshot, $contract),
             'services' => $contract['optional_sections']['services'],
             'featuredProjects' => PortfolioPresentation::caseStudies($snapshot['case_studies'], $contract),
-            'canonicalUrl' => rtrim($contract['public_origin'], '/').'/',
+            'canonicalUrl' => PortfolioContract::canonicalUrl(),
+            'socialImage' => PortfolioContract::canonicalUrl().$contract['social_image'],
         ]);
+    }
+
+    public function robots()
+    {
+        return response(file_get_contents(resource_path('views/static/robots.txt')).'Sitemap: '.PortfolioContract::canonicalUrl()."sitemap.xml\n", 200, [
+            'Content-Type' => 'text/plain; charset=UTF-8',
+        ]);
+    }
+
+    public function sitemap()
+    {
+        $url = htmlspecialchars(PortfolioContract::canonicalUrl(), ENT_XML1 | ENT_QUOTES, 'UTF-8');
+
+        return response('<?xml version="1.0" encoding="UTF-8"?>'."\n"
+            .'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>'.$url."</loc></url></urlset>\n", 200, [
+                'Content-Type' => 'application/xml; charset=UTF-8',
+            ]);
     }
 
     public function download_cv(PortfolioContent $portfolio)

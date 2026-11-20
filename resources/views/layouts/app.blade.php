@@ -18,6 +18,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="canonical" href="{{ $canonicalUrl }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
+    <meta property="og:title" content="{{ $data['page_title'] }}">
+    <meta property="og:description" content="{{ $data['meta_description'] }}">
+    <meta property="og:image" content="{{ $socialImage }}">
+    <meta property="og:image:alt" content="{{ $data['fullname'] }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ $data['page_title'] }}">
+    <meta name="twitter:description" content="{{ $data['meta_description'] }}">
+    <meta name="twitter:image" content="{{ $socialImage }}">
+    <meta name="twitter:image:alt" content="{{ $data['fullname'] }}">
+    @php
+        $structuredData = [
+            '@context' => 'https://schema.org',
+            '@type' => 'ProfilePage',
+            'url' => $canonicalUrl,
+            'name' => $data['page_title'],
+            'description' => $data['meta_description'],
+            'mainEntity' => [
+                '@type' => 'Person',
+                'name' => $data['fullname'],
+                'jobTitle' => $data['role'],
+                'image' => $socialImage,
+            ],
+        ];
+    @endphp
+    <script type="application/ld+json">@json($structuredData)</script>
     <script src="/js/portfolio-preferences.js"></script>
 
     <link rel="preload" as="image" href="{{asset($data['headshot'])}}" fetchpriority="high">

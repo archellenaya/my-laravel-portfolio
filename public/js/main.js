@@ -4,22 +4,34 @@
     html.classList.replace('no-js', 'js');
     const toggle = document.querySelector('.mobile-menu-toggle');
     const navigation = document.querySelector('.main-nav-wrap');
+    const mobile = matchMedia('(max-width: 800px)');
     function menu(open) {
         toggle?.setAttribute('aria-expanded', String(open));
         toggle?.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
         toggle?.classList.toggle('is-clicked', open);
         document.body.classList.toggle('menu-is-open', open);
-        if (navigation) navigation.inert = matchMedia('(max-width: 800px)').matches && !open;
+        if (navigation) navigation.inert = mobile.matches && !open;
     }
     toggle?.addEventListener('click', () => menu(toggle.getAttribute('aria-expanded') !== 'true'));
-    navigation?.addEventListener('click', event => { if (event.target.closest('a')) menu(false); });
+    navigation?.addEventListener('click', event => {
+        const link = event.target.closest('a');
+        if (!link || !mobile.matches || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        const section = link.hash && document.getElementById(link.hash.slice(1));
+        menu(false);
+        if (!section) return;
+        event.preventDefault();
+        if (location.hash !== link.hash) history.pushState(null, '', link.hash);
+        section.tabIndex = -1;
+        section.focus({preventScroll: true});
+        section.scrollIntoView();
+    });
     document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && document.body.classList.contains('menu-is-open')) {
             menu(false);
             toggle.focus();
         }
     });
-    matchMedia('(max-width: 800px)').addEventListener('change', () => menu(false));
+    mobile.addEventListener('change', () => menu(false));
     menu(false);
 
     document.querySelectorAll('a[href^="#modal-"]').forEach(link => {
@@ -27,7 +39,11 @@
         if (!(dialog instanceof HTMLDialogElement)) return;
         link.addEventListener('click', event => {
             event.preventDefault();
+            if (dialog.open) return;
             dialog.showModal();
+            if (/^\d+$/.test(dialog.dataset.projectId ?? '')) {
+                window.portfolioTrack?.('project_view', { project_id: dialog.dataset.projectId });
+            }
             dialog.addEventListener('close', () => link.focus(), {once: true});
         });
     });
@@ -35,6 +51,19 @@
         dialog.querySelector('[data-close-dialog]')?.addEventListener('click', () => dialog.close());
         dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
     });
+    function trackLink(event) {
+        const link = event.target.closest('a');
+        if (!link || event.defaultPrevented) return;
+        if (link.getAttribute('href') === '/download-cv') {
+            window.portfolioTrack?.('resume_download');
+        } else if (link.dataset.contactCta) {
+            window.portfolioTrack?.('contact_cta', { channel: link.dataset.contactCta });
+        } else if (link.dataset.social) {
+            window.portfolioTrack?.('social_click', { network: link.dataset.social });
+        }
+    }
+    document.addEventListener('click', trackLink);
+    document.addEventListener('auxclick', event => { if (event.button === 1) trackLink(event); });
     // Animate on entry without hiding content or delaying the initial heading.
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const played = new WeakSet();

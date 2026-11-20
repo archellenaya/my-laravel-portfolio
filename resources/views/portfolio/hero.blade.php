@@ -25,16 +25,16 @@
               <div class="hero-actions">
                   <a href="{{ url($resumePath) }}">Download Resume</a>
                   <a href="#{{ $anchors['works'] }}">View Projects</a>
-                  <a href="#{{ $anchors['contact'] }}">Contact</a>
+                  <a href="#{{ $anchors['contact'] }}" data-contact-cta="hero">Contact</a>
               </div>
           </div>
 
           <ul class="intro-social">
-             @if ($data['linkedin_url'])<li><a href="{{ $data['linkedin_url'] }}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>@endif
-              @if ($data['facebook_url'])<li><a href="{{ $data['facebook_url'] }}" target="_blank" rel="noopener noreferrer">Facebook</a></li>@endif
-              @if ($data['instagram_url'])<li><a href="{{ $data['instagram_url'] }}" target="_blank" rel="noopener noreferrer">Instagram</a></li>@endif
-              @if ($data['whatsapp'])<li><a href="https://wa.me/{{ $data['whatsapp'] }}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>@endif
-              @if ($data['github_url'])<li><a href="{{ $data['github_url'] }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>@endif
+             @if ($data['linkedin_url'])<li><a href="{{ $data['linkedin_url'] }}" target="_blank" rel="noopener noreferrer" data-social="linkedin">LinkedIn</a></li>@endif
+              @if ($data['facebook_url'])<li><a href="{{ $data['facebook_url'] }}" target="_blank" rel="noopener noreferrer" data-social="facebook">Facebook</a></li>@endif
+              @if ($data['instagram_url'])<li><a href="{{ $data['instagram_url'] }}" target="_blank" rel="noopener noreferrer" data-social="instagram">Instagram</a></li>@endif
+              @if ($data['whatsapp'])<li><a href="https://wa.me/{{ $data['whatsapp'] }}" target="_blank" rel="noopener noreferrer" data-social="whatsapp">WhatsApp</a></li>@endif
+              @if ($data['github_url'])<li><a href="{{ $data['github_url'] }}" target="_blank" rel="noopener noreferrer" data-social="github">GitHub</a></li>@endif
           </ul>
 
       </div> <!-- end intro content -->

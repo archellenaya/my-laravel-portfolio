@@ -4,6 +4,11 @@ namespace App\Services;
 
 class PortfolioContract
 {
+    public static function canonicalUrl(): string
+    {
+        return rtrim(self::definition()['public_origin'], '/').'/';
+    }
+
     public static function definition(): array
     {
         return json_decode(file_get_contents(config_path('portfolio-contract.json')), true, 512, JSON_THROW_ON_ERROR);

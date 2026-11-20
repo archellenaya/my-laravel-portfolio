@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/download-cv', [HomeController::class, 'download_cv']);
+Route::get('/robots.txt', [HomeController::class, 'robots']);
+Route::get('/sitemap.xml', [HomeController::class, 'sitemap']);
 
 Route::prefix('admin')->group(function () {
     Route::middleware('guest')->group(function () {

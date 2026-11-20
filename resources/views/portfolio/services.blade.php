@@ -13,7 +13,7 @@
                                 <li>{{ $technology }}</li>
                             @endforeach
                         </ul>
-                        <a href="#{{ $anchors['contact'] }}" aria-label="Discuss {{ $service['title'] }}">Discuss this service</a>
+                        <a href="#{{ $anchors['contact'] }}" data-contact-cta="services" aria-label="Discuss this service: {{ $service['title'] }}">Discuss this service</a>
                     </article>
                 @endforeach
             </div>

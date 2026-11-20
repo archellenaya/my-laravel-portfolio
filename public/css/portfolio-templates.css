@@ -148,6 +148,7 @@ html[data-template="terminal"] {
     font-size: 1.25rem;
 }
 [data-template] .intro-social li { padding: 0; }
+[data-template] .contact-links { color: var(--ink); }
 [data-template] :is(.intro-social, .contact-links, .contact-social) a { color: var(--accent); }
 [data-template] :is(.intro-scrolldown, .ss-go-top a) svg path { fill: var(--ink); }
 [data-template] .intro-scrolldown { right: 5vw; bottom: 1.2rem; }
@@ -163,6 +164,7 @@ html[data-template="terminal"] {
     [data-template] .about-info__text { padding-inline-start: 1.6rem; }
 }
 [data-template] :is(.timeline__timeframe, .folio-list__item-cat, .ss-copyright) { color: var(--muted); }
+[data-template] .ss-copyright a { text-decoration: underline; }
 [data-template] .timeline__bullet { background-color: var(--accent); }
 [data-template] .s-content .btn {
     background: var(--surface);

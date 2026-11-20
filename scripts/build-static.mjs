@@ -1,6 +1,7 @@
 import { caseStudies, skillGroups } from './portfolio-presentation.mjs';
 import { readFile, writeFile, mkdir, readdir, realpath, copyFile, rm } from 'node:fs/promises';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 // Keep generated files writable by the shared group used by local Docker builds.
@@ -10,7 +11,7 @@ const site = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 
 // Vercel supplies version 2 endpoint paths through this build-time configuration.
-export function analyticsScript(rawConfig = process.env.VERCEL_OBSERVABILITY_CLIENT_CONFIG) {
+export function analyticsScript(rawConfig = process.env.VERCEL_OBSERVABILITY_CLIENT_CONFIG, customEvents = process.env.PORTFOLIO_ANALYTICS_EVENTS === '1') {
     const options = rawConfig ? JSON.parse(rawConfig).analytics ?? {} : {};
     const config = {
         scriptSrc: options.scriptSrc || '/_vercel/insights/script.js',
@@ -26,11 +27,18 @@ export function analyticsScript(rawConfig = process.env.VERCEL_OBSERVABILITY_CLI
     return `(() => {
     const config = ${JSON.stringify(config)};
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    window.va('beforeSend', event => {
+        const url = new URL(event.url, window.location.origin);
+        url.search = '';
+        url.hash = '';
+        return {...event, url: url.href};
+    });
     const script = document.createElement('script');
     script.defer = true;
     script.src = config.scriptSrc;
     if (config.eventEndpoint) script.dataset.eventEndpoint = config.eventEndpoint;
     if (config.viewEndpoint) script.dataset.viewEndpoint = config.viewEndpoint;
+    ${customEvents ? "window.portfolioTrack = (name, data) => window.va('event', { name, data });" : ''}
     document.head.appendChild(script);
 })();\n`;
 }
@@ -149,7 +157,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     profile.whatsapp_links = profile.whatsapp ? [{number: profile.whatsapp}] : [];
 
     const assets = new Map();
-    async function asset(relative, extensions) {
+    async function asset(relative, extensions, optional = false) {
         if (typeof relative !== 'string' || !/^[\w./@ -]+$/.test(relative) || relative.split('/').includes('..') || relative.startsWith('/')) throw new Error(`Unsafe asset path: ${relative}`);
         if (!extensions.includes(path.extname(relative).toLowerCase())) throw new Error(`Unsupported asset: ${relative}`);
         const uploaded = relative.startsWith('storage/cms/');
@@ -165,6 +173,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
             source = candidate;
             break;
         }
+        if (!source && optional) return null;
         if (!source) throw new Error(`Missing asset ${relative}. Run npm run static:stage locally and commit referenced assets before deploying.`);
         assets.set(relative, source);
         return '/' + relative.split('/').map(encodeURIComponent).join('/');
@@ -191,6 +200,7 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
         template_preferences: templatePreferences(contract.template_preferences),
         canonical_url: new URL('/', contract.public_origin).href,
     };
+    context.social_image = new URL(await asset(contract.social_image, images), context.canonical_url).href;
     for (const section of ['expertise', 'skills', 'experiences', 'education']) context[section] = sorted(content[section]);
     context.hero = contract.hero;
     context.remote_availability = contract.availability.remote === true ? [{}] : [];
@@ -212,14 +222,32 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
     context.projects = await Promise.all(sorted(content.projects).map(async (row, index) => {
         const website = projectWebsite(row.website_url);
         const technologies = (row.technologies ?? '').split(',').map(name => name.trim()).filter(Boolean);
-        return {...row, image_url: await asset(row.image, images), modal_id: `modal-project-${index + 1}`,
+        const imageUrl = await asset(row.image, images);
+        const preview = `images/optimized/projects/${createHash('sha256').update(row.image).digest('hex')}`;
+        const [small, large] = await Promise.all([
+            asset(preview + '-400.webp', images, true),
+            asset(preview + '.webp', images, true),
+        ]);
+        const candidates = [[small, 400], [large, 640]].filter(([url]) => url).map(([url, width]) => `${url} ${width}w`);
+        return {...row, image_url: imageUrl, previews: candidates.length ? [{srcset: candidates.join(', ')}] : [], project_id: row.id ?? '', modal_id: `modal-project-${index + 1}`,
             contributions: row.contribution ? [{text: row.contribution}] : [],
             technology_badges: technologies.length ? [{items: technologies.map(name => ({name}))}] : [],
             website_links: website ? [{url: website, title: row.title}] : [],
             tags: (row.tags ?? '').split(',').map(text => ({text: text.trim()})).filter(row => row.text)};
     }));
-    const html = render(await readTemplate('index.html'), context);
-    if (/{{|@foreach|@extends/.test(html)) throw new Error('Unrendered template syntax');
+    const template = render(await readTemplate('index.html'), context);
+    if (/{{|@foreach|@extends/.test(template)) throw new Error('Unrendered template syntax');
+
+    const structuredData = {
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        url: context.canonical_url,
+        name: profile.page_title,
+        description: profile.meta_description,
+        mainEntity: { '@type': 'Person', name: profile.fullname, jobTitle: profile.role, image: context.social_image },
+    };
+    const json = JSON.stringify(structuredData).replace(/</g, '\\u003c');
+    const html = template.replace('<!-- portfolio-structured-data -->', () => `<script type="application/ld+json">${json}</script>`);
 
     if (stageAssets) {
         for (const [relative, source] of assets) {
@@ -253,11 +281,14 @@ export async function build({ output = path.join(site, 'dist'), snapshot = path.
         }
     }
     for (const dir of ['css', 'js', 'images']) await directory(dir);
-    for (const name of ['favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'robots.txt', 'site.webmanifest']) await copy(path.join(site, 'public', name), name);
+    for (const name of ['favicon.ico', 'favicon-16x16.png', 'favicon-32x32.png', 'apple-touch-icon.png', 'android-chrome-192x192.png', 'android-chrome-512x512.png', 'site.webmanifest']) await copy(path.join(site, 'public', name), name);
     for (const [relative, source] of assets) await copy(source, relative);
     await copy(assets.get(profile.resume), 'resume.pdf');
     await writeFile(path.join(output, 'js/vercel-analytics.js'), analytics);
     await writeFile(path.join(output, 'index.html'), html);
+    const robots = await readFile(path.join(site, 'resources/views/static/robots.txt'), 'utf8');
+    await writeFile(path.join(output, 'robots.txt'), `${robots}Sitemap: ${context.canonical_url}sitemap.xml\n`);
+    await writeFile(path.join(output, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${escape(context.canonical_url)}</loc></url></urlset>\n`);
     await writeFile(path.join(output, '404.html'), '<!doctype html><html lang="en"><meta charset="utf-8"><title>Page not found</title><h1>Page not found</h1><a href="/">Return to portfolio</a></html>');
     console.log(`Built static portfolio: ${output}`);
     return output;

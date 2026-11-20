@@ -31,7 +31,7 @@ Gate: instant selection and reliable fallback on both delivery paths.
 
 Gate: all four templates present the same content and preserve reading order and usable navigation.
 
-## Phase 5 — Content improvements (awaiting CMS synchronization)
+## Phase 5 — Content improvements (completed)
 
 - [x] Update the shared hero, organize CMS skills by category and learning status, and clarify experience using existing responsibilities.
 - [x] Preserve the client gallery, add six configured services and contact CTAs, and keep optional links conditional.
@@ -40,16 +40,16 @@ Gate: all four templates present the same content and preserve reading order and
 - [x] Add case-study drafts and gallery approval controls to the existing authenticated CMS.
 - [x] Export the approved Property Data Synchronization summary to the checked-in snapshot.
 - [x] Record owner approval of the Commerce Integrations and Headless Drupal summaries in the checked-in snapshot. Keep unapproved gallery contribution details as drafts.
-- [ ] Apply the two approvals in the workspace CMS and verify that its export preserves both summaries.
+- [x] Apply the two approvals in the workspace CMS and verify that its export preserves both summaries.
 
 Gate: owner-reviewed claims and confidentiality, working resume and contact actions, and preserved client listings.
 
-## Phase 6 — SEO, accessibility and performance
+## Phase 6 — SEO, accessibility and performance (completed)
 
-1. Publish a single configured canonical origin, title, description, Open Graph and X cards, JSON-LD, sitemap and updated robots references in both delivery paths. Verify rendered markup and CSP.
-2. Audit keyboard and screen reader flows, contrast, menu and dialog focus, responsive layout and reduced motion.
-3. Measure the default and alternate templates on representative mobile and desktop profiles. Verify WebP fallbacks and responsive candidates, right-size gallery assets, review fonts and particle cost, and record Lighthouse and available field metrics.
-4. Verify the existing analytics path and project telemetry. Add only needed events for resume, project views, contact CTAs, socials and template choice using stable non-personal identifiers. Check duplicate events, privacy requirements, and whether Speed Insights is available and appropriate.
+- [x] Publish a single configured canonical origin, title, description, Open Graph and X cards, JSON-LD, sitemap and updated robots references in both delivery paths. Verify rendered markup and CSP.
+- [x] Audit keyboard and screen reader flows, contrast, menu and dialog focus, responsive layout and reduced motion.
+- [x] Measure the default and alternate templates on representative mobile and desktop profiles. Verify WebP fallbacks and responsive candidates, right-size gallery assets, review fonts and particle cost, and record Lighthouse and available field metrics.
+- [x] Verify the existing analytics path and opt-in events for resume, project views, contact CTAs, socials and template choice using stable non-personal identifiers. Check duplicate events and payload privacy, and review Speed Insights availability.
 
 Gate: metadata parity, accessibility checks and recorded performance comparisons with analytics verified where enabled.
 

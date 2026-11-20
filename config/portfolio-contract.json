@@ -95,6 +95,7 @@
     },
     "resume_path": "/download-cv",
     "public_origin": "https://www.archellenaya.com",
+    "social_image": "images/formal-photo.jpg",
     "optional_sections": {
         "services": [
             {

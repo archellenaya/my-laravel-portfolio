@@ -3174,8 +3174,11 @@ img.u-pull-left {
         transform        : translateY(0);
         opacity          : 1;
         visibility       : visible;
-        transition       : all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-        transition-delay : .4s;
+        transition       : opacity 0.4s, transform 0.4s;
+    }
+
+    .menu-is-open .main-nav:focus-within {
+        transition: none;
     }
 }
 

@@ -220,3 +220,54 @@ Suggested commit message
 ```text
 content: add approved commerce and Drupal case studies
 ```
+
+### Phase 5 completion — 20 November 2026
+
+Applied the Commerce Integrations and Headless Drupal approvals in the workspace CMS database after confirming that both drafts matched the owner-approved summaries. A fresh `portfolio:export` to a temporary file matched the checked-in snapshot in full, including all three approved case studies and 19 client listings. Stopped the local MySQL service after verification.
+
+The focused CMS and static-content PHPUnit suites passed with 8 tests and 113 assertions. The Node static suite, production static build, focused Pint checks and Node syntax checks passed. The generated homepage includes the email contact link and the resume download resolves to the generated PDF through the configured rewrite.
+
+Phase 5 is complete. Phase 6 awaits owner instruction.
+
+Suggested commit message
+
+```text
+docs: record phase 5 CMS synchronization
+```
+
+## Phase 6 — Completed 20 November 2026
+
+Laravel and the static build use the shared public origin, CMS title and description, and configured social image for canonical URLs, social cards and ProfilePage JSON-LD. Both serve robots.txt with the canonical sitemap URL and expose a sitemap containing the homepage. Chromium loaded both pages under their configured CSPs.
+
+Mobile menus expose links immediately to keyboard users and move focus to the selected section. Project links identify their dialogs and restore focus on close. Service names include the visible CTA text, the contact location meets contrast checks, and the footer attribution link is underlined. Chromium and axe-core 4.14 checked 16 combinations of renderer, template and viewport at 375 and 1440 CSS pixels, including the Modern dark palette on desktop. The final runs reported no axe violations. Screen-reader semantics were checked through Chromium's accessibility tree. A standalone screen reader was unavailable.
+
+The 19 gallery entries have 400 px and 640 px WebP previews totaling 248 KiB and 511 KiB respectively, compared with 9.8 MiB of originals. The originals remain available in dialogs and as thumbnail fallbacks. Chromium selected each preview class at the expected viewport and loaded the original when the WebP source was unavailable. The About image retains its 1× and 2× candidates. Both font families loaded with `display=swap`. The particle canvas drew about 14 frames per second on mobile and 20 on desktop in a local sample, and stopped drawing continuously with reduced motion enabled.
+
+### Lighthouse 13.6 local results
+
+The static build ran in Chromium on loopback at 375 × 812 with simulated mobile throttling and at 1440 × 900 without network throttling. All audits scored 100 for SEO and accessibility. These are individual lab runs. The public PageSpeed Insights request returned HTTP 429 due to quota, so field metrics were unavailable.
+
+| Template | Mobile performance | Mobile LCP | Desktop performance | Desktop LCP |
+| --- | ---: | ---: | ---: | ---: |
+| Modern Developer | 93 | 2.6 s | 100 | 0.2 s |
+| Minimal Professional | 95 | 2.4 s | 100 | 0.1 s |
+| Creative Developer | 95 | 2.4 s | 100 | 0.1 s |
+| Terminal Developer | 95 | 2.4 s | 100 | 0.1 s |
+
+Total blocking time was 0 ms in all eight runs. CLS was at most 0.001. Initial transferred size was approximately 520 KiB for Modern, Minimal and Creative and 476 KiB for Terminal.
+
+### Analytics verification
+
+The deployed Vercel Analytics loader and its configured same-origin SDK URL returned JavaScript. The deployed standard Speed Insights script URL also returned JavaScript. Dashboard access and production metric ingestion were unavailable, so Speed Insights settings remain unchanged. [Vercel Speed Insights](https://vercel.com/docs/speed-insights)
+
+The static build enables custom events when `PORTFOLIO_ANALYTICS_EVENTS=1` is set for a project with Vercel custom-event support. Resume, project, contact, social and template events use fixed labels, a CMS project ID or a template registry ID. The loader removes query strings and fragments from reported page URLs. A local collector receiving requests from the deployed SDK verified a single pageview and one event per sampled action. A browser fixture exercised all five event types and verified that selecting the same template twice emits no duplicate. [Vercel custom events](https://vercel.com/docs/analytics/custom-events)
+
+### Verification
+
+All 41 PHPUnit tests passed with 463 assertions using GD. The 12 Node static tests, static build, asset staging, focused Pint checks, Node syntax checks and `git diff --check` passed. Phase 7 awaits owner instruction.
+
+Suggested commit message
+
+```text
+feat: improve portfolio SEO, accessibility and performance
+```

@@ -64,6 +64,8 @@ class StaticContentTest extends TestCase
             ->assertSee('data-template="modern"', false)
             ->assertSee('data-theme="system"', false)
             ->assertSee('<link rel="canonical" href="https://www.archellenaya.com/">', false)
+            ->assertSee('<meta property="og:url" content="https://www.archellenaya.com/">', false)
+            ->assertSee('<meta name="twitter:card" content="summary">', false)
             ->assertSeeInOrder(['<script src="/js/portfolio-preferences.js"></script>', '<link rel="stylesheet"'], false)
             ->assertSee('class="row portfolio-preferences" hidden', false)
             ->assertSee('<label for="portfolio-template">Portfolio template</label>', false)
@@ -92,6 +94,12 @@ class StaticContentTest extends TestCase
         foreach (['intro', 'about', 'works', 'services', 'contact'] as $anchor) {
             $response->assertSee('id="'.$anchor.'"', false)->assertSee('href="#'.$anchor.'"', false);
         }
+        preg_match('~<script type="application/ld\+json">(.*?)</script>~s', $response->getContent(), $structuredData);
+        $profile = json_decode($structuredData[1], true, 512, JSON_THROW_ON_ERROR);
+        $this->assertSame('https://www.archellenaya.com/', $profile['url']);
+        $this->assertSame($snapshot['profiles'][0]['fullname'], $profile['mainEntity']['name']);
+        $this->get('/robots.txt')->assertOk()->assertSee('Sitemap: https://www.archellenaya.com/sitemap.xml');
+        $this->get('/sitemap.xml')->assertOk()->assertSee('<loc>https://www.archellenaya.com/</loc>', false);
         $this->get('/download-cv')->assertDownload('archell-enaya-resume.pdf');
     }
 

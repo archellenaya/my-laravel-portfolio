@@ -167,6 +167,13 @@ test('build produces HTML, linked assets and resume without PHP or secret files'
     assert.ok(html.includes('data-template="modern"'));
     assert.ok(html.includes('data-theme="system"'));
     assert.ok(html.includes('<link rel="canonical" href="https://www.archellenaya.com/">'));
+    assert.ok(html.includes('<meta property="og:url" content="https://www.archellenaya.com/">'));
+    assert.ok(html.includes('<meta name="twitter:card" content="summary">'));
+    const structuredData = JSON.parse(html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1]);
+    assert.equal(structuredData.url, 'https://www.archellenaya.com/');
+    assert.equal(structuredData.mainEntity.name, data.profiles[0].fullname);
+    assert.ok((await readFile(path.join(output, 'robots.txt'), 'utf8')).includes('Sitemap: https://www.archellenaya.com/sitemap.xml'));
+    assert.ok((await readFile(path.join(output, 'sitemap.xml'), 'utf8')).includes('<loc>https://www.archellenaya.com/</loc>'));
     assert.ok(html.indexOf('<script src="/js/portfolio-preferences.js"></script>') < html.indexOf('<link rel="stylesheet"'));
     assert.ok(html.includes('class="row portfolio-preferences" hidden'));
     assert.ok(html.includes('<label for="portfolio-template">Portfolio template</label>'));
@@ -335,8 +342,8 @@ test('CMS tool logos render names, images, appearance and order for the globe', 
 test('static Analytics loader uses Vercel endpoints and initializes its queue', () => {
     for (const custom of [false, true]) {
         const config = custom ? JSON.stringify({analytics: {scriptSrc: '/metrics/script.js', viewEndpoint: '/metrics/view', eventEndpoint: '/metrics/event'}}) : '{}';
-        const scripts = [], window = {};
-        vm.runInNewContext(analyticsScript(config), {window, document: {
+        const scripts = [], window = {location: {origin: 'https://example.test'}};
+        vm.runInNewContext(analyticsScript(config, custom), {window, URL, document: {
             createElement: () => ({dataset: {}}), head: {appendChild: script => scripts.push(script)},
         }});
         assert.equal(scripts.length, 1);
@@ -345,8 +352,17 @@ test('static Analytics loader uses Vercel endpoints and initializes its queue', 
             assert.equal(scripts[0].dataset.viewEndpoint, '/metrics/view');
             assert.equal(scripts[0].dataset.eventEndpoint, '/metrics/event');
         }
-        window.va('event', 'example');
-        assert.equal(window.vaq[0][0], 'event');
+        assert.equal(window.vaq[0][0], 'beforeSend');
+        const sanitize = window.vaq[0][1];
+        assert.equal(sanitize({url: '/?email=private#contact'}).url, 'https://example.test/');
+        if (custom) {
+            window.portfolioTrack('project_view', {project_id: '12'});
+            assert.deepEqual(JSON.parse(JSON.stringify(window.vaq[1][1])), {name: 'project_view', data: {project_id: '12'}});
+        } else {
+            assert.equal(window.portfolioTrack, undefined);
+            window.va('event', 'example');
+        }
+        assert.equal(window.vaq[1][0], 'event');
     }
     assert.throws(() => analyticsScript('{"analytics":{"scriptSrc":"//external.example/script.js"}}'), /same-origin/);
 });
