@@ -53,10 +53,10 @@ Gate: owner-reviewed claims and confidentiality, working resume and contact acti
 
 Gate: metadata parity, accessibility checks and recorded performance comparisons with analytics verified where enabled.
 
-## Phase 7 — Testing and deployment readiness
+## Phase 7 — Testing and deployment readiness (completed)
 
-1. Run PHPUnit and Node tests in isolated workspaces, plus a production static build and Laravel smoke checks. Verify internal links, sampled external links, asset existence, resume downloads, CMS export, URLs and headers.
-2. Run the browser matrix for both public delivery paths. Check template selection persistence, light and dark themes, keyboard navigation, responsive overflow and visual regressions.
-3. Document content ownership, template registration, configuration, export and staging, verification and rollback. Prepare a deployment checklist for owner review.
+- [x] Run PHPUnit and Node tests in isolated workspaces, plus a production static build and Laravel smoke checks. Verify internal links, sampled external links, asset existence, resume downloads, CMS export, URLs and headers.
+- [x] Run the browser matrix for both public delivery paths. Check template selection persistence, light and dark themes, keyboard navigation, responsive overflow and visual regressions.
+- [x] Document content ownership, template registration, configuration, export and staging, verification and rollback. Prepare the [deployment checklist](DEPLOYMENT_CHECKLIST.md) for owner review.
 
 Gate: results and open issues are documented. Deployment, commits and pushes require an explicit request.

@@ -2,6 +2,8 @@
 
 Laravel portfolio with a database-backed public site and a session-authenticated CMS.
 
+See the [deployment checklist](docs/DEPLOYMENT_CHECKLIST.md) for release verification, content ownership and rollback.
+
 ## Local setup
 
 The local site now uses HTTPS and is bound to loopback. MySQL and Redis are available only inside the Docker network. Database passwords are generated secrets in the repository-root `.env`; the existing database accounts have been rotated to match. Do not replace that file with the example on an existing installation.

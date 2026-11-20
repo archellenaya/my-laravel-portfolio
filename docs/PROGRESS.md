@@ -271,3 +271,24 @@ Suggested commit message
 ```text
 feat: improve portfolio SEO, accessibility and performance
 ```
+
+## Phase 7 — Release readiness
+
+Completed 20 November 2026 against candidate revision `4f84ee7`. Added the [deployment checklist](DEPLOYMENT_CHECKLIST.md) for owner review and linked it from the README.
+
+| Check | Result |
+| --- | --- |
+| Automated regression | 41 PHPUnit tests passed with 463 assertions in Docker with GD and isolated SQLite. Coverage included database and snapshot rendering, authenticated CMS export, approval filtering and asset staging. All 12 static tests, the production static build, focused Pint checks, Node syntax checks and `git diff --check` passed. |
+| Route and asset smoke | Laravel served the checked-in snapshot over loopback with the staged uploads populated in its public storage disk. The static build used a loopback server reproducing the Vercel rewrite and headers. Both returned 200 for the homepage, robots, sitemap and resume. Resume downloads were attachments and matched byte for byte. Laravel redirected guests from `/admin` to login and static returned 404. All same-origin references checked returned 200, with 72 URLs on Laravel and 74 on static. Fragment targets resolved on both. |
+| Headers | Checked CSP, frame denial, content-type protection and referrer policy using the configured Vercel and Nginx header rules on the loopback servers. Preview and production header checks remain on the deployment checklist. |
+| Browser matrix | Chromium and Firefox passed both renderers at 375, 768, 1024 and 1440 CSS pixels. The five states covered Modern light, Modern dark, Minimal, Creative and Terminal. Selection persisted after refresh. Mobile menu keyboard entry and Escape, project dialog focus and return, canonical URL stability and horizontal overflow checks passed. |
+| Visual comparison | Chromium captures of the initial viewport at 375 and 1440 px showed no pixels differing by more than 16 RGB levels between the two renderers in any of the five states. The comparison used shared fallback fonts and hid decorative moving layers to make the screenshots reproducible. |
+| External link sample | Frank Salt and BHome returned HTTP 200. BDL Books returned HTTP 403 from the verification environment, so visitor access remains unverified. The stored link remains available for owner review. |
+
+WebKit downloaded but could not run because the host lacks required shared libraries. Safari/WebKit verification and deployment-specific checks remain open for owner review. The Laravel 10 support status and rollback procedure are recorded in the checklist.
+
+Suggested commit message
+
+```text
+docs: record portfolio release checks and deployment checklist
+```
