@@ -200,3 +200,9 @@ Suggested commit message
 ```text
 test(static): verify approved case studies and staged resume assets
 ```
+
+### Phase 5 verification — 20 November 2026
+
+The checked-in snapshot still contains the approved Property Data Synchronization summary. Phase 5 remains open pending owner decisions on whether to publish the Commerce Integrations and Headless Drupal drafts and which, if any, client gallery contribution details are cleared for publication.
+
+In an isolated copy, the focused CaseStudyCmsTest and StaticContentTest suites passed with 8 tests and 113 assertions. The Node static suite, production static build, CMS asset staging, focused Pint checks and Node syntax checks passed.
