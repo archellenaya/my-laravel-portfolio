@@ -206,3 +206,17 @@ test(static): verify approved case studies and staged resume assets
 The checked-in snapshot still contains the approved Property Data Synchronization summary. Phase 5 remains open pending owner decisions on whether to publish the Commerce Integrations and Headless Drupal drafts and which, if any, client gallery contribution details are cleared for publication.
 
 In an isolated copy, the focused CaseStudyCmsTest and StaticContentTest suites passed with 8 tests and 113 assertions. The Node static suite, production static build, CMS asset staging, focused Pint checks and Node syntax checks passed.
+
+### Phase 5 owner approval — 20 November 2026
+
+The owner confirmed publication of the Commerce Integrations and Headless Drupal drafts. The checked-in snapshot now includes the two approved summaries using the existing draft wording. Gallery contribution details retain their individual approval settings.
+
+The production static build renders all three approved case studies. Node static tests, asset staging, focused Pint checks, Node syntax checks, and 8 focused PHPUnit tests with 113 assertions passed in an isolated copy.
+
+Phase 5 remains open for CMS synchronization. The local Docker daemon has no portfolio app container, so the database approvals and a fresh export could not be verified. Apply the same approvals in the CMS before its next export to preserve both summaries.
+
+Suggested commit message
+
+```text
+content: add approved commerce and Drupal case studies
+```

@@ -595,6 +595,40 @@
             "screenshot_path": null,
             "screenshot_alt": null,
             "approved": true
+        },
+        {
+            "title": "Commerce Integrations",
+            "description": "REST API integrations between Laravel, WordPress and WooCommerce, including order, pricing and inventory synchronization.",
+            "problem": null,
+            "responsibilities": null,
+            "technologies": null,
+            "architecture": null,
+            "challenges": null,
+            "solutions": null,
+            "outcomes": null,
+            "confidentiality": null,
+            "live_url": null,
+            "repository_url": null,
+            "screenshot_path": null,
+            "screenshot_alt": null,
+            "approved": true
+        },
+        {
+            "title": "Headless Drupal",
+            "description": "Work on custom Drupal modules, structured content and JSON:API for headless CMS implementations.",
+            "problem": null,
+            "responsibilities": null,
+            "technologies": null,
+            "architecture": null,
+            "challenges": null,
+            "solutions": null,
+            "outcomes": null,
+            "confidentiality": null,
+            "live_url": null,
+            "repository_url": null,
+            "screenshot_path": null,
+            "screenshot_alt": null,
+            "approved": true
         }
     ]
 }

@@ -31,7 +31,7 @@ Gate: instant selection and reliable fallback on both delivery paths.
 
 Gate: all four templates present the same content and preserve reading order and usable navigation.
 
-## Phase 5 — Content improvements (awaiting owner review)
+## Phase 5 — Content improvements (awaiting CMS synchronization)
 
 - [x] Update the shared hero, organize CMS skills by category and learning status, and clarify experience using existing responsibilities.
 - [x] Preserve the client gallery, add six configured services and contact CTAs, and keep optional links conditional.
@@ -39,7 +39,8 @@ Gate: all four templates present the same content and preserve reading order and
 - [x] Confirm and enable both remote employment and freelance project availability badges.
 - [x] Add case-study drafts and gallery approval controls to the existing authenticated CMS.
 - [x] Export the approved Property Data Synchronization summary to the checked-in snapshot.
-- [ ] Finish owner review of the Commerce Integrations and Headless Drupal drafts and any gallery contribution details. Approve only the details cleared for public use, or leave them as drafts.
+- [x] Record owner approval of the Commerce Integrations and Headless Drupal summaries in the checked-in snapshot. Keep unapproved gallery contribution details as drafts.
+- [ ] Apply the two approvals in the workspace CMS and verify that its export preserves both summaries.
 
 Gate: owner-reviewed claims and confidentiality, working resume and contact actions, and preserved client listings.
 
